@@ -9,11 +9,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'terryma/vim-multiple-cursors'         "C-n
     Plug 'tpope/vim-commentary'                 "gcc
     Plug 'preservim/nerdtree'
-    " Plug 'gruvbox-community/gruvbox'
-    " Plug 'sainnhe/sonokai'
-    Plug 'sainnhe/everforest'
+    Plug 'junegunn/seoul256.vim'
 
 call plug#end()
+
+colorscheme seoul256
+
+let g:airline_theme='tomorrow'
 
 syntax on
 
@@ -61,8 +63,11 @@ nnoremap <leader>p g_
 
 nnoremap <leader>q ^
 
+nnoremap <leader>bd :bp<cr>:bd #<cr>
+
 imap qf <esc>
 xmap qf <esc>
+nmap qf <esc>
 
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
@@ -70,15 +75,16 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fs <cmd>Telescope current_buffer_fuzzy_find<cr>
 nnoremap <leader>fa :lua require('telescope.builtin').file_browser()<cr>
 
-nnoremap <leader>nn :NERDTreeToggle<CR>
-nnoremap <leader>nf :NERDTreeFind<CR>
+nnoremap <leader>nn :NERDTreeToggle<cr>
+nnoremap <leader>nf :NERDTreeFind<cr>
 
 let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeShowHidden=0
 
-let g:airline_wombat='base16'
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
-colorscheme everforest
-let g:everforest_background = 'hard'
-
-let g:everforest_background = 'hard'
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
