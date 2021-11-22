@@ -1,16 +1,17 @@
 call plug#begin('~/.vim/plugged')
 
-    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline'                   " status bar
     Plug 'vim-airline/vim-airline-themes'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'jiangmiao/auto-pairs'
-    Plug 'terryma/vim-multiple-cursors'         "C-n
-    Plug 'tpope/vim-commentary'                 "gcc
+    Plug 'terryma/vim-multiple-cursors'              " C-n
+    Plug 'tpope/vim-commentary'                      " gcc
     Plug 'preservim/nerdtree'
     Plug 'junegunn/seoul256.vim'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}  
+    Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -40,21 +41,30 @@ set clipboard=unnamed
 set history=1000
 set nowrap
 set scrolloff=8
-set path+=**
 set wildmenu
 set signcolumn=yes
 set nohlsearch
 set incsearch
 set nobackup
 set noswapfile
+set hidden
 
 " remapping leader key
 map <Space> <Nop>
 let mapleader = " "
 
 " move between buffers
-map <tab> :w<CR>:bp<CR>
-map <S-tab> :w<CR>:bn<CR>
+nnoremap <leader>l :bp<CR>
+nnoremap <leader>h :bn<CR>
+
+" delete buffer
+nnoremap <leader>bd :bp<cr>:bd #<cr>
+
+" move cursor to the end of the line
+nnoremap <leader>p g_
+
+" move cursor to the begging of the line
+nnoremap <leader>q ^
 
 " create under one empty line
 nnoremap <leader>o o<ESC>k
@@ -65,18 +75,11 @@ nnoremap Y y$
 " save current file
 nnoremap <Return> :w<CR>
 
-" move cursor to the end of the line
-nnoremap <leader>p g_
-
-" move cursor to the begging of the line
-nnoremap <leader>q ^
-
-" delete buffer
-nnoremap <leader>bd :bp<cr>:bd #<cr>
-
 " indent multiple times       
 vnoremap < <gv
 vnoremap > >gv
+
+nnoremap v ve
 
 " shortcut for esc
 imap qf <esc>
@@ -96,6 +99,11 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fs <cmd>Telescope current_buffer_fuzzy_find<cr>
 nnoremap <leader>fa :lua require('telescope.builtin').file_browser()<cr>
 
+" Compile
+nnoremap <leader>m  :make %<<cr>
+" Execute
+nnoremap <leader>r :term %:p:r<cr>i
+
 " nerdtree mappings
 nnoremap <leader>nn :NERDTreeToggle<cr>
 nnoremap <leader>nf :NERDTreeFind<cr>
@@ -110,12 +118,8 @@ autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
-" autocmd FileType c map <buffer> <F9> :w <CR> :!gcc % -o %< && ./%< <CR>
+" autocmd FileType c map <buffer> <F9> :w <CR> :!gcc % -o %< && %< <CR>
 
-" Compile
-nnoremap <leader>m  :make %<<cr>
-" Execute
-nnoremap <leader>c :term ./%<<cr>
 
 " coc clangd mappings
 inoremap <silent><expr> <TAB>
