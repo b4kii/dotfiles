@@ -75,6 +75,8 @@ nnoremap Y y$
 " save current file
 nnoremap <Return> :w<CR>
 
+" ala ma kota
+
 " indent multiple times       
 vnoremap < <gv
 vnoremap > >gv
