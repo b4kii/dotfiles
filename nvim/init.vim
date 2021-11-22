@@ -12,11 +12,11 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/seoul256.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}  
     Plug 'tpope/vim-fugitive'
+    Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
 colorscheme seoul256
-
 let g:airline_theme='tomorrow'
 
 syntax on
@@ -113,8 +113,6 @@ autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_
 
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
-" autocmd FileType c map <buffer> <F9> :w <CR> :!gcc % -o %< && %< <CR>
 
 " coc clangd mappings
 inoremap <silent><expr> <TAB>
