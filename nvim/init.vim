@@ -79,6 +79,7 @@ nnoremap <Return> :w<CR>
 vnoremap < <gv
 vnoremap > >gv
 
+" mark word
 nnoremap v ve
 
 " shortcut for esc
@@ -98,11 +99,6 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fs <cmd>Telescope current_buffer_fuzzy_find<cr>
 nnoremap <leader>fa :lua require('telescope.builtin').file_browser()<cr>
-
-" Compile
-nnoremap <leader>m  :make %<<cr>
-" Execute
-nnoremap <leader>r :term %:p:r<cr>i
 
 " nerdtree mappings
 nnoremap <leader>nn :NERDTreeToggle<cr>
@@ -144,3 +140,8 @@ function! s:show_documentation()
     execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
+
+" Compile
+nnoremap <leader>m  :make %<<cr>
+" Execute
+nnoremap <leader>r :term %:p:r<cr>i
