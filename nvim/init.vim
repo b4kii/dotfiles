@@ -75,8 +75,6 @@ nnoremap Y y$
 " save current file
 nnoremap <Return> :w<CR>
 
-" ala ma kota
-
 " indent multiple times       
 vnoremap < <gv
 vnoremap > >gv
@@ -121,7 +119,6 @@ autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " autocmd FileType c map <buffer> <F9> :w <CR> :!gcc % -o %< && %< <CR>
-
 
 " coc clangd mappings
 inoremap <silent><expr> <TAB>
