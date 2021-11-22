@@ -2,21 +2,24 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'vim-airline/vim-airline'                   " status bar
     Plug 'vim-airline/vim-airline-themes'
+
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-telescope/telescope.nvim'
+
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}  
     Plug 'jiangmiao/auto-pairs'
     Plug 'terryma/vim-multiple-cursors'              " C-n
     Plug 'tpope/vim-commentary'                      " gcc
     Plug 'preservim/nerdtree'
-    Plug 'junegunn/seoul256.vim'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}  
     Plug 'tpope/vim-fugitive'
+
     Plug 'ryanoasis/vim-devicons'
+    Plug 'morhetz/gruvbox'
 
 call plug#end()
 
-colorscheme seoul256
+colorscheme gruvbox
 let g:airline_theme='tomorrow'
 
 syntax on
