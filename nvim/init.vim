@@ -6,12 +6,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-telescope/telescope.nvim'
+    Plug 'preservim/nerdtree'
 
     Plug 'neoclide/coc.nvim', {'branch': 'release'}  
     Plug 'jiangmiao/auto-pairs'
     Plug 'terryma/vim-multiple-cursors'              " C-n
     Plug 'tpope/vim-commentary'                      " gcc
-    Plug 'preservim/nerdtree'
     Plug 'tpope/vim-fugitive'
 
     Plug 'ryanoasis/vim-devicons'
@@ -50,7 +50,6 @@ set nohlsearch
 set incsearch
 set nobackup
 set noswapfile
-set hidden
 
 " remapping leader key
 map <Space> <Nop>
@@ -99,7 +98,6 @@ nnoremap <C-l> <C-w>l
 " telescope mappings
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fs <cmd>Telescope current_buffer_fuzzy_find<cr>
 nnoremap <leader>fa :lua require('telescope.builtin').file_browser()<cr>
 
