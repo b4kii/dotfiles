@@ -2,20 +2,20 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'vim-airline/vim-airline'                   " status bar
     Plug 'vim-airline/vim-airline-themes'
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'morhetz/gruvbox'
 
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'preservim/nerdtree'
+    Plug 'voldikss/vim-floaterm'
 
     Plug 'neoclide/coc.nvim', {'branch': 'release'}  
     Plug 'jiangmiao/auto-pairs'
     Plug 'terryma/vim-multiple-cursors'              " C-n
     Plug 'tpope/vim-commentary'                      " gcc
     Plug 'tpope/vim-fugitive'
-
-    Plug 'ryanoasis/vim-devicons'
-    Plug 'morhetz/gruvbox'
 
 call plug#end()
 
@@ -108,6 +108,7 @@ nnoremap <leader>nf :NERDTreeFind<cr>
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeShowHidden=0
 
+
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
@@ -140,7 +141,22 @@ function! s:show_documentation()
   endif
 endfunction
 
+autocmd FileType c map <buffer> <F9> :w <CR> :!gcc % -o %< && %< <CR>
+
 " Compile
 nnoremap <leader>m  :make %<<cr>
 " Execute
-nnoremap <leader>r :term %:p:r<cr>i
+" nnoremap <leader>r :term %:p:r<cr>i
+
+nnoremap <leader>r :FloatermNew --autoclose=0 gcc % -o %< && ./%<<cr>
+nnoremap <leader>rp :FloatermNew --autoclose=0 g++ % -o %< && ./%<<cr>
+
+" Float term
+" nnoremap <leader>ft :FloatermNew<cr>
+nnoremap <leader>t :FloatermToggle<cr><C-\><C-n>
+tnoremap <leader>t <C-\><C-n>:FloatermToggle<CR>
+
+let g:floaterm_position="bottom"
+let g:floaterm_width=0.8
+let g:floaterm_height=0.8
+
