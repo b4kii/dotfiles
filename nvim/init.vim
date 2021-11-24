@@ -53,6 +53,9 @@ set nobackup
 set noswapfile
 set hidden
 
+set timeout
+set timeoutlen=200
+
 " ------------------------------------------------------------------------------
 " My remapps
 
@@ -108,9 +111,9 @@ nnoremap <leader>h :bn<CR>
 
 " Telescope mappings
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fl <cmd>Telescope buffers<cr>
 nnoremap <leader>fs <cmd>Telescope current_buffer_fuzzy_find<cr>
-nnoremap <leader>fa :lua require('telescope.builtin').file_browser()<cr>
+nnoremap <leader>fe :lua require('telescope.builtin').file_browser()<cr>
 
 " Nerdtree mappings
 nnoremap <leader>nn :NERDTreeToggle<cr>
