@@ -1,6 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
-    Plug 'vim-airline/vim-airline'                   " status bar
+    Plug 'vim-airline/vim-airline'                   
     Plug 'vim-airline/vim-airline-themes'
     Plug 'ryanoasis/vim-devicons'
     Plug 'morhetz/gruvbox'
@@ -13,18 +13,19 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'neoclide/coc.nvim', {'branch': 'release'}  
     Plug 'jiangmiao/auto-pairs'
-    Plug 'terryma/vim-multiple-cursors'              " C-n
-    Plug 'tpope/vim-commentary'                      " gcc
+    Plug 'terryma/vim-multiple-cursors'              
+    Plug 'tpope/vim-commentary'                      
     Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
+" apperance
 colorscheme gruvbox
 let g:airline_theme='tomorrow'
-
 syntax on
 
-set termguicolors
+" basic stuff to have
+set termguicolors 
 set mouse=a
 set guicursor=a:block-blinkoff0
 set nu
@@ -50,64 +51,101 @@ set nohlsearch
 set incsearch
 set nobackup
 set noswapfile
+set nohidden
 
-" remapping leader key
+" ------------------------------------------------------------------------------
+" My remapps
+
+" Remapping leader key
 map <Space> <Nop>
 let mapleader = " "
 
-" move between buffers
+" Move between buffers
 nnoremap <leader>l :bp<CR>
 nnoremap <leader>h :bn<CR>
 
-" delete buffer
+" Delete buffer for NERDTREE purposes
 nnoremap <leader>bd :bp<cr>:bd #<cr>
 
-" move cursor to the end of the line
+" Move cursor to the end of the line
 nnoremap <leader>p g_
 
-" move cursor to the begging of the line
+" Move cursor to the begging of the line
 nnoremap <leader>q ^
 
-" create under one empty line
+" Create under one empty line
 nnoremap <leader>o o<ESC>k
 
-" copy from the cursor to the end of the line
+" Copy from the cursor to the end of the line
 nnoremap Y y$
 
-" save current file
+" Change to uppercase
+nnoremap <leader>u <C-v>U
+
+" Change to lowercase
+nnoremap <leader>i <C-v>u
+
+" Save current file
 nnoremap <Return> :w<CR>
 
-" indent multiple times       
+" Indent multiple times       
 vnoremap < <gv
 vnoremap > >gv
 
-" mark word
+" Mark word
 nnoremap v ve
 
-" shortcut for esc
+" Shortcut for esc
 imap qf <esc>
 xmap qf <esc>
 nmap qf <esc>
 
-" moving between windows
+" Moving between windows
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" telescope mappings
+" Telescope mappings
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fs <cmd>Telescope current_buffer_fuzzy_find<cr>
 nnoremap <leader>fa :lua require('telescope.builtin').file_browser()<cr>
 
-" nerdtree mappings
+" Nerdtree mappings
 nnoremap <leader>nn :NERDTreeToggle<cr>
 nnoremap <leader>nf :NERDTreeFind<cr>
 
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeShowHidden=0
+" Compile
+nnoremap <leader>m  :make %<<cr>
 
+" Execute
+nnoremap <leader>g :term %:p:r<cr>i
+
+" Floaterm mapings for running gcc
+" for change
+nnoremap <leader>r :FloatermNew --autoclose=0 gcc % -o %< && ./%<<cr>
+nnoremap <leader>rp :FloatermNew --autoclose=0 g++ % -o %< && ./%<<cr>
+
+" Float term toggle
+nnoremap <leader>t :FloatermToggle<cr><C-\><C-n>
+tnoremap <leader>t <C-\><C-n>:FloatermToggle<CR>
+
+" Use tab for autocompletion
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" Choose autcomplete option with enter
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Show documentation
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" -----------------------------------------------------------------------------
 
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
@@ -116,21 +154,13 @@ autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
-" coc clangd mappings
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
+" Function for tab
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
+" Function for showing documentation
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -141,22 +171,12 @@ function! s:show_documentation()
   endif
 endfunction
 
-autocmd FileType c map <buffer> <F9> :w <CR> :!gcc % -o %< && %< <CR>
+" Float term apperance
+let g:floaterm_position="bottomright"
+let g:floaterm_width=0.6
+let g:floaterm_height=0.6
+hi FloatermBorder guifg=orange
 
-" Compile
-nnoremap <leader>m  :make %<<cr>
-" Execute
-" nnoremap <leader>r :term %:p:r<cr>i
-
-nnoremap <leader>r :FloatermNew --autoclose=0 gcc % -o %< && ./%<<cr>
-nnoremap <leader>rp :FloatermNew --autoclose=0 g++ % -o %< && ./%<<cr>
-
-" Float term
-" nnoremap <leader>ft :FloatermNew<cr>
-nnoremap <leader>t :FloatermToggle<cr><C-\><C-n>
-tnoremap <leader>t <C-\><C-n>:FloatermToggle<CR>
-
-let g:floaterm_position="bottom"
-let g:floaterm_width=0.8
-let g:floaterm_height=0.8
-
+" nerdtree settings
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeShowHidden=0
