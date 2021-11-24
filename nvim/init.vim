@@ -131,8 +131,8 @@ nnoremap <leader>r :FloatermNew --autoclose=0 gcc % -o %< && ./%<<cr>
 nnoremap <leader>rp :FloatermNew --autoclose=0 g++ % -o %< && ./%<<cr>
 
 " Float term toggle
-nnoremap <leader>t :FloatermToggle<cr><C-\><C-n>
-tnoremap <leader>t <C-\><C-n>:FloatermToggle<CR>
+nnoremap <C-t> :FloatermToggle<cr><C-\><C-n>
+tnoremap <C-t> <C-\><C-n>:FloatermToggle<CR>
 
 " Use tab for autocompletion
 inoremap <silent><expr> <TAB>
