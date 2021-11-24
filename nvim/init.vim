@@ -51,7 +51,7 @@ set nohlsearch
 set incsearch
 set nobackup
 set noswapfile
-set nohidden
+set hidden
 
 " ------------------------------------------------------------------------------
 " My remapps
@@ -59,10 +59,6 @@ set nohidden
 " Remapping leader key
 map <Space> <Nop>
 let mapleader = " "
-
-" Move between buffers
-nnoremap <leader>l :bp<CR>
-nnoremap <leader>h :bn<CR>
 
 " Delete buffer for NERDTREE purposes
 nnoremap <leader>bd :bp<cr>:bd #<cr>
@@ -97,7 +93,7 @@ nnoremap v ve
 
 " Shortcut for esc
 imap qf <esc>
-xmap qf <esc>
+vmap qf <esc>
 nmap qf <esc>
 
 " Moving between windows
@@ -105,6 +101,10 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" Move between buffers
+nnoremap <leader>l :bp<CR>
+nnoremap <leader>h :bn<CR>
 
 " Telescope mappings
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -172,7 +172,7 @@ function! s:show_documentation()
 endfunction
 
 " Float term apperance
-let g:floaterm_position="bottomright"
+let g:floaterm_position="bottom"
 let g:floaterm_width=0.6
 let g:floaterm_height=0.6
 hi FloatermBorder guifg=orange
