@@ -113,7 +113,7 @@ nnoremap <leader>h :bn<CR>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fl <cmd>Telescope buffers<cr>
 nnoremap <leader>fs <cmd>Telescope current_buffer_fuzzy_find<cr>
-nnoremap <leader>fe :lua require('telescope.builtin').file_browser()<cr>
+nnoremap <leader>fe <cmd>Telescope file_browser<cr>
 
 " Nerdtree mappings
 nnoremap <leader>nn :NERDTreeToggle<cr>
