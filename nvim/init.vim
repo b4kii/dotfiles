@@ -1,17 +1,21 @@
 call plug#begin('~/.vim/plugged')
 
+    " Apperance Plugins
     Plug 'vim-airline/vim-airline'                   
     Plug 'vim-airline/vim-airline-themes'
     Plug 'ryanoasis/vim-devicons'
     Plug 'morhetz/gruvbox'
     Plug 'rainglow/vim'
+    Plug 'romainl/Apprentice'
 
+    " File, dir, term plugins
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'preservim/nerdtree'
     Plug 'voldikss/vim-floaterm'
 
+    " Language support
     Plug 'neoclide/coc.nvim', {'branch': 'release'}  
     Plug 'jiangmiao/auto-pairs'
     Plug 'terryma/vim-multiple-cursors'              
@@ -20,13 +24,14 @@ call plug#begin('~/.vim/plugged')
 
 call plug#end()
 
-" apperance
+" Apperance
 " colorscheme gruvbox
-colorscheme bold
+" colorscheme bold
+colorscheme apprentice
 let g:airline_theme='tomorrow'
 syntax on
 
-" basic stuff to have
+" Basic stuff to have
 set termguicolors 
 set mouse=a
 set guicursor=a:block-blinkoff0
