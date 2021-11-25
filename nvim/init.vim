@@ -4,6 +4,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline-themes'
     Plug 'ryanoasis/vim-devicons'
     Plug 'morhetz/gruvbox'
+    Plug 'rainglow/vim'
 
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lua/popup.nvim'
@@ -20,7 +21,8 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 " apperance
-colorscheme gruvbox
+" colorscheme gruvbox
+colorscheme bold
 let g:airline_theme='tomorrow'
 syntax on
 
