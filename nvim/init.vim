@@ -25,16 +25,18 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 " Apperance
-" colorscheme gruvbox
-" colorscheme bold
 colorscheme apprentice
-let g:airline_theme='tomorrow'
+" let g:airline_theme='tomorrow'
 syntax on
 
-" Basic stuff to have
+" Cursor settings
 set termguicolors 
+hi Cursor guifg=black guibg=white 
+set guicursor=a:block-Cursor-blinkoff0
+set guicursor=n-v-c:block-Cursor-blinkon1
+
+" Basic stuff to have
 set mouse=a
-set guicursor=a:block-blinkoff0
 set nu
 set relativenumber
 set showcmd
@@ -75,9 +77,11 @@ nnoremap <leader>bd :bp<cr>:bd #<cr>
 
 " Move cursor to the end of the line
 nnoremap <leader>p g_
+vnoremap <leader>p g_
 
 " Move cursor to the begging of the line
 nnoremap <leader>q ^
+vnoremap <leader>q ^
 
 " Create under one empty line
 nnoremap <leader>o o<ESC>k
@@ -87,9 +91,11 @@ nnoremap Y y$
 
 " Change to uppercase
 nnoremap <leader>u <C-v>U
+vnoremap <leader>u <C-v>U
 
 " Change to lowercase
 nnoremap <leader>i <C-v>u
+vnoremap <leader>u <C-v>U
 
 " Save current file
 nnoremap <Return> :w<CR>
