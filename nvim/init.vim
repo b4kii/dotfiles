@@ -8,9 +8,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'romainl/Apprentice'
 
     " File, dir, term plugins
-    " Plug 'nvim-lua/plenary.nvim'
-    " Plug 'nvim-lua/popup.nvim'
-    " Plug 'nvim-telescope/telescope.nvim'
     Plug 'preservim/nerdtree'
     Plug 'voldikss/vim-floaterm'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -125,12 +122,6 @@ nnoremap <C-l> <C-w>l
 nnoremap <leader>l :bp<CR>
 nnoremap <leader>h :bn<CR>
 
-" Telescope 
-" nnoremap <leader>ff <cmd>Telescope find_files<cr>
-" nnoremap <leader>fl <cmd>Telescope buffers<cr>
-" nnoremap <leader>fs <cmd>Telescope current_buffer_fuzzy_find<cr>
-" nnoremap <leader>fe <cmd>Telescope file_browser<cr>
-
 " FZF 
 nnoremap <C-f> <cmd>FZF<cr>
 nnoremap <leader>b <cmd>Buffers<cr>
@@ -200,5 +191,4 @@ hi FloatermBorder guifg=lightblue
 let NERDTreeAutoDeleteBuffer=1
 let NERDTreeShowHidden=0
 
-" let g:fzf_layout={'window': 'enew'}
 let g:fzf_layout={'up': '40%'}
