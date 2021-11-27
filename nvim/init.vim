@@ -5,15 +5,16 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline-themes'
     Plug 'ryanoasis/vim-devicons'
     Plug 'morhetz/gruvbox'
-    Plug 'rainglow/vim'
     Plug 'romainl/Apprentice'
 
     " File, dir, term plugins
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-lua/popup.nvim'
-    Plug 'nvim-telescope/telescope.nvim'
+    " Plug 'nvim-lua/plenary.nvim'
+    " Plug 'nvim-lua/popup.nvim'
+    " Plug 'nvim-telescope/telescope.nvim'
     Plug 'preservim/nerdtree'
     Plug 'voldikss/vim-floaterm'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
 
     " Language support
     Plug 'neoclide/coc.nvim', {'branch': 'release'}  
@@ -26,16 +27,17 @@ call plug#end()
 
 " Apperance
 colorscheme apprentice
-" let g:airline_theme='tomorrow'
+
 syntax on
 
 " Cursor settings
 set termguicolors 
 hi Cursor guifg=black guibg=white 
-set guicursor=a:block-Cursor-blinkoff0
+set guicursor=i:block-Cursor-blinkoff0
 set guicursor=n-v-c:block-Cursor-blinkon1
 
 " Basic stuff to have
+set lazyredraw
 set mouse=a
 set nu
 set relativenumber
@@ -122,21 +124,21 @@ nnoremap <C-l> <C-w>l
 nnoremap <leader>l :bp<CR>
 nnoremap <leader>h :bn<CR>
 
-" Telescope mappings
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fl <cmd>Telescope buffers<cr>
-nnoremap <leader>fs <cmd>Telescope current_buffer_fuzzy_find<cr>
-nnoremap <leader>fe <cmd>Telescope file_browser<cr>
+" Telescope 
+" nnoremap <leader>ff <cmd>Telescope find_files<cr>
+" nnoremap <leader>fl <cmd>Telescope buffers<cr>
+" nnoremap <leader>fs <cmd>Telescope current_buffer_fuzzy_find<cr>
+" nnoremap <leader>fe <cmd>Telescope file_browser<cr>
 
-" Nerdtree mappings
+" FZF 
+nnoremap <C-f> <cmd>FZF<cr>
+nnoremap <leader>b <cmd>Buffers<cr>
+nnoremap <leader>fl <cmd>Lines<cr>
+nnoremap <leader>fg <cmd>Rg<cr>
+
+" Nerdtree 
 nnoremap <leader>nn :NERDTreeToggle<cr>
 nnoremap <leader>nf :NERDTreeFind<cr>
-
-" Compile
-nnoremap <leader>m  :make %<<cr>
-
-" Execute
-nnoremap <leader>g :term %:p:r<cr>i
 
 " Floaterm mapings for running gcc
 " for change
@@ -191,8 +193,11 @@ endfunction
 let g:floaterm_position="bottom"
 let g:floaterm_width=0.6
 let g:floaterm_height=0.6
-hi FloatermBorder guifg=orange
+hi FloatermBorder guifg=lightblue
 
 " nerdtree settings
-let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeAutoDeleteBuffer=1
 let NERDTreeShowHidden=0
+
+" let g:fzf_layout={'window': 'enew'}
+let g:fzf_layout={'up': '40%'}
