@@ -2,9 +2,7 @@ call plug#begin('~/.vim/plugged')
 
     " Apperance Plugins
     Plug 'vim-airline/vim-airline'                   
-    Plug 'vim-airline/vim-airline-themes'
     Plug 'ryanoasis/vim-devicons'
-    Plug 'morhetz/gruvbox'
     Plug 'romainl/Apprentice'
 
     " File, dir, term plugins
@@ -24,7 +22,6 @@ call plug#end()
 
 " Apperance
 colorscheme apprentice
-
 syntax on
 
 " Cursor settings
