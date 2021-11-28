@@ -27,7 +27,7 @@ syntax on
 
 " Cursor settings
 set termguicolors 
-hi Normal guifg=darkgreen 
+" hi Normal guifg=darkgreen 
 hi Cursor guifg=black guibg=white 
 set guicursor=i:block-Cursor-blinkoff0
 set guicursor=n-v-c:block-Cursor-blinkon1
