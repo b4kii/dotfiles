@@ -2,6 +2,7 @@ call plug#begin('~/.vim/plugged')
 
     " Apperance Plugins
     Plug 'vim-airline/vim-airline'                   
+    Plug 'vim-airline/vim-airline-themes'
     Plug 'ryanoasis/vim-devicons'
     Plug 'romainl/Apprentice'
 
@@ -73,12 +74,12 @@ let mapleader = " "
 nnoremap <leader>bd :bp<cr>:bd #<cr>
 
 " Move cursor to the end of the line
-nnoremap <leader>p g_
-vnoremap <leader>p g_
+nnoremap <leader>l g_
+vnoremap <leader>l g_
 
 " Move cursor to the begging of the line
-nnoremap <leader>q ^
-vnoremap <leader>q ^
+nnoremap <leader>h ^
+vnoremap <leader>h ^
 
 " Create under one empty line
 nnoremap <leader>o o<ESC>k
@@ -92,7 +93,7 @@ vnoremap <leader>u <C-v>U
 
 " Change to lowercase
 nnoremap <leader>i <C-v>u
-vnoremap <leader>u <C-v>U
+vnoremap <leader>i <C-v>u
 
 " Save current file
 nnoremap <Return> :w<CR>
@@ -116,13 +117,13 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " Move between buffers
-nnoremap <leader>l :bp<CR>
-nnoremap <leader>h :bn<CR>
+nnoremap <leader>j :bp<CR>
+nnoremap <leader>k :bn<CR>
 
 " FZF 
 nnoremap <C-f> <cmd>FZF<cr>
 nnoremap <leader>b <cmd>Buffers<cr>
-nnoremap <leader>fl <cmd>Lines<cr>
+nnoremap <leader>/ <cmd>Lines<cr>
 nnoremap <leader>fg <cmd>Rg<cr>
 
 " Nerdtree 
