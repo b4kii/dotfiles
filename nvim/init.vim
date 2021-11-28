@@ -64,7 +64,7 @@ set timeout
 set timeoutlen=200
 
 " ------------------------------------------------------------------------------
-" My remapps
+" Leader remaps
 
 " Remapping leader key
 map <Space> <Nop>
@@ -84,9 +84,6 @@ vnoremap <leader>h ^
 " Create under one empty line
 nnoremap <leader>o o<ESC>k
 
-" Copy from the cursor to the end of the line
-nnoremap Y y$
-
 " Change to uppercase
 nnoremap <leader>u <C-v>U
 vnoremap <leader>u <C-v>U
@@ -94,6 +91,37 @@ vnoremap <leader>u <C-v>U
 " Change to lowercase
 nnoremap <leader>i <C-v>u
 vnoremap <leader>i <C-v>u
+
+" FZF 
+nnoremap <C-f> <cmd>FZF<cr>
+nnoremap <leader>b <cmd>Buffers<cr>
+nnoremap <leader>/ <cmd>Lines<cr>
+nnoremap <leader>fg <cmd>Rg<cr>
+
+" Nerdtree 
+nnoremap <leader>nn :NERDTreeToggle<cr>
+nnoremap <leader>nf :NERDTreeFind<cr>
+
+" Floaterm mapings for running gcc
+" for change
+nnoremap <leader>r :FloatermNew --autoclose=0 gcc % -o %< && ./%<<cr>
+nnoremap <leader>rp :FloatermNew --autoclose=0 g++ % -o %< && ./%<<cr>
+
+" Moving lines 
+nnoremap <leader>j :move .+1<cr>==
+nnoremap <leader>k :move .-2<cr>==
+vnoremap <leader>j :move '>+1<cr>gv=gv
+vnoremap <leader>k :move '<-2<cr>gv=gv
+
+" Move between buffers
+nnoremap <leader>, :bp<CR>
+nnoremap <leader>. :bn<CR>
+
+" Normal remaps
+" ----------------------------------------------------------------------------------------
+
+" Copy from the cursor to the end of the line
+nnoremap Y y$
 
 " Save current file
 nnoremap <Return> :w<CR>
@@ -115,25 +143,6 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-
-" Move between buffers
-nnoremap <leader>j :bp<CR>
-nnoremap <leader>k :bn<CR>
-
-" FZF 
-nnoremap <C-f> <cmd>FZF<cr>
-nnoremap <leader>b <cmd>Buffers<cr>
-nnoremap <leader>/ <cmd>Lines<cr>
-nnoremap <leader>fg <cmd>Rg<cr>
-
-" Nerdtree 
-nnoremap <leader>nn :NERDTreeToggle<cr>
-nnoremap <leader>nf :NERDTreeFind<cr>
-
-" Floaterm mapings for running gcc
-" for change
-nnoremap <leader>r :FloatermNew --autoclose=0 gcc % -o %< && ./%<<cr>
-nnoremap <leader>rp :FloatermNew --autoclose=0 g++ % -o %< && ./%<<cr>
 
 " Float term toggle
 nnoremap <C-t> :FloatermToggle<cr><C-\><C-n>
