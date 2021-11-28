@@ -87,7 +87,6 @@ nnoremap <leader>o o<ESC>k
 " Change to uppercase
 nnoremap <leader>u <C-v>U
 vnoremap <leader>u <C-v>U
-
 " Change to lowercase
 nnoremap <leader>i <C-v>u
 vnoremap <leader>i <C-v>u
@@ -189,9 +188,10 @@ function! s:show_documentation()
 endfunction
 
 " Float term apperance
-let g:floaterm_position="bottom"
-let g:floaterm_width=0.6
-let g:floaterm_height=0.6
+let g:floaterm_wintype="split"
+" let g:floaterm_position="bottom"
+let g:floaterm_width=0.5
+let g:floaterm_height=0.5
 hi FloatermBorder guifg=lightblue
 
 " nerdtree settings
