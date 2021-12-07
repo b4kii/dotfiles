@@ -28,7 +28,7 @@ syntax on
 " Cursor settings
 set termguicolors 
 " hi Normal guifg=darkgreen 
-hi Cursor guifg=black guibg=white 
+hi Cursor guifg=black guibg=yellow
 set guicursor=i:block-Cursor-blinkoff0
 set guicursor=n-v-c:block-Cursor-blinkon1
 
@@ -59,7 +59,6 @@ set incsearch
 set nobackup
 set noswapfile
 set hidden
-
 set timeout
 set timeoutlen=200
 
