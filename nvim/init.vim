@@ -106,10 +106,11 @@ nnoremap <leader>r :FloatermNew --autoclose=0 gcc % -o %< && ./%<<cr>
 nnoremap <leader>rp :FloatermNew --autoclose=0 g++ % -o %< && ./%<<cr>
 
 " Moving lines 
-nnoremap <leader>j :move .+1<cr>==
-nnoremap <leader>k :move .-2<cr>==
-vnoremap <leader>j :move '>+1<cr>gv=gv
-vnoremap <leader>k :move '<-2<cr>gv=gv
+
+nnoremap <C-Down> :move .+1<cr>==
+nnoremap <C-Up> :move .-2<cr>==
+vnoremap <C-Down> :move '>+1<cr>gv=gv
+vnoremap <C-Up> :move '<-2<cr>gv=gv
 
 " Move between buffers
 nnoremap <leader>, :bp<CR>
