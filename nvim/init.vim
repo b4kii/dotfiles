@@ -22,7 +22,8 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 " Apperance
-colorscheme apprentice
+colorscheme evening
+let g:airline_theme='wombat'
 syntax on
 
 " Cursor settings
