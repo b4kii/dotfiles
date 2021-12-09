@@ -2,7 +2,7 @@ call plug#begin('~/.vim/plugged')
 
     " Apperance Plugins
     Plug 'vim-airline/vim-airline'                   
-    Plug 'vim-airline/vim-airline-themes'
+    Plug 'vim-airline/vim-airline-themes' 
     Plug 'ryanoasis/vim-devicons'
     Plug 'romainl/Apprentice'
 
@@ -29,7 +29,7 @@ syntax on
 " Cursor settings
 set termguicolors 
 " hi Normal guifg=darkgreen 
-hi Cursor guifg=black guibg=yellow
+hi Cursor guifg=black guibg=yellow 
 set guicursor=i:block-Cursor-blinkoff0
 set guicursor=n-v-c:block-Cursor-blinkon1
 
