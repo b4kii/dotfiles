@@ -1,4 +1,17 @@
+ call plug#begin('~/.vim/plugged')
+
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'terryma/vim-multiple-cursors'         "C-n
+    Plug 'tpope/vim-commentary'                 "gcc
+    Plug 'preservim/nerdtree'
+
+call plug#end()
+ 
 syntax on
+
+let g:airline_theme='term'
 
 set number
 set relativenumber
@@ -19,11 +32,17 @@ set nohlsearch
 set incsearch
 set nobackup
 set noswapfile
+set nowritebackup
+set noundofile
+set nowrap
 set hidden
 set timeout
 set timeoutlen=200
 set guioptions-=m
 set guioptions-=T
+set guicursor=n-v-c:block-blinkon500
+set guicursor+=i:block-blinkoff0
+" set guifont=Consolas:h15
 
 map <space> <nop>
 let mapleader=" "
