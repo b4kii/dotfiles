@@ -26,10 +26,13 @@ colorscheme evening
 let g:airline_theme='wombat'
 syntax on
 
-" Cursor settings
+" Color settings
 set termguicolors 
-" hi Normal guifg=darkgreen 
+
 hi Cursor guifg=black guibg=yellow 
+hi CocErrorSign guifg=white
+hi CocErrorFloat guifg=white
+
 set guicursor=i:block-Cursor-blinkoff0
 set guicursor=n-v-c:block-Cursor-blinkon1
 
