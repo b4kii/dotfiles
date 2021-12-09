@@ -11,7 +11,10 @@ call plug#end()
  
 syntax on
 
+
+color evening
 let g:airline_theme='term'
+hi Cursor guibg=yellow
 
 set number
 set relativenumber
