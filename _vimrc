@@ -15,7 +15,7 @@ call plug#end()
 syntax on
 
 color evening
-let g:airline_theme='term'
+let g:airline_theme='wombat'
 
 hi Cursor guibg=yellow 
 hi Normal guibg=#282828
@@ -23,7 +23,7 @@ hi NonText guibg=#282828
 hi Pmenu guibg=#fbf1c7 guifg=#282828
 hi PmenuSel guibg=#bdae93 guifg=#282828
 hi PreProc guifg=#fabd2f
-hi Identifier guifg=#60ff60
+hi Identifier guifg=#ffc0cb
 hi Constant guifg=#f2e5bc
 
 set number
