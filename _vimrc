@@ -16,7 +16,15 @@ syntax on
 
 color evening
 let g:airline_theme='term'
-hi Cursor guibg=yellow
+
+hi Cursor guibg=yellow 
+hi Normal guibg=#282828
+hi NonText guibg=#282828
+hi Pmenu guibg=#fbf1c7 guifg=#282828
+hi PmenuSel guibg=#bdae93 guifg=#282828
+hi PreProc guifg=#fabd2f
+hi Identifier guifg=#60ff60
+hi Constant guifg=#f2e5bc
 
 set number
 set relativenumber
@@ -45,7 +53,7 @@ set timeout
 set timeoutlen=200
 set guioptions-=m
 set guioptions-=T
-set guicursor=n-v-c:block-blinkon500
+set guicursor=n-v-c:block-blinkon700
 set guicursor+=i:block-blinkoff0
 set scrolloff=8
 

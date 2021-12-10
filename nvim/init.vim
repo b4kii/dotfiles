@@ -22,21 +22,24 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 " Apperance
-colorscheme evening
-let g:airline_theme='wombat'
 syntax on
-
-" Color settings
 set termguicolors 
 
-hi Cursor guifg=black guibg=yellow 
-hi CocErrorSign guifg=white
-hi CocErrorFloat guifg=white
+colorscheme evening
+let g:airline_theme='wombat'
 
-set guicursor=i:block-Cursor-blinkoff0
-set guicursor=n-v-c:block-Cursor-blinkon1
+hi Cursor guibg=yellow 
+hi Normal guibg=#282828
+hi NonText guibg=#282828
+hi Pmenu guibg=#fbf1c7 guifg=#282828
+hi PmenuSel guibg=#bdae93 guifg=#282828
+hi PreProc guifg=#fabd2f
+hi Identifier guifg=#60ff60
+hi Constant guifg=#f2e5bc
 
 " Basic stuff to have
+set guicursor=i:block-Cursor-blinkoff0
+set guicursor+=n-v-c:block-Cursor-blinkon1
 set lazyredraw
 set mouse=a
 set nu
@@ -132,9 +135,6 @@ nnoremap <Return> :w<CR>
 " Indent multiple times       
 vnoremap < <gv
 vnoremap > >gv
-
-" Mark word
-nnoremap v ve
 
 " Shortcut for esc
 imap qf <esc>
