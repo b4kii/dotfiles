@@ -4,7 +4,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline'                   
     Plug 'vim-airline/vim-airline-themes' 
     Plug 'ryanoasis/vim-devicons'
-    Plug 'romainl/Apprentice'
 
     " File, dir, term plugins
     Plug 'preservim/nerdtree'
@@ -21,23 +20,16 @@ call plug#begin('~/.vim/plugged')
 
 call plug#end()
 
-" Apperance
 syntax on
-set termguicolors 
 
+" Theme
 colorscheme evening
+
+" Status line
 let g:airline_theme='wombat'
 
-hi Cursor guibg=yellow 
-hi Normal guibg=#282828
-hi NonText guibg=#282828
-hi Pmenu guibg=#fbf1c7 guifg=#282828
-hi PmenuSel guibg=#bdae93 guifg=#282828
-hi PreProc guifg=#fabd2f
-hi Identifier guifg=#ffc0cb
-hi Constant guifg=#f2e5bc
-
 " Basic stuff to have
+set termguicolors 
 set guicursor=i:block-Cursor-blinkoff0
 set guicursor+=n-v-c:block-Cursor-blinkon1
 set lazyredraw
@@ -90,13 +82,6 @@ vnoremap <leader>h ^
 " Create under one empty line
 nnoremap <leader>o o<ESC>k
 
-" Change to uppercase
-nnoremap <leader>u <C-v>U
-vnoremap <leader>u <C-v>U
-" Change to lowercase
-nnoremap <leader>i <C-v>u
-vnoremap <leader>i <C-v>u
-
 " FZF 
 nnoremap <C-f> <cmd>FZF<cr>
 nnoremap <leader>b <cmd>Buffers<cr>
@@ -113,7 +98,6 @@ nnoremap <leader>r :FloatermNew --autoclose=0 gcc % -o %< && ./%<<cr>
 nnoremap <leader>rp :FloatermNew --autoclose=0 g++ % -o %< && ./%<<cr>
 
 " Moving lines 
-
 nnoremap <C-Down> :move .+1<cr>==
 nnoremap <C-Up> :move .-2<cr>==
 vnoremap <C-Down> :move '>+1<cr>gv=gv
@@ -193,13 +177,25 @@ endfunction
 
 " Float term apperance
 let g:floaterm_wintype="split"
-" let g:floaterm_position="bottom"
 let g:floaterm_width=0.5
 let g:floaterm_height=0.5
 hi FloatermBorder guifg=lightblue
 
-" nerdtree settings
+" Nerdtree settings
 let NERDTreeAutoDeleteBuffer=1
 let NERDTreeShowHidden=0
 
+" Fzf apperance
 let g:fzf_layout={'up': '40%'}
+
+" Apperance
+hi Cursor guibg=yellow 
+hi Normal guibg=#282828
+hi NonText guibg=#282828
+hi Pmenu guibg=#fbf1c7 guifg=#282828
+hi PmenuSel guibg=#bdae93 guifg=#282828
+hi PreProc guifg=#fabd2f
+hi Identifier guifg=#ffc0cb
+hi Constant guifg=#f2e5bc
+
+filetype indent off
