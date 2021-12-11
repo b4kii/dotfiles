@@ -17,6 +17,8 @@ syntax on
 color evening
 let g:airline_theme='wombat'
 
+set guifont=Consolas:h14:b
+
 hi Cursor guibg=yellow 
 hi Normal guibg=#282828
 hi NonText guibg=#282828
@@ -82,10 +84,6 @@ nnoremap <leader>, :bp<cr>
 nnoremap <leader>. :bn<cr>
 nnoremap <leader>l g_
 nnoremap <leader>h ^
-nnoremap <leader>u <C-v>U
-vnoremap <leader>u <C-v>U
-nnoremap <leader>i <C-v>u
-vnoremap <leader>i <C-v>u
 
 nnoremap <C-f> <cmd>FZF<cr>
 nnoremap <leader>b <cmd>Buffers<cr>
