@@ -1,3 +1,5 @@
-# MESSY DOTFILES
+# DOTFILES
 
-### Simple neovim config
+- neovim config
+- tmux config
+- vimrc for windows GVIM
