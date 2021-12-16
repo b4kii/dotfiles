@@ -1,2 +1,3 @@
-
-# NEOVIM CONFIG
+# MESSY DOTFILES
+#
+### Simple neovim config
