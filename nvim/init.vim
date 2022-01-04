@@ -4,6 +4,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline'                   
     Plug 'vim-airline/vim-airline-themes' 
     Plug 'ryanoasis/vim-devicons'
+    Plug 'yeddaif/neovim-purple'
 
     " File, dir, term plugins
     Plug 'preservim/nerdtree'
@@ -71,14 +72,6 @@ let mapleader = " "
 " Delete buffer for NERDTREE purposes
 nnoremap <leader>bd :bp<cr>:bd #<cr>
 
-" Move cursor to the end of the line
-nnoremap <leader>l g_
-vnoremap <leader>l g_
-
-" Move cursor to the begging of the line
-nnoremap <leader>h ^
-vnoremap <leader>h ^
-
 " Create under one empty line
 nnoremap <leader>o o<ESC>k
 
@@ -110,6 +103,11 @@ nnoremap <M-,> :bn<CR>
 " Normal remaps
 " ----------------------------------------------------------------------------------------
 
+" Shortcut for esc
+imap qf <esc>
+vmap qf <esc>
+nmap qf <esc>
+
 " Copy from the cursor to the end of the line
 nnoremap Y y$
 
@@ -119,11 +117,6 @@ nnoremap <Return> :w<CR>
 " Indent multiple times       
 vnoremap < <gv
 vnoremap > >gv
-
-" Shortcut for esc
-imap qf <esc>
-vmap qf <esc>
-nmap qf <esc>
 
 " Moving between windows
 nnoremap <C-h> <C-w>h
@@ -176,9 +169,10 @@ function! s:show_documentation()
 endfunction
 
 " Float term apperance
-let g:floaterm_wintype="split"
-let g:floaterm_width=0.5
+let g:floaterm_wintype="float"
+let g:floaterm_width=0.8
 let g:floaterm_height=0.5
+let g:floaterm_position="bottom"
 hi FloatermBorder guifg=lightblue
 
 " Nerdtree settings
@@ -194,8 +188,8 @@ hi Normal guibg=#282828
 hi NonText guibg=#282828
 hi Pmenu guibg=#fbf1c7 guifg=#282828
 hi PmenuSel guibg=#bdae93 guifg=#282828
-hi PreProc guifg=#fabd2f
-hi Identifier guifg=#ffc0cb
-hi Constant guifg=#f2e5bc
+" hi PreProc guifg=#fabd2f
+" hi Identifier guifg=#ffc0cb
+" hi Constant guifg=#f2e5bc
 
 filetype indent off
