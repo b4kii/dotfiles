@@ -97,8 +97,8 @@ vnoremap <C-Down> :move '>+1<cr>gv=gv
 vnoremap <C-Up> :move '<-2<cr>gv=gv
 
 " Move between buffers
-nnoremap <M-m> :bp<CR>
-nnoremap <M-,> :bn<CR>
+nnoremap <leader>m :bp<CR>
+nnoremap <leader>, :bn<CR>
 
 " Normal remaps
 " ----------------------------------------------------------------------------------------
