@@ -103,11 +103,6 @@ nnoremap <leader>, :bn<CR>
 " Normal remaps
 " ----------------------------------------------------------------------------------------
 
-" Shortcut for esc
-imap qf <esc>
-vmap qf <esc>
-nmap qf <esc>
-
 " Copy from the cursor to the end of the line
 nnoremap Y y$
 
