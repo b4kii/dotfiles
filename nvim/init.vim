@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline-themes' 
     Plug 'ryanoasis/vim-devicons'
     Plug 'yeddaif/neovim-purple'
+    Plug 'arcticicestudio/nord-vim'
 
     " File, dir, term plugins
     Plug 'preservim/nerdtree'
@@ -24,7 +25,8 @@ call plug#end()
 syntax on
 
 " Theme
-colorscheme evening
+" colorscheme evening
+colorscheme nord
 
 " Status line
 let g:airline_theme='wombat'
@@ -102,6 +104,11 @@ nnoremap <leader>, :bn<CR>
 
 " Normal remaps
 " ----------------------------------------------------------------------------------------
+
+" Shortcut for esc
+imap qf <esc>
+vmap qf <esc>
+nmap qf <esc>
 
 " Copy from the cursor to the end of the line
 nnoremap Y y$
