@@ -378,6 +378,10 @@ local astro_plugins = {
   {
     'arcticicestudio/nord-vim' 
   },
+  -- Floaterm
+  {
+    'voldikss/vim-floaterm'
+  },
 }
 
 packer.startup {

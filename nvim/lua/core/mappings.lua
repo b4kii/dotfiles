@@ -186,6 +186,9 @@ map("n", "qf", "<esc>", opts)
 map("i", "qf", "<esc>", opts)
 map("v", "qf", "<esc>", opts)
 
+-- Floaterm gcc/gpp compiler 
+map("n", "<leader>m", "<cmd>FloatermNew --autoclose=0 gcc % -o %< && ./%<<cr>", opts)
+
 vim.cmd [[
   augroup TermMappings
     autocmd! TermOpen term://* lua set_terminal_keymaps()

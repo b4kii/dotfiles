@@ -1,6 +1,7 @@
 local config = {
 
   colorscheme = "default_theme",
+  -- colorscheme = "nord",
 
   plugins = {
     packer = {

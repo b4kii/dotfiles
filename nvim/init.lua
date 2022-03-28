@@ -29,7 +29,5 @@ if type(polish) == "function" then
   polish()
 end
 
-vim.cmd "colorscheme nord"
-
 -- keep this last:
 utils.compiled()
