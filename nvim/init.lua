@@ -5,4 +5,3 @@ require('user.colors')
 require('user.gitsigns')
 
 require('configs.lsp')
-
