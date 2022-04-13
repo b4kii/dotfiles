@@ -1,5 +1,8 @@
-require('core.options')
-require('core.mappings')
-require('core.plugins')
-require('core.colors')
-require('configs.cmp')
+require('user.options')
+require('user.mappings')
+require('user.plugins')
+require('user.colors')
+require('user.gitsigns')
+
+require('configs.lsp')
+
