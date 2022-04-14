@@ -1,6 +1,6 @@
 local fn = vim.fn
-
 local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+
 if fn.empty(fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP = fn.system {
     "git",
@@ -126,9 +126,7 @@ return require('packer').startup(
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-nvim-lua',
             'saadparwaiz1/cmp_luasnip',
-            config = function()
-                require('user.cmp').config()
-            end
+            require('user.cmp').config()
         }
 
         -- Snippets
