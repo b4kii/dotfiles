@@ -63,9 +63,9 @@ return require('packer').startup(
         -- Statusline
         use {
             'nvim-lualine/lualine.nvim',
-            require('lualine').setup({
+            require('lualine').setup{
                 options = {theme = 'ayu'},
-            })
+            }
         }
 
         -- Icons
