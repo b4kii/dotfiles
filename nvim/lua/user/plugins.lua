@@ -61,6 +61,7 @@ return require('packer').startup(
         }
 
         -- Statusline
+        -- TODO: Error while loading neovim config on new machine, idk why
         use {
             'nvim-lualine/lualine.nvim',
             require('lualine').setup{
