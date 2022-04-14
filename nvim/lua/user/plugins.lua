@@ -1,7 +1,18 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
+local fn = vim.fn
 
--- Only required if you have packer configured as `opt`
-vim.cmd [[packadd packer.nvim]]
+local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+if fn.empty(fn.glob(install_path)) > 0 then
+  PACKER_BOOTSTRAP = fn.system {
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
+  }
+  print "Installing packer close and reopen Neovim..."
+  vim.cmd [[packadd packer.nvim]]
+end
 
 vim.cmd [[
   augroup packer_user_config
@@ -23,151 +34,158 @@ packer.init {
   },
 }
 
-return require('packer').startup(function()
-    -- Packer can manage itself
-    use {
-        'wbthomason/packer.nvim'
-    }
+return require('packer').startup(
+    function(use)
 
-    use {
-        'nvim-lua/plenary.nvim',
-        'nvim-lua/popup.nvim'
-    }
-
-    -- Theme
-    use {
-        'Shatur/neovim-ayu'
-    }
-
-    -- Bufferline
-    use {
-        'akinsho/bufferline.nvim',
-        require('bufferline').setup{}
-    }
-
-    -- Statusline
-    use {
-        'nvim-lualine/lualine.nvim',
-        require('lualine').setup {
-            options = {theme = 'ayu'},
+        -- Packer can manage itself
+        use {
+            'wbthomason/packer.nvim'
         }
-    }
 
-    -- Icons
-    use {
-        'kyazdani42/nvim-web-devicons'
-    }
+        use {
+            'nvim-lua/plenary.nvim',
+            'nvim-lua/popup.nvim'
+        }
 
-    -- Telescope
-    use {
-        'nvim-telescope/telescope.nvim',
-        requires = { {'nvim-lua/plenary.nvim'} }
-    }
+        -- Theme
+        use {
+            'Shatur/neovim-ayu'
+        }
 
-    -- Autopairs
-    use {
-        'windwp/nvim-autopairs',
-        require('user.autopairs').config()
-    }
+        -- Bufferline
+        use {
+            'akinsho/bufferline.nvim',
+            config = function()
+                require('bufferline').setup()
+            end
+        }
 
-    -- Terminal
-    use {
-        'voldikss/vim-floaterm'
-    }
+        -- Statusline
+        use {
+            'nvim-lualine/lualine.nvim',
+            require('lualine').setup({
+                options = {theme = 'ayu'},
+            })
+        }
 
-    -- Commenting
-    use {
-        'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup()
+        -- Icons
+        use {
+            'kyazdani42/nvim-web-devicons'
+        }
+
+        -- Telescope
+        use {
+            'nvim-telescope/telescope.nvim',
+            requires = { {'nvim-lua/plenary.nvim'} }
+        }
+
+        -- Autopairs
+        use {
+            'windwp/nvim-autopairs',
+            require('user.autopairs').config()
+        }
+
+        -- Terminal
+        use {
+            'voldikss/vim-floaterm'
+        }
+
+        -- Commenting
+        use {
+            'numToStr/Comment.nvim',
+            config = function()
+                require('Comment').setup()
+            end
+        }
+
+        -- Multiple cursor
+        use {
+            'terryma/vim-multiple-cursors'
+        }
+
+        -- NvimTree
+        use {
+            'kyazdani42/nvim-tree.lua',
+            cmd = { 'NvimTreeToggle', 'NvimTreeFocus' },
+            requires = {
+              'kyazdani42/nvim-web-devicons', -- optional, for file icon
+            },
+            config = function ()
+                require('user.nvim-tree').config()
+            end,
+        }
+
+        -- Cmp plugins
+        use {
+            'hrsh7th/nvim-cmp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-cmdline',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-nvim-lua',
+            'saadparwaiz1/cmp_luasnip',
+            require('user.cmp').config()
+        }
+
+        -- Snippets
+        use {
+            'L3MON4D3/LuaSnip',
+            'rafamadriz/friendly-snippets'
+        }
+
+        -- Syntax highlighting
+        use {
+            'nvim-treesitter/nvim-treesitter',
+            run = ':TSUpdate',
+            event = 'BufRead',
+            cmd = {
+                'TSInstall',
+                'TSInstallInfo',
+                'TSInstallSync',
+                'TSUninstall',
+                'TSUpdate',
+                'TSUpdateSync',
+                'TSDisableAll',
+                'TSEnableAll',
+            },
+            config = function()
+                require('user.treesitter').config()
+            end
+        }
+
+        -- Parenthesis highlighting
+        use {
+            'p00f/nvim-ts-rainbow',
+            after = 'nvim-treesitter',
+        }
+
+        -- LSP manager
+        use {
+            'williamboman/nvim-lsp-installer'
+        }
+
+        -- Built in LSP
+        use {
+            'neovim/nvim-lspconfig'
+        }
+
+        -- Extra JSON schemas
+        use {
+             'b0o/SchemaStore.nvim'
+        }
+
+        -- Git signs
+        use {
+            'lewis6991/gitsigns.nvim',
+        }
+
+        -- Autoclose tags
+        use {
+            'windwp/nvim-ts-autotag',
+            after = 'nvim-treesitter'
+        }
+        if PACKER_BOOTSTRAP then
+            require("packer").sync()
         end
-    }
-
-    -- Multiple cursor
-    use {
-        'terryma/vim-multiple-cursors'
-    }
-
-    -- NvimTree
-    use {
-        'kyazdani42/nvim-tree.lua',
-        cmd = { 'NvimTreeToggle', 'NvimTreeFocus' },
-        requires = {
-          'kyazdani42/nvim-web-devicons', -- optional, for file icon
-        },
-        config = function ()
-            require('user.nvim-tree').config()
-        end,
-    }
-
-    -- Cmp plugins
-    use {
-        'hrsh7th/nvim-cmp',
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-path',
-        'hrsh7th/cmp-cmdline',
-        'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-nvim-lua',
-        'saadparwaiz1/cmp_luasnip',
-        require('user.cmp').config()
-    }
-
-    -- Snippets
-    use {
-        'L3MON4D3/LuaSnip',
-        'rafamadriz/friendly-snippets'
-    }
-
-    -- Syntax highlighting
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
-        event = 'BufRead',
-        cmd = {
-            'TSInstall',
-            'TSInstallInfo',
-            'TSInstallSync',
-            'TSUninstall',
-            'TSUpdate',
-            'TSUpdateSync',
-            'TSDisableAll',
-            'TSEnableAll',
-        },
-        config = function()
-            require('user.treesitter').config()
-        end
-    }
-
-    -- Parenthesis highlighting
-    use {
-        'p00f/nvim-ts-rainbow',
-        after = 'nvim-treesitter',
-    }
-
-    -- LSP manager
-    use {
-        'williamboman/nvim-lsp-installer'
-    }
-
-    -- Built in LSP
-    use {
-        'neovim/nvim-lspconfig'
-    }
-
-    -- Extra JSON schemas
-    use {
-         'b0o/SchemaStore.nvim'
-    }
-
-    -- Git signs
-    use {
-        'lewis6991/gitsigns.nvim',
-    }
-
-    -- Autoclose tags
-    use {
-        'windwp/nvim-ts-autotag',
-        after = 'nvim-treesitter'
-    }
-
-end)
+    end
+)
