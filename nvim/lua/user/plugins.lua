@@ -82,7 +82,9 @@ return require('packer').startup(
         -- Autopairs
         use {
             'windwp/nvim-autopairs',
-            require('user.autopairs').config()
+            config = function()
+                require('user.autopairs').config()
+            end
         }
 
         -- Terminal
@@ -124,7 +126,9 @@ return require('packer').startup(
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-nvim-lua',
             'saadparwaiz1/cmp_luasnip',
-            require('user.cmp').config()
+            config = function()
+                require('user.cmp').config()
+            end
         }
 
         -- Snippets
