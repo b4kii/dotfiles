@@ -17,7 +17,6 @@ set.hlsearch = true -- Highlight all the matches of search pattern
 set.ignorecase = true -- Case insensitive searching
 set.smartcase = true -- Case sensitivie searching
 set.spell = false -- Disable spelling checking and highlighting
---set.showmode = false -- Disable showing modes in command line
 set.smartindent = true -- Do auto indenting when starting a new line
 set.splitbelow = true -- Splitting a new window below the current one
 set.splitright = true -- Splitting a new window at the right of the current one
