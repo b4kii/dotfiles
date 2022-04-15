@@ -64,9 +64,12 @@ return require('packer').startup(
         -- TODO: Error while loading neovim config on new machine, idk why
         use {
             'nvim-lualine/lualine.nvim',
-            require('lualine').setup{
-                options = {theme = 'ayu'},
-            }
+            config = function()
+                require('user.lualine').config()
+            -- require('lualine').setup{
+            --     options = {theme = 'ayu'},
+            -- }
+            end
         }
 
         -- Icons

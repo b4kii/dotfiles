@@ -7,7 +7,7 @@ function M.config()
         return
     end
 
-    npairs.setup({
+    npairs.setup {
         check_ts = true,
         ts_config = {
             lua = { "string", "source" },
@@ -26,6 +26,6 @@ function M.config()
             highlight = "PmenuSel",
             highlight_grey = "LineNr",
         },
-    })
+    }
 end
 return M
