@@ -61,7 +61,6 @@ return require('packer').startup(
         }
 
         -- Statusline
-        -- TODO: Error while loading neovim config on new machine, idk why
         use {
             'nvim-lualine/lualine.nvim',
             config = function()
@@ -190,6 +189,39 @@ return require('packer').startup(
             'windwp/nvim-ts-autotag',
             after = 'nvim-treesitter'
         }
+
+        -- Fixed cursor animation
+        use {
+            "antoinemadec/FixCursorHold.nvim",
+            config = function()
+                vim.g.cursorhold_updatetime = 100
+            end
+        }
+
+        -- Smooth scrolling
+        use {
+            "karb94/neoscroll.nvim",
+            config = function()
+              require("user.neoscroll").config()
+            end,
+        }
+
+        -- Line guides
+        use {
+            "lukas-reineke/indent-blankline.nvim",
+            config = function ()
+                require("user.indent-line").config()
+            end
+        }
+
+        -- Indentation detection
+        use {
+            "Darazaki/indent-o-matic",
+            config = function()
+                require("user.indent-o-matic").config()
+            end
+        }
+
         if PACKER_BOOTSTRAP then
             require("packer").sync()
         end
