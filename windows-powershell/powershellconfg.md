@@ -1,10 +1,10 @@
 # Creating powershell config
-### Steps (just reminder)
 
-**create directories:**
+### Steps (just a reminder)
+
+**Create directories:**
 
 ```
-**create directories:**
 .config/powershell
 
 **create profile file:**
@@ -15,9 +15,9 @@ edit $PROFILE.CurrentUserCurrentHost: . $env:USERPROFILE\.config\powershell\user
 ```
 ---
 
+**Oh my posh:**
 ```
 
-**Oh my posh:**
     Install-Module posh-git -Scope CurrentUser -Force
     Install-Module oh-my-posh -Scope CurrentUser -Force
 
@@ -27,8 +27,8 @@ Set-PoshPrompt powerlevel10_rainbow
 ```
 ---
 
+### In case of slow prompt:
 ```
-# In case of slow prompt:
 
 Add-MpPreference -ExclusionProcess "oh-my-posh.exe"
 
