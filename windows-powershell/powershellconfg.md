@@ -11,7 +11,6 @@
 .config/powershell/user_profile.ps1
 
 edit $PROFILE.CurrentUserCurrentHost: . $env:USERPROFILE\.config\powershell\user_profile.ps1
-
 ```
 ---
 
@@ -23,7 +22,6 @@ edit $PROFILE.CurrentUserCurrentHost: . $env:USERPROFILE\.config\powershell\user
 
 Add to user profile:
 Set-PoshPrompt powerlevel10_rainbow
-
 ```
 ---
 
@@ -35,5 +33,4 @@ Add-MpPreference -ExclusionProcess "oh-my-posh.exe"
 or 
 
 Add-MpPreference -ExclusionPath "$env:POSH_PATH\oh-my-posh.exe"
-
 ```
