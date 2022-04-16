@@ -1,6 +1,9 @@
-theme agnoster
+package vcs
+theme batman
+theme bira
 theme bobthefish
+theme chain
 theme default
-theme gnuykeaj
+theme emoji-powerline
+theme jacaetevha
 theme ocean
-theme pure
