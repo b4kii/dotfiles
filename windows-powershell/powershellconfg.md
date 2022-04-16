@@ -8,12 +8,12 @@
 .config/powershell
 ```
 
-#### create profile file:
+#### Create profile file:
 ```
 mkdir .config/powershell/user_profile.ps1
 
 nvim $PROFILE.CurrentUserCurrentHost
-    >. $env:USERPROFILE\.config\powershell\user_profile.ps1
+    . $env:USERPROFILE\.config\powershell\user_profile.ps1 (place this in the file)
 ```
 ---
 
@@ -22,18 +22,17 @@ nvim $PROFILE.CurrentUserCurrentHost
 Install-Module posh-git -Scope CurrentUser -Force
 Install-Module oh-my-posh -Scope CurrentUser -Force
 ```
-```
+---
+
 #### Save theme in user profile:
+```
 Set-PoshPrompt powerlevel10_rainbow
 ```
 ---
 
 ### In case of slow prompt:
 ```
-
 Add-MpPreference -ExclusionProcess "oh-my-posh.exe"
-
-or 
-
+    or 
 Add-MpPreference -ExclusionPath "$env:POSH_PATH\oh-my-posh.exe"
 ```
