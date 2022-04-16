@@ -56,7 +56,7 @@ return require('packer').startup(
         use {
             'akinsho/bufferline.nvim',
             config = function()
-                require('bufferline').setup()
+              require('user.bufferline').config()
             end
         }
 
@@ -65,9 +65,6 @@ return require('packer').startup(
             'nvim-lualine/lualine.nvim',
             config = function()
                 require('user.lualine').config()
-            -- require('lualine').setup{
-            --     options = {theme = 'ayu'},
-            -- }
             end
         }
 
@@ -99,8 +96,13 @@ return require('packer').startup(
         use {
             'numToStr/Comment.nvim',
             config = function()
-                require('Comment').setup()
+              require('user.comment').config()
             end
+        }
+
+        use {
+          'JoosepAlviste/nvim-ts-context-commentstring',
+          after = 'nvim-treesitter'
         }
 
         -- Multiple cursor
