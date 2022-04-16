@@ -1,5 +1,12 @@
 # DOTFILES
 
-- neovim config
-- tmux config
+### Configs for:
+```
+- neovim,
+- fish shell,
+- powershell,
+- tmux,
 - vimrc for windows GVIM
+
+```
+
