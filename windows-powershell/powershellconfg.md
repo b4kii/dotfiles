@@ -1,10 +1,12 @@
 # Creating powershell config
 ### Steps (just reminder)
 
+**create directories:**
+
 ```
 **create directories:**
 .config/powershell
----
+
 **create profile file:**
 .config/powershell/user_profile.ps1
 
@@ -23,6 +25,8 @@ Add to user profile:
 Set-PoshPrompt powerlevel10_rainbow
 
 ```
+---
+
 ```
 # In case of slow prompt:
 
