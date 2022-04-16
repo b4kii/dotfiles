@@ -1,6 +1,6 @@
 # DOTFILES
 
-### Configs for:
+### Personal configs for:
 ```
 - neovim,
 - fish shell,
