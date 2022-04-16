@@ -2,13 +2,13 @@
 
 ### Steps (just a reminder)
 
-####**Create directories:**
+#### Create directories:
 
 ```
 .config/powershell
 ```
 
-####**create profile file:**
+#### create profile file:
 ```
 mkdir .config/powershell/user_profile.ps1
 
@@ -17,13 +17,15 @@ nvim $PROFILE.CurrentUserCurrentHost
 ```
 ---
 
-####**Oh my posh:**
+#### Oh my posh:
 ```
 Install-Module posh-git -Scope CurrentUser -Force
 Install-Module oh-my-posh -Scope CurrentUser -Force
 ```
-Save theme in user profile:
+```
+#### Save theme in user profile:
 Set-PoshPrompt powerlevel10_rainbow
+```
 ---
 
 ### In case of slow prompt:
