@@ -1,12 +1,10 @@
 # DOTFILES
 
 ### Personal configs for:
-```
-- neovim,
-- fish shell,
-- powershell,
-- tmux,
-- vimrc for windows GVIM
-
-```
-
+---
+* neovim,
+* fish shell,
+* powershell,
+* tmux,
+* vimrc for windows GVIM
+---
