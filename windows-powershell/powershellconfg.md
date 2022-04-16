@@ -13,8 +13,8 @@ mkdir ~/.config/powershell
 nvim .config/powershell/user_profile.ps1 (put user config here)
 
 nvim $PROFILE.CurrentUserCurrentHost
-    . $env:USERPROFILE\.config\powershell\user_profile.ps1 (place this in file)
 ```
+    >. $env:USERPROFILE\.config\powershell\user_profile.ps1 (put this in the file)
 ---
 
 #### Oh my posh:
