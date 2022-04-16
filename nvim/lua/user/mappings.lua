@@ -61,6 +61,19 @@ map("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", opts)
 map("n", "<leader>lR", "<cmd>Telescope lsp_references<CR>", opts)
 map("n", "<leader>lD", "<cmd>Telescope diagnostics<CR>", opts)
 
+-- LSP
+map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+map("n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+map("n", "go", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+map("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+map("n", "[d", "<cmd>lua vim.diagnostic.goto_prev({ border = 'rounded' })<CR>", opts)
+map("n", "]d", "<cmd>lua vim.diagnostic.goto_next({ border = 'rounded' })<CR>", opts)
+map("n", "gj", "<cmd>lua vim.diagnostic.goto_next({ border = 'rounded' })<cr>", opts)
+map("n", "gk", "<cmd>lua vim.diagnostic.goto_prev({ border = 'rounded' })<cr>", opts)
+map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+
 -- Floaterm
 map("n", "<C-t>", "<cmd>FloatermToggle<cr><C-\\><C-n><CR>", opts)
 map("t", "<C-t>", "<C-\\><C-n><cmd>FloatermToggle<cr>", opts)
