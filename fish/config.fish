@@ -1,7 +1,10 @@
-alias vi "nvim"
-alias cdc "cd /mnt/c"
-alias cdb "cd /mnt/c/Users/baki"
-alias cdd "cd /mnt/c/Users/baki/Desktop"
-alias cdp "cd /mnt/d/Projects"
-alias ls "ls"
+# Colors
 
+set -g fish_term24bit 1
+set fish_greeting
+
+# Aliases
+
+alias vi "nvim"
+alias ll "exa -l -g --icons"
+alias lla "ll -a"

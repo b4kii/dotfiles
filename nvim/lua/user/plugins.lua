@@ -186,6 +186,11 @@ return require('packer').startup(
             'lewis6991/gitsigns.nvim',
         }
 
+        -- Git integration
+        use {
+            'tpope/vim-fugitive',
+        }
+
         -- Autoclose tags
         use {
             'windwp/nvim-ts-autotag',
