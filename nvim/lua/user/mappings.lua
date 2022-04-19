@@ -5,7 +5,7 @@ local map = vim.api.nvim_set_keymap
 map("", "<space>", "<nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
- 
+
 -- Remapping esc key
 map("n", "qf", "<esc>", opts)
 map("i", "qf", "<esc>", opts)
