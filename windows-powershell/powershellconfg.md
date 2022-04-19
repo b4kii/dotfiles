@@ -23,9 +23,26 @@ Install-Module oh-my-posh -Scope CurrentUser -Force
 ```
 ---
 
-#### Save theme in user profile:
+#### Install Icon Themes
 ```
-Set-PoshPrompt powerlevel10_rainbow
+Install-Module -Name Terminal-Icons -Repository PSGallery -Force
+```
+---
+
+#### Install Z directory jumper
+```
+Install-Module -Name z -Force
+```
+---
+#### Install PSReadline
+```
+Install-Module -Name PSReadLine -AllowPrerelease -Scope CurrentUser -Force -SkipPublisherCheck
+```
+---
+#### Install fzf
+```
+choco install fzf
+Install-Module -Name PSFzf -Scope CurrentUser -Force
 ```
 ---
 
