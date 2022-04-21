@@ -33,7 +33,7 @@ map("n", "<S-l>", "<cmd>BufferLineCycleNext<cr>", opts)
 map("n", "<S-h>", "<cmd>BufferLineCyclePrev<cr>", opts)
 
 -- Buffers
-map("n", "<leader>c", "<cmd>bd<cr>", opts)
+map("n", "<leader>c", "<cmd>Bdelete<cr>", opts)
 
 -- Windows navigation
 map("n", "<c-h>", "<c-w>h", opts)

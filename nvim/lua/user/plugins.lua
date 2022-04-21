@@ -39,65 +39,70 @@ return require('packer').startup(
 
         -- Packer can manage itself
         use {
-            'wbthomason/packer.nvim'
+          'wbthomason/packer.nvim'
         }
 
         use {
-            'nvim-lua/plenary.nvim',
-            'nvim-lua/popup.nvim'
+          'nvim-lua/plenary.nvim',
+          'nvim-lua/popup.nvim'
         }
 
         -- Theme
         use {
-            'Shatur/neovim-ayu'
+          'Shatur/neovim-ayu'
         }
 
         -- Bufferline
         use {
-            'akinsho/bufferline.nvim',
-            config = function()
-              require('user.bufferline').config()
-            end
+          'akinsho/bufferline.nvim',
+          config = function()
+            require('user.bufferline').config()
+          end
+        }
+
+        -- Better buffer closing
+        use {
+          'moll/vim-bbye',
         }
 
         -- Statusline
         use {
-            'nvim-lualine/lualine.nvim',
-            config = function()
-                require('user.lualine').config()
-            end
+          'nvim-lualine/lualine.nvim',
+          config = function()
+              require('user.lualine').config()
+          end
         }
 
         -- Icons
         use {
-            'kyazdani42/nvim-web-devicons'
+          'kyazdani42/nvim-web-devicons'
         }
 
         -- Telescope
         use {
-            'nvim-telescope/telescope.nvim',
-            requires = { {'nvim-lua/plenary.nvim'} }
+          'nvim-telescope/telescope.nvim',
+          requires = { {'nvim-lua/plenary.nvim'} }
         }
 
         -- Autopairs
         use {
-            'windwp/nvim-autopairs',
-            config = function()
-                require('user.autopairs').config()
-            end
+          'windwp/nvim-autopairs',
+          config = function()
+              require('user.autopairs').config()
+          end
         }
 
         -- Terminal
         use {
-            'voldikss/vim-floaterm'
+          'voldikss/vim-floaterm'
         }
 
         -- Commenting
         use {
-            'numToStr/Comment.nvim',
-            config = function()
-              require('user.comment').config()
-            end
+          'numToStr/Comment.nvim',
+          config = function()
+            require('user.comment').config()
+          end
         }
 
         use {
@@ -107,127 +112,131 @@ return require('packer').startup(
 
         -- Multiple cursor
         use {
-            'terryma/vim-multiple-cursors'
+          'terryma/vim-multiple-cursors'
         }
 
         -- NvimTree
         use {
-            'kyazdani42/nvim-tree.lua',
-            cmd = { 'NvimTreeToggle', 'NvimTreeFocus' },
-            requires = {
-              'kyazdani42/nvim-web-devicons', -- optional, for file icon
-            },
-            config = function ()
-                require('user.nvim-tree').config()
-            end,
+          'kyazdani42/nvim-tree.lua',
+          cmd = { 'NvimTreeToggle', 'NvimTreeFocus' },
+          requires = {
+            'kyazdani42/nvim-web-devicons', -- optional, for file icon
+          },
+          config = function ()
+              require('user.nvim-tree').config()
+          end,
         }
 
         -- Cmp plugins
         use {
-            'hrsh7th/nvim-cmp',
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
-            'hrsh7th/cmp-cmdline',
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-nvim-lua',
-            'saadparwaiz1/cmp_luasnip',
-            require('user.cmp').config()
+          'hrsh7th/nvim-cmp',
+          'hrsh7th/cmp-buffer',
+          'hrsh7th/cmp-path',
+          'hrsh7th/cmp-cmdline',
+          'hrsh7th/cmp-nvim-lsp',
+          'hrsh7th/cmp-nvim-lua',
+          'saadparwaiz1/cmp_luasnip',
+          require('user.cmp').config()
         }
 
         -- Snippets
         use {
-            'L3MON4D3/LuaSnip',
-            'rafamadriz/friendly-snippets'
+          'L3MON4D3/LuaSnip',
+          'rafamadriz/friendly-snippets'
         }
 
         -- Syntax highlighting
         use {
-            'nvim-treesitter/nvim-treesitter',
-            run = ':TSUpdate',
-            event = 'BufRead',
-            cmd = {
-                'TSInstall',
-                'TSInstallInfo',
-                'TSInstallSync',
-                'TSUninstall',
-                'TSUpdate',
-                'TSUpdateSync',
-                'TSDisableAll',
-                'TSEnableAll',
-            },
-            config = function()
-                require('user.treesitter').config()
-            end
+          'nvim-treesitter/nvim-treesitter',
+          run = ':TSUpdate',
+          event = 'BufRead',
+          cmd = {
+              'TSInstall',
+              'TSInstallInfo',
+              'TSInstallSync',
+              'TSUninstall',
+              'TSUpdate',
+              'TSUpdateSync',
+              'TSDisableAll',
+              'TSEnableAll',
+          },
+          config = function()
+              require('user.treesitter').config()
+          end
         }
 
         -- Parenthesis highlighting
         use {
-            'p00f/nvim-ts-rainbow',
-            after = 'nvim-treesitter',
+          'p00f/nvim-ts-rainbow',
+          after = 'nvim-treesitter',
         }
 
         -- LSP manager
         use {
-            'williamboman/nvim-lsp-installer'
+          'williamboman/nvim-lsp-installer'
         }
 
         -- Built in LSP
         use {
-            'neovim/nvim-lspconfig'
+          'neovim/nvim-lspconfig'
         }
 
         -- Extra JSON schemas
         use {
-             'b0o/SchemaStore.nvim'
+           'b0o/SchemaStore.nvim'
         }
 
         -- Git signs
         use {
-            'lewis6991/gitsigns.nvim',
+          'lewis6991/gitsigns.nvim',
         }
 
         -- Git integration
         use {
-            'tpope/vim-fugitive',
+          'tpope/vim-fugitive',
         }
 
         -- Autoclose tags
         use {
-            'windwp/nvim-ts-autotag',
-            after = 'nvim-treesitter'
+          'windwp/nvim-ts-autotag',
+          after = 'nvim-treesitter'
         }
 
         -- Fixed cursor animation
         use {
-            "antoinemadec/FixCursorHold.nvim",
-            config = function()
-                vim.g.cursorhold_updatetime = 100
-            end
+          "antoinemadec/FixCursorHold.nvim",
+          config = function()
+              vim.g.cursorhold_updatetime = 100
+          end
         }
 
         -- Smooth scrolling
         use {
-            "karb94/neoscroll.nvim",
-            config = function()
-              require("user.neoscroll").config()
-            end,
+          "karb94/neoscroll.nvim",
+          config = function()
+            require("user.neoscroll").config()
+          end,
         }
 
         -- Line guides
         use {
-            "lukas-reineke/indent-blankline.nvim",
-            config = function ()
-                require("user.indent-line").config()
-            end
+          "lukas-reineke/indent-blankline.nvim",
+          config = function ()
+              require("user.indent-line").config()
+          end
         }
-
-        -- Indentation detection
+        
+        -- Vim prettier
         use {
-            "Darazaki/indent-o-matic",
-            config = function()
-                require("user.indent-o-matic").config()
-            end
+          'prettier/vim-prettier'
         }
+        -- Indentation detection
+        -- use {
+        --   "Darazaki/indent-o-matic",
+        --   config = function()
+        --       require("user.indent-o-matic").config()
+        --   end
+        -- }
 
         if PACKER_BOOTSTRAP then
             require("packer").sync()
