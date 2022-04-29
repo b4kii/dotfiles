@@ -115,18 +115,27 @@ return require('packer').startup(
           'terryma/vim-multiple-cursors'
         }
 
-        -- NvimTree
+        -- -- NvimTree
+        -- use {
+        --   'kyazdani42/nvim-tree.lua',
+        --   cmd = { 'NvimTreeToggle', 'NvimTreeFocus' },
+        --   requires = {
+        --     'kyazdani42/nvim-web-devicons', -- optional, for file icon
+        --   },
+        --   config = function ()
+        --       require('user.nvim-tree').config()
+        --   end,
+        -- }
+        --
         use {
-          'kyazdani42/nvim-tree.lua',
-          cmd = { 'NvimTreeToggle', 'NvimTreeFocus' },
-          requires = {
-            'kyazdani42/nvim-web-devicons', -- optional, for file icon
-          },
-          config = function ()
-              require('user.nvim-tree').config()
+          "nvim-neo-tree/neo-tree.nvim",
+          module = "neo-tree",
+          cmd = "Neotree",
+          requires = "MunifTanjim/nui.nvim",
+          config = function()
+            require("user.neo-tree").config()
           end,
         }
-
         -- Cmp plugins
         use {
           'hrsh7th/nvim-cmp',
@@ -219,17 +228,29 @@ return require('packer').startup(
         }
 
         -- Line guides
-        use {
-          "lukas-reineke/indent-blankline.nvim",
-          config = function ()
-              require("user.indent-line").config()
-          end
-        }
+        -- use {
+        --   "lukas-reineke/indent-blankline.nvim",
+        --   config = function ()
+        --       require("user.indent-line").config()
+        --   end
+        -- }
+        --
         
         -- Vim prettier
         use {
-          'prettier/vim-prettier'
+          'jose-elias-alvarez/null-ls.nvim',
+          'MunifTanjim/prettier.nvim',
+          config = function()
+            require("user.prettier").config()
+          end
         }
+
+        use {
+          'neoclide/vim-jsx-improve',
+          'yuezk/vim-js',
+          'maxmellon/vim-jsx-pretty',
+        }
+
         -- Indentation detection
         -- use {
         --   "Darazaki/indent-o-matic",
@@ -237,7 +258,6 @@ return require('packer').startup(
         --       require("user.indent-o-matic").config()
         --   end
         -- }
-
         if PACKER_BOOTSTRAP then
             require("packer").sync()
         end

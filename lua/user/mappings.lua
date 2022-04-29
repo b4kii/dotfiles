@@ -79,8 +79,9 @@ map("n", "<C-t>", "<cmd>FloatermToggle<cr><C-\\><C-n><CR>", opts)
 map("t", "<C-t>", "<C-\\><C-n><cmd>FloatermToggle<cr>", opts)
 
 -- NvimTree
-map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)
-map("n", "<leader>z", "<cmd>NvimTreeFocus<CR>", opts)
+-- map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", opts)
+-- map("n", "<leader>z", "<cmd>NvimTreeFocus<CR>", opts)
+map("n", "<leader>e", "<cmd>Neotree toggle<CR>", opts)
 
 -- Gitsigns
 map("n", "<leader>gj", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", opts)
