@@ -11,8 +11,7 @@ curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install 
 ```
 #### Set theme
 ```
-omf install bira
-omf theme bira
+omf install bobthefish
 ```
 ---
 ### z
