@@ -1,4 +1,4 @@
-# DOTFILES
+# DOTFILES :(
 
 ### Personal configs for:
 * neovim,
