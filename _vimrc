@@ -1,16 +1,16 @@
 call plug#begin('~/.vim/plugged')
-
     Plug 'jiangmiao/auto-pairs'
     Plug 'terryma/vim-multiple-cursors'         "C-n
     Plug 'tpope/vim-commentary'                 "gcc
-
-
+    Plug 'ayu-theme/ayu-vim'
 call plug#end()
  
 syntax on
-color desert
 
-" hi Cursor guibg=yellow 
+let ayucolor="mirage"
+color ayu
+
+hi Cursor guibg=yellow 
 
 set number
 set relativenumber
@@ -22,7 +22,6 @@ set softtabstop=4
 set expandtab
 set smarttab
 set autoindent
-set cindent
 set backspace=indent,eol,start
 set clipboard=unnamed
 set history=1000
@@ -39,16 +38,14 @@ set timeoutlen=200
 set guioptions-=m
 set guioptions-=T
 set guicursor=n-v-c:block-blinkon700
-set guicursor+=i:ver20-blinkoff0
+set guicursor+=i:ver25-blinkoff0
+" set guicursor=a:block
 set scrolloff=8
 set showtabline=2
+set guifont=Fixedsys
 
 map <space> <nop>
 let mapleader=" "
-
-imap qf <esc>
-nmap qf <esc>
-vmap qf <esc>
 
 nnoremap Y y$
 vnoremap < <gv
@@ -61,16 +58,22 @@ nnoremap <C-Down> :move .+1<cr>==
 nnoremap <C-Up> :move .-2<cr>==
 vnoremap <C-Down> :move '>+1<cr>gv=gv
 vnoremap <C-Up> :move '<-2<cr>gv=gv
-nmap <S-h> :tabprev<cr>
-nmap <S-l> :tabnext<cr>
 
+nmap <A-h> :tabprev<cr>
+nmap <A-l> :tabnext<cr>
+nmap <S-h> :bp<cr>
+nmap <S-l> :bn<cr>
 
 nnoremap <leader>w :w<cr>
 nnoremap <leader>o o<esc>k
 nnoremap <leader>c :bd<cr>
-nnoremap <leader>h :nohl
+nnoremap <leader>h :nohl<cr>
+nnoremap <leader>e :Ex<cr>
+nnoremap <C-t> :term<cr>
 
-autocmd bufwritepre :tab ball<cr>
+set lines=35
+set columns=120
 
-set lines=100
-set columns=150
+let g:netrw_browse_split = 0
+let g:netrw_banner = 0
+let g:netrw_winsize = 25
