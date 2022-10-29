@@ -20,7 +20,9 @@ Set-PsFzfOption -PSReadLineChordProvider 'Ctrl+f' -PSReadLineChordReverseHistory
 Set-Alias vi nvim
 Set-Alias ll ls
 Set-Alias g git
+Set-Alias lg lazygit
 
-function cdp {set-location "D:\Projects"}
-function cdd {set-location "C:\Users\baki\Desktop"}
-function cdn {set-location "C:\Users\baki\AppData\Local\nvim"}
+function vsc-sync {
+	cp C:\Users\baki\AppData\Roaming\Code\User\settings.json C:\Users\baki\dotfiles\vscode-settings
+	cp C:\Users\baki\AppData\Roaming\Code\User\keybindings.json C:\Users\baki\dotfiles\vscode-settings
+}
