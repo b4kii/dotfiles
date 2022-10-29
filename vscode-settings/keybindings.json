@@ -6,7 +6,7 @@
     "command": "terminal.focus"
   },
   {
-    "key": "ctrl+m",
+    "key": "ctrl+a",
     "command": "workbench.action.focusActiveEditorGroup"
   },
   {
