@@ -6,7 +6,7 @@
     "command": "terminal.focus"
   },
   {
-    "key": "ctrl+a",
+    "key": "ctrl+shift+a",
     "command": "workbench.action.focusActiveEditorGroup"
   },
   {
@@ -355,7 +355,7 @@
     "command": "explorer.newFolder"
   },
   {
-    "key": "ctrl+e",
+    "key": "ctrl+shift+e",
     "command": "workbench.explorer.fileView.focus"
   },
   {
