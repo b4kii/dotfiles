@@ -11,8 +11,12 @@
   "code-runner.runInTerminal": true,
   "editor.mouseWheelZoom": true,
   "settingsSync.keybindingsPerPlatform": false,
-  "editor.fontFamily": "FiraCode NF",
-  "editor.fontSize": 14,
+  // "editor.fontFamily": "Fira Code",
+  // "editor.fontFamily": "JetBrainsMono NF",
+  // "editor.fontFamily": "Cascadia Code Regular",
+  "editor.fontFamily": "Ellograph CF Regular",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 15,
   "editor.lineNumbers": "relative",
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,
@@ -66,7 +70,7 @@
 
   /* Cursor settings */
   "editor.cursorSmoothCaretAnimation": true,
-  "editor.cursorBlinking": "smooth",
+  "editor.cursorBlinking": "phase",
   "editor.cursorSurroundingLines": 8,
 
   /* Vim settings */
@@ -338,5 +342,6 @@
   "workbench.colorTheme": "Ayu Mirage Bordered",
   "[python]": {
     "editor.defaultFormatter": "ms-python.python"
-  }
+  },
+  "python.analysis.autoImportCompletions": true
 }

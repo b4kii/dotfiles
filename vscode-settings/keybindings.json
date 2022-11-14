@@ -332,7 +332,7 @@
     "when": "editorTextFocus && vim.active && vim.use<C-t> && !inDebugRepl"
   },
   {
-    "key": "ctrl+f10",
+    "key": "ctrl+alt+p",
     "command": "code-runner.run"
   },
   {
