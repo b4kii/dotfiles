@@ -11,12 +11,9 @@
   "code-runner.runInTerminal": true,
   "editor.mouseWheelZoom": true,
   "settingsSync.keybindingsPerPlatform": false,
-  // "editor.fontFamily": "Fira Code",
-  // "editor.fontFamily": "JetBrainsMono NF",
-  // "editor.fontFamily": "Cascadia Code Regular",
-  "editor.fontFamily": "Ellograph CF Regular",
+  "editor.fontFamily": "JetBrainsMono NF",
   "editor.fontLigatures": true,
-  "editor.fontSize": 15,
+  "editor.fontSize": 14,
   "editor.lineNumbers": "relative",
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,
@@ -80,7 +77,8 @@
   "vim.leader": "<Space>",
   "vim.useSystemClipboard": true,
   "vim.timeout": 300,
-  "vim.cursorStylePerMode.insert": "block-outline",
+  // "vim.cursorStylePerMode.insert": "block-outline",
+  "vim.cursorStylePerMode.insert": "line",
   "vim.cursorStylePerMode.normal": "block",
   "vim.cursorStylePerMode.visual": "block",
   "vim.cursorStylePerMode.visualblock": "block",
@@ -117,32 +115,12 @@
       "commands": ["extension.advancedNewFile"]
     },
     {
-      "before": ["<S-h>"],
-      "commands": ["workbench.action.previousEditor"]
-    },
-    {
-      "before": ["<S-l>"],
-      "commands": ["workbench.action.nextEditor"]
+      "before": ["<leader>", "f", "f"],
+      "commands": ["workbench.action.quickOpen"]
     },
     {
       "before": ["<S-k>"],
       "commands": ["editor.action.showHover"]
-    },
-    {
-      "before": ["<leader>", "w", "v"],
-      "commands": ["workbench.action.moveEditorToRightGroup"]
-    },
-    {
-      "before": ["<leader>", "w", "h"],
-      "commands": ["workbench.action.moveEditorToBelowGroup"]
-    },
-    {
-      "before": ["<leader>", "w", "u"],
-      "commands": ["workbench.action.moveEditorToPreviousGroup"]
-    },
-    {
-      "before": ["<leader>", "f", "f"],
-      "commands": ["workbench.action.quickOpen"]
     },
     {
       "before": ["<leader>", "c"],
@@ -337,11 +315,11 @@
   "explorer.confirmDragAndDrop": false,
   "gitlens.hovers.currentLine.over": "line",
   "telemetry.telemetryLevel": "off",
-  "editor.renderLineHighlight": "none",
+  "editor.renderLineHighlight": "line",
   "editor.wordWrap": "on",
-  "workbench.colorTheme": "Ayu Mirage Bordered",
   "[python]": {
     "editor.defaultFormatter": "ms-python.python"
   },
-  "python.analysis.autoImportCompletions": true
+  "python.analysis.autoImportCompletions": true,
+  "workbench.colorTheme": "Ayu Mirage Bordered"
 }

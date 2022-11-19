@@ -1,0 +1,46 @@
+WINDOWS / TABS:
+    - alt v - vertical split
+    - alt s - horizontal split
+    - alt u - unsplit
+    - alt h - move to left
+    - alt l - move to right
+
+FILES: 
+    - ctrl f - find file
+    - ctrl q - close file
+
+MULTIPLE CURSORS:
+    - alt n - add selection to next find match
+    - ctrl alt up - add cursor above
+    - ctrl alt down - add cursor below
+
+MOVING CURSOR:
+    - ctrl h - focus left editor
+    - ctrl l - focus right editor
+    - ctrl t - focus terminal
+    - ctrl 0 - focus active group
+    - ctrl 9 - focus primary side bar
+    - ctrl 3 - focus file explorer
+    - alt 1 - toggle sidebar
+
+VIM:
+    - leader z - format document
+    - leader fw - find in files
+    - leader fr - rename file
+    - leader fd - remove file
+    - leader fm - move file
+    - leader fn - new file
+    - leader ff - open file
+    - leader c - close active editor
+    - leader w - save file
+    - leader o - add empty line below
+    - leader l - add space
+    - leader h - nohlsearch
+
+WIN11 - WINDOWS / FANCY ZONES:
+    - win arrow keys
+
+WIN TERMINAL:
+    - ctrl shift 1 - new powershell
+    - ctrl alt [number] - select terminal
+
