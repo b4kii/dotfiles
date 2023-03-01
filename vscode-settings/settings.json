@@ -1,4 +1,4 @@
-// 29.10.2022
+// 11.12.2022
 {
   "workbench.startupEditor": "none",
   "window.restoreFullscreen": true,
@@ -11,8 +11,8 @@
   "code-runner.runInTerminal": true,
   "editor.mouseWheelZoom": true,
   "settingsSync.keybindingsPerPlatform": false,
-  "editor.fontFamily": "JetBrainsMono NF",
-  "editor.fontLigatures": true,
+  "editor.fontFamily": "JetBrains Mono",
+  // "editor.fontLigatures": true,
   "editor.fontSize": 14,
   "editor.lineNumbers": "relative",
   "editor.bracketPairColorization.enabled": true,
@@ -61,23 +61,25 @@
   },
   "workbench.colorCustomizations": {
     "editorCursor.foreground": "#ffd800",
+    // "editorCursor.foreground": "#000000",
     "statusBar.background": "#0399b8",
-    "statusBar.foreground": "#1f2430"
+    "statusBar.foreground": "#1f2430",
   },
 
   /* Cursor settings */
-  "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorBlinking": "phase",
   "editor.cursorSurroundingLines": 8,
 
   /* Vim settings */
+  "vim.surround": true,
   "vim.ignorecase": false,
   "vim.highlightedyank.enable": true,
+  "vim.highlightedyank.duration": 80,
   "vim.scroll": 10,
   "vim.leader": "<Space>",
   "vim.useSystemClipboard": true,
   "vim.timeout": 300,
-  // "vim.cursorStylePerMode.insert": "block-outline",
   "vim.cursorStylePerMode.insert": "line",
   "vim.cursorStylePerMode.normal": "block",
   "vim.cursorStylePerMode.visual": "block",
@@ -177,6 +179,14 @@
     {
       "before": ["<leader>", "m", "p"],
       "commands": ["markdown.showPreviewToSide"]
+    },
+    {
+      "before": ["<C-d>"],
+      "after": ["<C-d>", "z", "z"]
+    },
+    {
+      "before": ["<C-u>"],
+      "after": ["<C-u>", "z", "z"]
     }
   ],
 
@@ -321,5 +331,16 @@
     "editor.defaultFormatter": "ms-python.python"
   },
   "python.analysis.autoImportCompletions": true,
-  "workbench.colorTheme": "Ayu Mirage Bordered"
+  "C_Cpp.intelliSenseUpdateDelay": 1000,
+  "workbench.colorTheme": "Ayu Mirage Bordered",
+  "[xsl]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+  "editor.tabCompletion": "on",
+  "errorLens.removeLinebreaks": false,
+  "emmet.showSuggestionsAsSnippets": true,
+  "editor.snippetSuggestions": "top"
 }

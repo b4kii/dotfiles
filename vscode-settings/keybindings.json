@@ -136,16 +136,6 @@
   },
   {
     "key": "ctrl+pagedown",
-    "command": "-workbench.action.terminal.focusNext",
-    "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
-  },
-  {
-    "key": "ctrl+pageup",
-    "command": "-workbench.action.terminal.focusPrevious",
-    "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
-  },
-  {
-    "key": "ctrl+pagedown",
     "command": "-selectNextPageSuggestion",
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
   },
@@ -390,7 +380,22 @@
   {
     "key": "alt+s",
     "command": "workbench.action.moveEditorToBelowGroup"
+  },
+  {
+    "key": "alt+m",
+    "command": "editor.action.moveSelectionToPreviousFindMatch"
+  },
+  {
+    "key": "alt+a",
+    "command": "editor.action.sourceAction",
+    "args": {
+      "kind": "source.addMissingImports",
+      "apply": "first"
+    }
+  },
+  {
+    "key": "alt+left",
+    "command": "-workbench.action.terminal.focusPreviousPane",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
   }
 ]
-
-
