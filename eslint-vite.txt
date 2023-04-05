@@ -26,4 +26,6 @@ create .eslintrc config
   ]
 }
 
+from https://www.robinwieruch.de/vite-eslint/
+
 
