@@ -1,0 +1,23 @@
+split editor/terminal ver - alt v
+split editor/terminal hor - alt s
+unsplit - alt u
+move tab - alt m
+focus left editor - ctrl l
+focuse right editor - ctrl k
+open terminal - ctrl t
+
+ctrl alt s - open settings
+ctrl g - find files
+
+ctrl alt shift j - select all occurances
+alt j - select next occurence
+alt shift j - remove all selected find
+
+ctrl shift k - add cursor above
+ctrl shift j - add cursor below
+
+alt 1 - focus file explorer
+ctrl alt n - create new file 
+
+
+

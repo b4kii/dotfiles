@@ -26,3 +26,11 @@ function vsc-sync {
 	cp C:\Users\baki\AppData\Roaming\Code\User\settings.json C:\Users\baki\dotfiles\vscode-settings
 	cp C:\Users\baki\AppData\Roaming\Code\User\keybindings.json C:\Users\baki\dotfiles\vscode-settings
 }
+
+function ex {
+	explorer .
+}
+
+function ws($FolderName) {
+	webstorm64.exe $FolderName
+}
