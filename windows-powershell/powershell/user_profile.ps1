@@ -34,3 +34,7 @@ function ex {
 function ws($FolderName) {
 	webstorm64.exe $FolderName
 }
+
+function wget($Url, $File) {
+	Invoke-WebRequest -Uri $Url -OutFile $File
+}
