@@ -1,4 +1,3 @@
-// 11.12.2022
 {
   "workbench.startupEditor": "none",
   "window.restoreFullscreen": true,
@@ -13,7 +12,9 @@
   "editor.mouseWheelZoom": true,
   "settingsSync.keybindingsPerPlatform": false,
   "editor.fontFamily": "JetBrains Mono",
-  "editor.fontSize": 14,
+  // "editor.fontFamily": "Cascadia Mono",
+  "editor.fontWeight": "bold",
+  "editor.fontSize": 15,
   "editor.lineNumbers": "relative",
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,
@@ -29,14 +30,12 @@
   /* File type settings */
   "javascript.suggest.autoImports": true,
   "typescript.suggest.autoImports": true,
-  // "typescript.validate.enable": false,
-  "javascript.validate.enable": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "[html]": {
     "editor.tabSize": 2
   },
   "[javascriptreact]": {
-    "editor.tabSize": 4
+    "editor.tabSize": 2
   },
   "[javascript]": {
     "editor.tabSize": 4
@@ -45,7 +44,7 @@
     "editor.tabSize": 4
   },
   "[css]": {
-    "editor.tabSize": 4
+    "editor.tabSize": 2
   },
   "[tailwindcss]": {
     "editor.tabSize": 2,
@@ -66,7 +65,8 @@
 
   /* Cursor settings */
   "editor.cursorSmoothCaretAnimation": "on",
-  "editor.cursorBlinking": "phase",
+  "editor.cursorBlinking": "expand",
+  // "editor.cursorBlinking": "solid",
   "editor.cursorSurroundingLines": 8,
 
   /* Vim settings */
@@ -78,7 +78,8 @@
   "vim.leader": "<Space>",
   "vim.useSystemClipboard": true,
   "vim.timeout": 300,
-  "vim.cursorStylePerMode.insert": "line",
+  // "vim.cursorStylePerMode.insert": "line",
+  "vim.cursorStylePerMode.insert": "block-outline",
   "vim.cursorStylePerMode.normal": "block",
   "vim.cursorStylePerMode.visual": "block",
   "vim.cursorStylePerMode.visualblock": "block",
@@ -330,18 +331,12 @@
   },
   "python.analysis.autoImportCompletions": true,
   "workbench.colorTheme": "Ayu Mirage Bordered",
-  "[xsl]": {
-    "editor.defaultFormatter": "redhat.vscode-xml"
-  },
-  "[xml]": {
-    "editor.defaultFormatter": "redhat.vscode-xml"
-  },
   "editor.tabCompletion": "on",
   "errorLens.removeLinebreaks": false,
   "emmet.showSuggestionsAsSnippets": true,
-  "editor.snippetSuggestions": "top",
-  "[java]": {
-    "editor.defaultFormatter": "redhat.java"
-  },
-  "git.openRepositoryInParentFolders": "never"
+  "editor.snippetSuggestions": "inline",
+  "git.openRepositoryInParentFolders": "never",
+  "javascript.suggest.completeFunctionCalls": true,
+  "window.zoomLevel": 1,
+  "editor.wordBasedSuggestions": false
 }

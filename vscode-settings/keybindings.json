@@ -27,7 +27,7 @@
     "when": "terminalEditorFocus && terminalFocus && terminalProcessSupported && resourceScheme == 'vscode-terminal'"
   },
   {
-    "key": "ctrl+q",
+    "key": "alt+q",
     "command": "workbench.action.closeActiveEditor"
   },
   {
@@ -104,7 +104,7 @@
     "command": "explorer.newFile"
   },
   {
-    "key": "ctrl+f",
+    "key": "ctrl+g",
     "command": "workbench.action.quickOpen"
   },
   {
@@ -408,7 +408,7 @@
     "command": "-workbench.action.reopenClosedEditor"
   },
   {
-    "key": "ctrl+shift+t",
+    "key": "alt+v",
     "command": "workbench.action.terminal.split",
     "when": "terminalFocus && terminalProcessSupported || terminalFocus && terminalWebExtensionContributedProfile"
   },
@@ -422,7 +422,7 @@
     "command": "workbench.action.terminal.focus"
   },
   {
-    "key": "alt+oem_1",
+    "key": "alt+enter",
     "command": "editor.action.quickFix",
     "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
   },
@@ -430,5 +430,39 @@
     "key": "ctrl+oem_period",
     "command": "-editor.action.quickFix",
     "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+g",
+    "command": "-workbench.action.gotoLine"
+  },
+  {
+    "key": "ctrl+f",
+    "command": "actions.find",
+    "when": "editorFocus || editorIsOpen"
+  },
+  {
+    "key": "ctrl+f",
+    "command": "-actions.find",
+    "when": "editorFocus || editorIsOpen"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "workbench.action.terminal.focusNextPane",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "alt+down",
+    "command": "-workbench.action.terminal.focusNextPane",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "workbench.action.terminal.focusPreviousPane",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "alt+up",
+    "command": "-workbench.action.terminal.focusPreviousPane",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
   }
 ]
