@@ -64,7 +64,7 @@
   },
 
   /* Cursor settings */
-  "editor.cursorSmoothCaretAnimation": "on",
+  // "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorBlinking": "expand",
   // "editor.cursorBlinking": "solid",
   "editor.cursorSurroundingLines": 8,
@@ -78,8 +78,8 @@
   "vim.leader": "<Space>",
   "vim.useSystemClipboard": true,
   "vim.timeout": 300,
-  // "vim.cursorStylePerMode.insert": "line",
-  "vim.cursorStylePerMode.insert": "block-outline",
+  "vim.cursorStylePerMode.insert": "line",
+  // "vim.cursorStylePerMode.insert": "block-outline",
   "vim.cursorStylePerMode.normal": "block",
   "vim.cursorStylePerMode.visual": "block",
   "vim.cursorStylePerMode.visualblock": "block",
@@ -330,13 +330,13 @@
     "editor.tabSize": 4
   },
   "python.analysis.autoImportCompletions": true,
-  "workbench.colorTheme": "Ayu Mirage Bordered",
   "editor.tabCompletion": "on",
   "errorLens.removeLinebreaks": false,
   "emmet.showSuggestionsAsSnippets": true,
   "editor.snippetSuggestions": "inline",
   "git.openRepositoryInParentFolders": "never",
-  "javascript.suggest.completeFunctionCalls": true,
+  "editor.wordBasedSuggestions": false,
   "window.zoomLevel": 1,
-  "editor.wordBasedSuggestions": false
+  "tabnine.experimentalAutoImports": true,
+  "workbench.colorTheme": "eppz!"
 }

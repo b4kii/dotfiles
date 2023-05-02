@@ -100,10 +100,6 @@
     "command": "-workbench.action.files.newUntitledFile"
   },
   {
-    "key": "ctrl+n",
-    "command": "explorer.newFile"
-  },
-  {
     "key": "ctrl+g",
     "command": "workbench.action.quickOpen"
   },
@@ -464,5 +460,17 @@
     "key": "alt+up",
     "command": "-workbench.action.terminal.focusPreviousPane",
     "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "ctrl+alt+w",
+    "command": "editor.emmet.action.wrapWithAbbreviation"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "extension.advancedNewFile"
+  },
+  {
+    "key": "ctrl+alt+n",
+    "command": "-extension.advancedNewFile"
   }
 ]
