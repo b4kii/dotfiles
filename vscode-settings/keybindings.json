@@ -123,7 +123,7 @@
     "when": "viewContainer.workbench.view.explorer.enabled"
   },
   {
-    "key": "alt+1",
+    "key": "ctrl+1",
     "command": "workbench.action.toggleSidebarVisibility"
   },
   {
@@ -472,5 +472,13 @@
   {
     "key": "ctrl+alt+n",
     "command": "-extension.advancedNewFile"
+  },
+  {
+    "key": "ctrl+4",
+    "command": "todo-tree-view.focus"
+  },
+  {
+    "key": "ctrl+4",
+    "command": "-workbench.action.focusFourthEditorGroup"
   }
 ]

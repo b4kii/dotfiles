@@ -1,4 +1,5 @@
 {
+  "editor.smoothScrolling": true,
   "workbench.startupEditor": "none",
   "window.restoreFullscreen": true,
   "window.newWindowDimensions": "maximized",
@@ -11,8 +12,8 @@
   "code-runner.runInTerminal": true,
   "editor.mouseWheelZoom": true,
   "settingsSync.keybindingsPerPlatform": false,
-  "editor.fontFamily": "JetBrains Mono",
-  // "editor.fontFamily": "Cascadia Mono",
+  // "editor.fontFamily": "JetBrains Mono",
+  "editor.fontFamily": "Cascadia Mono",
   "editor.fontWeight": "bold",
   "editor.fontSize": 15,
   "editor.lineNumbers": "relative",
@@ -23,8 +24,11 @@
   "terminal.integrated.gpuAcceleration": "on",
   "editor.codeLens": false,
   "editor.quickSuggestions": {
-    "strings": true
+    "other": false,
+    "comments": false,
+    "strings": false
   },
+  "editor.suggest.localityBonus": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
 
   /* File type settings */
@@ -47,7 +51,7 @@
     "editor.tabSize": 2
   },
   "[tailwindcss]": {
-    "editor.tabSize": 2,
+    "editor.tabSize": 2
   },
   "files.associations": {
     "*.css": "tailwindcss"
@@ -60,7 +64,7 @@
     "editorCursor.foreground": "#ffd800",
     // "editorCursor.foreground": "#000000",
     "statusBar.background": "#0399b8",
-    "statusBar.foreground": "#1f2430",
+    "statusBar.foreground": "#1f2430"
   },
 
   /* Cursor settings */
@@ -338,5 +342,5 @@
   "editor.wordBasedSuggestions": false,
   "window.zoomLevel": 1,
   "tabnine.experimentalAutoImports": true,
-  "workbench.colorTheme": "eppz!"
+  "workbench.colorTheme": "Default Dark+ Experimental"
 }
