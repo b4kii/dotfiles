@@ -1,29 +1,56 @@
 {
-  "editor.smoothScrolling": true,
-  "workbench.startupEditor": "none",
   "window.restoreFullscreen": true,
   "window.newWindowDimensions": "maximized",
+  "window.zoomLevel": 1,
+
+  "workbench.startupEditor": "none",
   "workbench.iconTheme": "vscode-great-icons",
   "workbench.editor.untitled.hint": "hidden",
   "workbench.editor.highlightModifiedTabs": true,
+  "workbench.colorCustomizations": {
+    "editorCursor.foreground": "#ffd800",
+    "statusBar.background": "#0399b8",
+    "statusBar.foreground": "#1f2430"
+  },
+
+  "editor.smoothScrolling": true,
   "editor.minimap.enabled": false,
-  "security.workspace.trust.untrustedFiles": "open",
-  "security.workspace.trust.enabled": false,
-  "code-runner.runInTerminal": true,
   "editor.mouseWheelZoom": true,
-  "settingsSync.keybindingsPerPlatform": false,
+  "editor.codeLens": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   // "editor.fontFamily": "JetBrains Mono",
   "editor.fontFamily": "Cascadia Mono",
   "editor.fontWeight": "bold",
-  "editor.fontSize": 15,
+  "editor.fontSize": 12,
   "editor.lineNumbers": "relative",
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,
-  "extensions.ignoreRecommendations": true,
+  "editor.renderLineHighlight": "line",
+  "editor.wordWrap": "on",
+  "editor.snippetSuggestions": "inline",
+  "editor.tabCompletion": "on",
+  "editor.wordBasedSuggestions": false,
+  "editor.inlineSuggest.enabled": true,
+
+  /* Cursor settings */
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorBlinking": "expand",
+  "editor.cursorSurroundingLines": 8,
+
   "terminal.integrated.enableMultiLinePasteWarning": false,
   "terminal.integrated.gpuAcceleration": "on",
-  "editor.codeLens": false,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "security.workspace.trust.untrustedFiles": "open",
+  "security.workspace.trust.enabled": false,
+
+  "emmet.showSuggestionsAsSnippets": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "javascriptreact"
+  },
+
+  "settingsSync.keybindingsPerPlatform": false,
+  "extensions.ignoreRecommendations": true,
 
   /* File type settings */
   "javascript.suggest.autoImports": true,
@@ -47,25 +74,24 @@
   "[tailwindcss]": {
     "editor.tabSize": 2
   },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/node_modules": true,
+    "**/package-lock.json": true
+  },
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  "emmet.includeLanguages": {
-    "javascript": "javascriptreact",
-    "typescript": "javascriptreact"
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python",
+    "editor.tabSize": 4
   },
-  "workbench.colorCustomizations": {
-    "editorCursor.foreground": "#ffd800",
-    // "editorCursor.foreground": "#000000",
-    "statusBar.background": "#0399b8",
-    "statusBar.foreground": "#1f2430"
-  },
-
-  /* Cursor settings */
-  // "editor.cursorSmoothCaretAnimation": "on",
-  "editor.cursorBlinking": "expand",
-  // "editor.cursorBlinking": "solid",
-  "editor.cursorSurroundingLines": 8,
+  "python.analysis.autoImportCompletions": true,
 
   /* Vim settings */
   "vim.surround": true,
@@ -76,7 +102,6 @@
   "vim.leader": "<Space>",
   "vim.useSystemClipboard": true,
   "vim.timeout": 300,
-  // "vim.cursorStylePerMode.insert": "line",
   "vim.cursorStylePerMode.insert": "block",
   "vim.cursorStylePerMode.normal": "block",
   "vim.cursorStylePerMode.visual": "block",
@@ -205,136 +230,9 @@
       "after": ["\"", "a", "d"]
     }
   ],
-
-  /* Disabling all italics in theme */
-  "editor.tokenColorCustomizations": {
-    "textMateRules": [
-      {
-        "scope": [
-          "comment",
-          "comment.block",
-          "comment.block.documentation",
-          "comment.line",
-          "constant",
-          "constant.character",
-          "constant.character.escape",
-          "constant.numeric",
-          "constant.numeric.integer",
-          "constant.numeric.float",
-          "constant.numeric.hex",
-          "constant.numeric.octal",
-          "constant.other",
-          "constant.regexp",
-          "constant.rgb-value",
-          "emphasis",
-          "entity",
-          "entity.name",
-          "entity.name.class",
-          "entity.name.function",
-          "entity.name.method",
-          "entity.name.section",
-          "entity.name.selector",
-          "entity.name.tag",
-          "entity.name.type",
-          "entity.other",
-          "entity.other.attribute-name",
-          "entity.other.inherited-class",
-          "invalid",
-          "invalid.deprecated",
-          "invalid.illegal",
-          "keyword",
-          "keyword.control",
-          "keyword.operator",
-          "keyword.operator.new",
-          "keyword.operator.assignment",
-          "keyword.operator.arithmetic",
-          "keyword.operator.logical",
-          "keyword.other",
-          "markup",
-          "markup.bold",
-          "markup.changed",
-          "markup.deleted",
-          "markup.heading",
-          "markup.inline.raw",
-          "markup.inserted",
-          "markup.italic",
-          "markup.list",
-          "markup.list.numbered",
-          "markup.list.unnumbered",
-          "markup.other",
-          "markup.quote",
-          "markup.raw",
-          "markup.underline",
-          "markup.underline.link",
-          "meta",
-          "meta.block",
-          "meta.cast",
-          "meta.class",
-          "meta.function",
-          "meta.function-call",
-          "meta.preprocessor",
-          "meta.return-type",
-          "meta.selector",
-          "meta.tag",
-          "meta.type.annotation",
-          "meta.type",
-          "punctuation.definition.string.begin",
-          "punctuation.definition.string.end",
-          "punctuation.separator",
-          "punctuation.separator.continuation",
-          "punctuation.definition.comment",
-          "punctuation.terminator",
-          "storage",
-          "storage.modifier",
-          "storage.type",
-          "string",
-          "string.interpolated",
-          "string.other",
-          "string.quoted",
-          "string.quoted.double",
-          "string.quoted.other",
-          "string.quoted.single",
-          "string.quoted.triple",
-          "string.regexp",
-          "string.unquoted",
-          "strong",
-          "support",
-          "support.class",
-          "support.constant",
-          "support.function",
-          "support.other",
-          "support.type",
-          "support.type.property-name",
-          "support.variable",
-          "variable",
-          "variable.language",
-          "variable.name",
-          "variable.other",
-          "variable.other.readwrite",
-          "variable.parameter"
-        ],
-        "settings": {
-          "fontStyle": ""
-        }
-      }
-    ]
-  },
   "explorer.confirmDragAndDrop": false,
   "telemetry.telemetryLevel": "off",
-  "editor.renderLineHighlight": "line",
-  "editor.wordWrap": "on",
-  "[python]": {
-    "editor.defaultFormatter": "ms-python.python",
-    "editor.tabSize": 4
-  },
-  "python.analysis.autoImportCompletions": true,
-  "editor.tabCompletion": "on",
   "errorLens.removeLinebreaks": false,
-  "emmet.showSuggestionsAsSnippets": true,
-  "editor.snippetSuggestions": "inline",
   "git.openRepositoryInParentFolders": "never",
-  "editor.wordBasedSuggestions": false,
-  "window.zoomLevel": 1,
-  "tabnine.experimentalAutoImports": true,
-  "editor.inlineSuggest.enabled": true
+  "code-runner.runInTerminal": true,
 }
