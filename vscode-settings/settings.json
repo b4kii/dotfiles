@@ -23,12 +23,6 @@
   "terminal.integrated.enableMultiLinePasteWarning": false,
   "terminal.integrated.gpuAcceleration": "on",
   "editor.codeLens": false,
-  "editor.quickSuggestions": {
-    "other": false,
-    "comments": false,
-    "strings": false
-  },
-  "editor.suggest.localityBonus": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
 
   /* File type settings */
@@ -82,8 +76,8 @@
   "vim.leader": "<Space>",
   "vim.useSystemClipboard": true,
   "vim.timeout": 300,
-  "vim.cursorStylePerMode.insert": "line",
-  // "vim.cursorStylePerMode.insert": "block-outline",
+  // "vim.cursorStylePerMode.insert": "line",
+  "vim.cursorStylePerMode.insert": "block",
   "vim.cursorStylePerMode.normal": "block",
   "vim.cursorStylePerMode.visual": "block",
   "vim.cursorStylePerMode.visualblock": "block",
@@ -342,5 +336,5 @@
   "editor.wordBasedSuggestions": false,
   "window.zoomLevel": 1,
   "tabnine.experimentalAutoImports": true,
-  "workbench.colorTheme": "Default Dark+ Experimental"
+  "editor.inlineSuggest.enabled": true
 }
