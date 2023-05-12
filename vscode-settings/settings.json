@@ -26,7 +26,7 @@
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,
   "editor.renderLineHighlight": "line",
-  "editor.wordWrap": "on",
+  "editor.wordWrap": "off",
   "editor.snippetSuggestions": "inline",
   "editor.tabCompletion": "on",
   "editor.wordBasedSuggestions": false,
@@ -235,5 +235,6 @@
   "errorLens.removeLinebreaks": false,
   "git.openRepositoryInParentFolders": "never",
   "code-runner.runInTerminal": true,
-  "workbench.colorTheme": "Jumper (rainglow)",
+  "workbench.colorTheme": "Default Dark+",
+  "window.titleBarStyle": "custom",
 }
