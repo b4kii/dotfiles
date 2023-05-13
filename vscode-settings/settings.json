@@ -111,6 +111,7 @@
   "vim.hlsearch": true,
   "vim.incsearch": true,
   "vim.sneak": true,
+  "vim.foldfix": true,
 
   /* Vim keybinds */
   "vim.normalModeKeyBindingsNonRecursive": [
@@ -235,6 +236,8 @@
   "errorLens.removeLinebreaks": false,
   "git.openRepositoryInParentFolders": "never",
   "code-runner.runInTerminal": true,
-  "workbench.colorTheme": "Default Dark+",
   "window.titleBarStyle": "custom",
+  "window.customMenuBarAltFocus": false,
+  "window.menuBarVisibility": "compact",
+  "workbench.colorTheme": "Kary Pro Colors － Dark",
 }
