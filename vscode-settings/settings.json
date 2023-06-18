@@ -1,7 +1,6 @@
 {
   "window.restoreFullscreen": true,
   "window.newWindowDimensions": "maximized",
-  "window.zoomLevel": 1,
 
   "workbench.startupEditor": "none",
   "workbench.iconTheme": "vscode-great-icons",
@@ -9,6 +8,7 @@
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.colorCustomizations": {
     "editorCursor.foreground": "#ffd800",
+    // "editorCursor.foreground": "#ffffff",
     "statusBar.background": "#0399b8",
     "statusBar.foreground": "#1f2430"
   },
@@ -18,15 +18,15 @@
   "editor.mouseWheelZoom": true,
   "editor.codeLens": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  // "editor.fontFamily": "JetBrains Mono",
-  "editor.fontFamily": "Cascadia Mono",
+  "editor.fontFamily": "JetBrains Mono",
+  // "editor.fontFamily": "Cascadia Mono",
   "editor.fontWeight": "bold",
   "editor.fontSize": 12,
   "editor.lineNumbers": "relative",
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,
   "editor.renderLineHighlight": "line",
-  "editor.wordWrap": "off",
+  "editor.wordWrap": "on",
   "editor.snippetSuggestions": "inline",
   "editor.tabCompletion": "on",
   "editor.wordBasedSuggestions": false,
@@ -240,4 +240,5 @@
   "window.customMenuBarAltFocus": false,
   "window.menuBarVisibility": "compact",
   "workbench.colorTheme": "Kary Pro Colors － Dark",
+  "window.zoomLevel": 1,
 }

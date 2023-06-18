@@ -286,5 +286,29 @@
   {
     "key": "alt+oem_1",
     "command": "editor.emmet.action.updateTag"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "-workbench.action.quickOpen"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "search.action.focusNextSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
+  },
+  {
+    "key": "f4",
+    "command": "-search.action.focusNextSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "search.action.focusPreviousSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
+  },
+  {
+    "key": "shift+f4",
+    "command": "-search.action.focusPreviousSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
   }
 ]
