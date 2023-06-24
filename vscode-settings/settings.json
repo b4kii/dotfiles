@@ -8,7 +8,7 @@
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.colorCustomizations": {
     "editorCursor.foreground": "#ffd800",
-    // "editorCursor.foreground": "#ffffff",
+    // "editorCursor.foreground": "#000000",
     "statusBar.background": "#0399b8",
     "statusBar.foreground": "#1f2430"
   },
@@ -239,6 +239,10 @@
   "window.titleBarStyle": "custom",
   "window.customMenuBarAltFocus": false,
   "window.menuBarVisibility": "compact",
-  "workbench.colorTheme": "Kary Pro Colors － Dark",
   "window.zoomLevel": 1,
+  "terminal.integrated.env.windows": {},
+  "terminal.integrated.env.linux": {},
+  "files.autoSave": "afterDelay",
+  "workbench.colorTheme": "Bearded Theme Altica",
+  "search.quickOpen.includeHistory": false,
 }
