@@ -28,7 +28,6 @@
     "editor.tabCompletion": "on",
     "editor.wordBasedSuggestions": false,
     "editor.inlineSuggest.enabled": true,
-
     /* Cursor settings */
     // "editor.cursorSmoothCaretAnimation": "on",
     "editor.cursorBlinking": "solid",
@@ -50,7 +49,7 @@
     "typescript.suggest.autoImports": true,
     "javascript.updateImportsOnFileMove.enabled": "always",
     "[html]": {
-        "editor.tabSize": 2,
+        "editor.tabSize": 2
     },
     "[javascript]": {
         "editor.tabSize": 4,
@@ -60,27 +59,29 @@
         "editor.tabSize": 4
     },
     "[javascriptreact]": {
-        "editor.tabSize": 2,
+        "editor.tabSize": 2
     },
     "[typescriptreact]": {
         "editor.tabSize": 2
     },
     "[css]": {
-        "editor.tabSize": 2
-    },
-    "[tailwindcss]": {
-        "editor.tabSize": 2
+        "editor.tabSize": 4
     },
     "[php]": {
         "editor.tabSize": 4,
         "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
     },
+    "[python]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "ms-python.python"
+    },
     "[json]": {
+        "editor.tabSize": 4,
         "editor.defaultFormatter": "vscode.json-language-features"
     },
-    "[python]": {
-        "editor.defaultFormatter": "ms-python.python",
-        "editor.tabSize": 4
+    "[jsonc]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "vscode.json-language-features"
     },
     "files.exclude": {
         "**/.git": true,
@@ -90,10 +91,12 @@
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
         "**/node_modules": true,
-        "**/vendor": true,
         "**/package-lock.json": true
     },
-    "css.enabledLanguages": ["html", "php"],
+    "css.enabledLanguages": [
+        "html",
+        "php"
+    ],
     "files.associations": {
         "*.css": "tailwindcss"
     },
@@ -121,118 +124,285 @@
     /* Vim keybinds */
     "vim.normalModeKeyBindingsNonRecursive": [
         {
-            "before": ["<leader>", "z"],
-            "commands": ["editor.action.formatDocument"]
+            "before": [
+                "<leader>",
+                "z"
+            ],
+            "commands": [
+                "editor.action.formatDocument"
+            ]
         },
         {
-            "before": ["<leader>", "f", "w"],
-            "commands": ["workbench.action.findInFiles"]
+            "before": [
+                "<leader>",
+                "f",
+                "w"
+            ],
+            "commands": [
+                "workbench.action.findInFiles"
+            ]
         },
         {
-            "before": ["<leader>", "f", "r"],
-            "commands": ["fileutils.renameFile"]
+            "before": [
+                "<leader>",
+                "f",
+                "r"
+            ],
+            "commands": [
+                "fileutils.renameFile"
+            ]
         },
         {
-            "before": ["<leader>", "f", "d"],
-            "commands": ["fileutils.removeFile"]
+            "before": [
+                "<leader>",
+                "f",
+                "d"
+            ],
+            "commands": [
+                "fileutils.removeFile"
+            ]
         },
         {
-            "before": ["<leader>", "f", "m"],
-            "commands": ["fileutils.moveFile"]
+            "before": [
+                "<leader>",
+                "f",
+                "m"
+            ],
+            "commands": [
+                "fileutils.moveFile"
+            ]
         },
         {
-            "before": ["<leader>", "f", "n"],
-            "commands": ["extension.advancedNewFile"]
+            "before": [
+                "<leader>",
+                "f",
+                "n"
+            ],
+            "commands": [
+                "extension.advancedNewFile"
+            ]
         },
         {
-            "before": ["<leader>", "f", "f"],
-            "commands": ["workbench.action.quickOpen"]
+            "before": [
+                "<leader>",
+                "f",
+                "f"
+            ],
+            "commands": [
+                "workbench.action.quickOpen"
+            ]
         },
         {
-            "before": ["<S-k>"],
-            "commands": ["editor.action.showHover"]
+            "before": [
+                "<S-k>"
+            ],
+            "commands": [
+                "editor.action.showHover"
+            ]
         },
         {
-            "before": ["<leader>", "c"],
-            "commands": ["workbench.action.closeActiveEditor"]
+            "before": [
+                "<leader>",
+                "c"
+            ],
+            "commands": [
+                "workbench.action.closeActiveEditor"
+            ]
         },
         {
-            "before": ["g", "D"],
-            "commands": ["editor.action.revealDeclaration"]
+            "before": [
+                "g",
+                "D"
+            ],
+            "commands": [
+                "editor.action.revealDeclaration"
+            ]
         },
         {
-            "before": ["g", "I"],
-            "commands": ["editor.action.goToImplementation"]
+            "before": [
+                "g",
+                "I"
+            ],
+            "commands": [
+                "editor.action.goToImplementation"
+            ]
         },
         {
-            "before": ["g", "d"],
-            "commands": ["editor.action.revealDefinition"]
+            "before": [
+                "g",
+                "d"
+            ],
+            "commands": [
+                "editor.action.revealDefinition"
+            ]
         },
         {
-            "before": ["g", "r"],
-            "commands": ["editor.action.goToReferences"]
+            "before": [
+                "g",
+                "r"
+            ],
+            "commands": [
+                "editor.action.goToReferences"
+            ]
         },
         {
-            "before": ["<leader>", "w"],
-            "commands": [":w"]
+            "before": [
+                "<leader>",
+                "w"
+            ],
+            "commands": [
+                ":w"
+            ]
         },
         {
-            "before": ["Y"],
-            "after": ["y", "$"]
+            "before": [
+                "Y"
+            ],
+            "after": [
+                "y",
+                "$"
+            ]
         },
         {
-            "before": ["<leader>", "o"],
-            "after": ["o", "<ESC>", "k"]
+            "before": [
+                "<leader>",
+                "o"
+            ],
+            "after": [
+                "o",
+                "<ESC>",
+                "k"
+            ]
         },
         {
-            "before": ["<leader>", "l"],
-            "after": ["i", " ", "<ESC>"]
+            "before": [
+                "<leader>",
+                "l"
+            ],
+            "after": [
+                "i",
+                " ",
+                "<ESC>"
+            ]
         },
         {
-            "before": ["<leader>", "h"],
-            "commands": [":nohl"]
+            "before": [
+                "<leader>",
+                "h"
+            ],
+            "commands": [
+                ":nohl"
+            ]
         },
         {
-            "before": ["<leader>", "y"],
-            "after": ["\"", "a", "y", "y"]
+            "before": [
+                "<leader>",
+                "y"
+            ],
+            "after": [
+                "\"",
+                "a",
+                "y",
+                "y"
+            ]
         },
         {
-            "before": ["<leader>", "p"],
-            "after": ["\"", "a", "p"]
+            "before": [
+                "<leader>",
+                "p"
+            ],
+            "after": [
+                "\"",
+                "a",
+                "p"
+            ]
         },
         {
-            "before": ["<leader>", "d"],
-            "after": ["\"", "a", "d", "d"]
+            "before": [
+                "<leader>",
+                "d"
+            ],
+            "after": [
+                "\"",
+                "a",
+                "d",
+                "d"
+            ]
         },
         {
-            "before": ["<leader>", "m", "p"],
-            "commands": ["markdown.showPreviewToSide"]
+            "before": [
+                "<leader>",
+                "m",
+                "p"
+            ],
+            "commands": [
+                "markdown.showPreviewToSide"
+            ]
         },
         {
-            "before": ["<C-d>"],
-            "after": ["<C-d>", "z", "z"]
+            "before": [
+                "<C-d>"
+            ],
+            "after": [
+                "<C-d>",
+                "z",
+                "z"
+            ]
         },
         {
-            "before": ["<C-u>"],
-            "after": ["<C-u>", "z", "z"]
+            "before": [
+                "<C-u>"
+            ],
+            "after": [
+                "<C-u>",
+                "z",
+                "z"
+            ]
         }
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
         {
-            "before": [">"],
-            "after": [">", "g", "v"]
+            "before": [
+                ">"
+            ],
+            "after": [
+                ">",
+                "g",
+                "v"
+            ]
         },
         {
-            "before": ["<"],
-            "after": ["<", "g", "v"]
+            "before": [
+                "<"
+            ],
+            "after": [
+                "<",
+                "g",
+                "v"
+            ]
         },
         {
-            "before": ["<leader>", "y"],
-            "after": ["\"", "a", "y", "y"]
+            "before": [
+                "<leader>",
+                "y"
+            ],
+            "after": [
+                "\"",
+                "a",
+                "y",
+                "y"
+            ]
         },
         {
-            "before": ["<leader>", "d"],
-            "after": ["\"", "a", "d"]
+            "before": [
+                "<leader>",
+                "d"
+            ],
+            "after": [
+                "\"",
+                "a",
+                "d"
+            ]
         }
     ],
     "explorer.confirmDragAndDrop": false,
@@ -254,5 +424,14 @@
     "typescript.updateImportsOnFileMove.enabled": "always",
     "window.zoomLevel": 1,
     "editor.detectIndentation": false,
-    "prettier.singleAttributePerLine": true,
+    "intelephense.telemetry.enabled": false,
+    "intelephense.completion.triggerParameterHints": true,
+    "intelephense.completion.insertUseDeclaration": true,
+    "intelephense.trace.server": "messages",
+    "intelephense.diagnostics.undefinedClassConstants": false,
+    "intelephense.diagnostics.undefinedFunctions": false,
+    "intelephense.diagnostics.undefinedConstants": false,
+    "intelephense.diagnostics.undefinedProperties": false,
+    "intelephense.diagnostics.undefinedTypes": false,
+    "intelephense.diagnostics.undefinedMethods": false,
 }
