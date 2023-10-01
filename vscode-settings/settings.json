@@ -2,7 +2,6 @@
     "window.restoreFullscreen": true,
     "window.newWindowDimensions": "maximized",
     "workbench.startupEditor": "none",
-    "workbench.iconTheme": "vscode-great-icons",
     "workbench.editor.untitled.hint": "hidden",
     "workbench.editor.highlightModifiedTabs": true,
     "workbench.colorCustomizations": {
@@ -12,8 +11,10 @@
         "statusBar.foreground": "#1f2430"
     },
     "editor.smoothScrolling": true,
-    "editor.autoClosingBrackets": "always",
-    "editor.autoClosingQuotes": "always",
+    // "editor.autoClosingBrackets": "always",
+    "editor.autoClosingBrackets": "never",
+    // "editor.autoClosingQuotes": "always",
+    "editor.autoClosingQuotes": "never",
     "editor.minimap.enabled": false,
     "editor.mouseWheelZoom": true,
     "editor.codeLens": false,
@@ -24,7 +25,7 @@
     "editor.bracketPairColorization.enabled": true,
     "editor.guides.bracketPairs": true,
     "editor.renderLineHighlight": "line",
-    "editor.wordWrap": "on",
+    "editor.wordWrap": "off",
     "editor.tabCompletion": "on",
     "editor.wordBasedSuggestions": false,
     "editor.inlineSuggest.enabled": true,
@@ -40,7 +41,8 @@
     "editor.snippetSuggestions": "inline",
     "emmet.includeLanguages": {
         "javascript": "javascriptreact",
-        "typescript": "javascriptreact"
+        "typescript": "javascriptreact",
+        "php": "html"
     },
     "settingsSync.keybindingsPerPlatform": false,
     "extensions.ignoreRecommendations": true,
@@ -53,7 +55,6 @@
     },
     "[javascript]": {
         "editor.tabSize": 4,
-        "editor.snippetSuggestions": "bottom"
     },
     "[typescript]": {
         "editor.tabSize": 4
@@ -90,7 +91,7 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
-        "**/node_modules": true,
+        // "**/node_modules": true,
         "**/package-lock.json": true
     },
     "css.enabledLanguages": [
@@ -110,8 +111,8 @@
     "vim.leader": "<Space>",
     "vim.useSystemClipboard": true,
     "vim.timeout": 300,
-    //   "vim.cursorStylePerMode.insert": "block-outline",
-    "vim.cursorStylePerMode.insert": "line",
+    "vim.cursorStylePerMode.insert": "block-outline",
+    // "vim.cursorStylePerMode.insert": "block",
     "vim.cursorStylePerMode.normal": "block",
     "vim.cursorStylePerMode.visual": "block",
     "vim.cursorStylePerMode.visualblock": "block",

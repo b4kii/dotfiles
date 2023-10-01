@@ -283,11 +283,7 @@
     "key": "alt+oem_period",
     "command": "editor.emmet.action.matchTag"
   },
-  {
-    "key": "alt+oem_1",
-    "command": "editor.emmet.action.updateTag"
-  },
-  {
+{
     "key": "ctrl+p",
     "command": "-workbench.action.quickOpen"
   },
@@ -335,5 +331,9 @@
     "key": "ctrl+o",
     "command": "-extension.vim_ctrl+o",
     "when": "editorTextFocus && vim.active && vim.use<C-o> && !inDebugRepl"
-  }
+},
+{
+    "key": "alt+oem_1",
+    "command": "editor.emmet.action.removeTag"
+}
 ]
