@@ -4,17 +4,17 @@
     "workbench.startupEditor": "none",
     "workbench.editor.untitled.hint": "hidden",
     "workbench.editor.highlightModifiedTabs": true,
+    "workbench.tree.indent": 16,
     "workbench.colorCustomizations": {
         // "editorCursor.foreground": "#ffd800",
+        // "editorCursor.foreground": "#fff",
         "editorCursor.foreground": "#000000",
         "statusBar.background": "#0399b8",
         "statusBar.foreground": "#1f2430"
     },
     "editor.smoothScrolling": true,
-    // "editor.autoClosingBrackets": "always",
-    "editor.autoClosingBrackets": "never",
-    // "editor.autoClosingQuotes": "always",
-    "editor.autoClosingQuotes": "never",
+    "editor.autoClosingBrackets": "always",
+    "editor.autoClosingQuotes": "always",
     "editor.minimap.enabled": false,
     "editor.mouseWheelZoom": true,
     "editor.codeLens": false,
@@ -113,6 +113,7 @@
     "vim.timeout": 300,
     "vim.cursorStylePerMode.insert": "block-outline",
     // "vim.cursorStylePerMode.insert": "block",
+    // "vim.cursorStylePerMode.normal": "block",
     "vim.cursorStylePerMode.normal": "block",
     "vim.cursorStylePerMode.visual": "block",
     "vim.cursorStylePerMode.visualblock": "block",
@@ -435,4 +436,8 @@
     "intelephense.diagnostics.undefinedProperties": false,
     "intelephense.diagnostics.undefinedTypes": false,
     "intelephense.diagnostics.undefinedMethods": false,
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "workbench.editor.empty.hint": "hidden",
 }
