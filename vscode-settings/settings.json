@@ -32,7 +32,7 @@
     /* Cursor settings */
     // "editor.cursorSmoothCaretAnimation": "on",
     "editor.cursorBlinking": "solid",
-    "editor.cursorSurroundingLines": 8,
+    "editor.cursorSurroundingLines": 10,
     "terminal.integrated.enableMultiLinePasteWarning": false,
     "terminal.integrated.gpuAcceleration": "on",
     "security.workspace.trust.untrustedFiles": "open",
@@ -112,8 +112,6 @@
     "vim.useSystemClipboard": true,
     "vim.timeout": 300,
     "vim.cursorStylePerMode.insert": "block-outline",
-    // "vim.cursorStylePerMode.insert": "block",
-    // "vim.cursorStylePerMode.normal": "block",
     "vim.cursorStylePerMode.normal": "block",
     "vim.cursorStylePerMode.visual": "block",
     "vim.cursorStylePerMode.visualblock": "block",
@@ -136,97 +134,10 @@
         },
         {
             "before": [
-                "<leader>",
-                "f",
-                "w"
-            ],
-            "commands": [
-                "workbench.action.findInFiles"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "f",
-                "r"
-            ],
-            "commands": [
-                "fileutils.renameFile"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "f",
-                "d"
-            ],
-            "commands": [
-                "fileutils.removeFile"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "f",
-                "m"
-            ],
-            "commands": [
-                "fileutils.moveFile"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "f",
-                "n"
-            ],
-            "commands": [
-                "extension.advancedNewFile"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "f",
-                "f"
-            ],
-            "commands": [
-                "workbench.action.quickOpen"
-            ]
-        },
-        {
-            "before": [
                 "<S-k>"
             ],
             "commands": [
                 "editor.action.showHover"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "c"
-            ],
-            "commands": [
-                "workbench.action.closeActiveEditor"
-            ]
-        },
-        {
-            "before": [
-                "g",
-                "D"
-            ],
-            "commands": [
-                "editor.action.revealDeclaration"
-            ]
-        },
-        {
-            "before": [
-                "g",
-                "I"
-            ],
-            "commands": [
-                "editor.action.goToImplementation"
             ]
         },
         {
@@ -305,7 +216,7 @@
                 "\"",
                 "a",
                 "y",
-                "y"
+                // "y"
             ]
         },
         {
@@ -436,8 +347,5 @@
     "intelephense.diagnostics.undefinedProperties": false,
     "intelephense.diagnostics.undefinedTypes": false,
     "intelephense.diagnostics.undefinedMethods": false,
-    "extensions.experimental.affinity": {
-        "asvetliakov.vscode-neovim": 1
-    },
     "workbench.editor.empty.hint": "hidden",
 }
