@@ -59,8 +59,6 @@ vnoremap <C-Up> :move '<-2<cr>gv=gv
 map <C-d> <C-d>zz
 map <C-u> <C-u>zz
 
-nnoremap <C-/> gcc
-
 nmap <S-h> :bp<cr>
 nmap <S-l> :bn<cr>
 
