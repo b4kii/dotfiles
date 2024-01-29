@@ -37,12 +37,10 @@ set timeout
 set timeoutlen=200
 set guioptions-=m
 set guioptions-=T
-set guicursor=n-v-c:block-blinkon700
-set guicursor+=i:ver25-blinkoff0
-" set guicursor=a:block
+set guicursor=a:block
 set scrolloff=8
 set showtabline=2
-set guifont=Fixedsys
+set guifont=JetBrains\ Mono\ NL:h11
 
 map <space> <nop>
 let mapleader=" "
@@ -58,19 +56,24 @@ nnoremap <C-Down> :move .+1<cr>==
 nnoremap <C-Up> :move .-2<cr>==
 vnoremap <C-Down> :move '>+1<cr>gv=gv
 vnoremap <C-Up> :move '<-2<cr>gv=gv
+map <C-d> <C-d>zz
+map <C-u> <C-u>zz
 
-nmap <A-h> :tabprev<cr>
-nmap <A-l> :tabnext<cr>
 nmap <S-h> :bp<cr>
 nmap <S-l> :bn<cr>
 
 nnoremap <leader>w :w<cr>
-nnoremap <leader>o o<esc>k
 nnoremap <leader>c :bd<cr>
 nnoremap <leader>h :nohl<cr>
 nnoremap <leader>e :Ex<cr>
-nnoremap <C-t> :term<cr>
 
+nnoremap zj o<esc>k
+nnoremap zk O<esc>j
+
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank({higroup="IncSearch", timeout=150})
+augroup END
 set lines=35
 set columns=120
 
