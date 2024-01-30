@@ -363,15 +363,5 @@
     {
         "key": "ctrl+a",
         "command": "editor.action.selectAll"
-    },
-    {
-        "key": "ctrl+alt+l",
-        "command": "editor.action.formatDocument",
-        "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
-    },
-    {
-        "key": "shift+alt+f",
-        "command": "-editor.action.formatDocument",
-        "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
     }
 ]
