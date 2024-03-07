@@ -40,6 +40,14 @@
         "when": "editorTextFocus && !editorReadonly"
     },
     {
+        "key": "ctrl+oem_2",
+        "command": "runCommands",
+        "args": {
+            "commands": ["editor.action.commentLine", "cursorDown"]
+        },
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
         "key": "shift+f4",
         "command": "workbench.action.closeFolder",
         "when": "emptyWorkspaceSupport && workbenchState != 'empty'"
@@ -226,10 +234,6 @@
         "command": "editor.emmet.action.wrapWithAbbreviation"
     },
     {
-        "key": "ctrl+n",
-        "command": "extension.advancedNewFile"
-    },
-    {
         "key": "ctrl+alt+n",
         "command": "-extension.advancedNewFile"
     },
@@ -363,5 +367,36 @@
     {
         "key": "ctrl+a",
         "command": "editor.action.selectAll"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "explorer.newFile"
+    },
+    {
+        "key": "ctrl+shift+n",
+        "command": "-workbench.action.newWindow"
+    },
+    {
+        "key": "ctrl+shift+n",
+        "command": "explorer.newFolder"
+    },
+    {
+        "key": "alt+f",
+        "command": "editor.action.formatDocument",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+    },
+    {
+        "key": "shift+alt+f",
+        "command": "-editor.action.formatDocument",
+        "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+    },
+    {
+        "key": "shift+alt+f",
+        "command": "-editor.action.formatDocument.none",
+        "when": "editorTextFocus && !editorHasDocumentFormattingProvider && !editorReadonly"
+    },
+    {
+        "key": "alt+f",
+        "command": "prettier.forceFormatDocument"
     }
 ]

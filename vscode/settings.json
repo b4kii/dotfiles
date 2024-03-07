@@ -3,11 +3,8 @@
     "window.newWindowDimensions": "maximized",
     "workbench.startupEditor": "none",
     "workbench.editor.highlightModifiedTabs": true,
-    "workbench.tree.indent": 16,
-    "workbench.colorCustomizations": {
+    "workbench.tree.indent": 16, "workbench.colorCustomizations": {
         "editorCursor.foreground": "#ffd800",
-        "statusBar.background": "#0399b8",
-        "statusBar.foreground": "#1f2430"
     },
     "editor.smoothScrolling": true,
     "editor.autoClosingBrackets": "always",
@@ -16,6 +13,7 @@
     "editor.mouseWheelZoom": true,
     "editor.codeLens": false,
     "editor.fontFamily": "JetBrains Mono NL",
+    "editor.fontLigatures": false,
     "editor.fontSize": 13,
     "editor.lineNumbers": "relative",
     "editor.bracketPairColorization.enabled": true,
@@ -23,13 +21,14 @@
     "editor.renderLineHighlight": "line",
     "editor.wordWrap": "off",
     "editor.tabCompletion": "on",
+    "editor.tabSize": 4,
     "editor.wordBasedSuggestions": "off",
     "editor.inlineSuggest.enabled": true,
     /* Cursor settings */
     // "editor.cursorSmoothCaretAnimation": "on",
     "editor.cursorBlinking": "solid",
     "editor.cursorSurroundingLines": 10,
-    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
     "terminal.integrated.gpuAcceleration": "on",
     "security.workspace.trust.untrustedFiles": "open",
     "security.workspace.trust.enabled": false,
@@ -54,6 +53,7 @@
     },
     "[typescript]": {
         "editor.tabSize": 4,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[javascriptreact]": {
         "editor.tabSize": 2
@@ -96,7 +96,6 @@
     },
     "python.analysis.autoImportCompletions": true,
     /* Vim settings */
-    "vim.surround": true,
     "vim.ignorecase": false,
     "vim.highlightedyank.enable": true,
     "vim.highlightedyank.duration": 80,
@@ -112,6 +111,7 @@
     "vim.cursorStylePerMode.replace": "block",
     "vim.hlsearch": true,
     "vim.incsearch": true,
+    "vim.surround": true,
     "vim.sneak": true,
     "vim.foldfix": true,
     /* Vim keybinds */
@@ -339,9 +339,9 @@
     "intelephense.diagnostics.undefinedTypes": false,
     "intelephense.diagnostics.undefinedMethods": false,
     "workbench.editor.empty.hint": "hidden",
-    "workbench.colorTheme": "Hush Atom",
     "workbench.iconTheme": "material-icon-theme",
-    "[json]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
+    "workbench.colorTheme": "Remedy - Dark (Straight)",
+    "extensions.experimental.affinity": {
+        "vscodevim.vim": 1
     },
 }
