@@ -1,5 +1,6 @@
 set relativenumber
 
+
 set clipboard=unnamedplus
 set scrolloff=10
 set backspace=indent,eol,start
