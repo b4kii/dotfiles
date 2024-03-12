@@ -1,5 +1,3 @@
-// Place your key bindings in this file to override the defaults
-// 29.10.2022
 [
     {
         "key": "ctrl+j",
@@ -398,5 +396,10 @@
     {
         "key": "alt+f",
         "command": "prettier.forceFormatDocument"
+    },
+    {
+        "key": "ctrl+f", // "ctrl+f" on Windows/Linux
+        "command": "list.find",
+        "when": "listFocus && listSupportsFind"
     }
 ]
