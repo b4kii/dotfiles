@@ -379,7 +379,7 @@
         "command": "explorer.newFolder"
     },
     {
-        "key": "alt+f",
+        "key": "ctrl+alt+oem_1",
         "command": "editor.action.formatDocument",
         "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
     },

@@ -1,11 +1,23 @@
 {
+    // Window 
     "window.restoreFullscreen": true,
     "window.newWindowDimensions": "maximized",
+    "window.titleBarStyle": "custom",
+    "window.customMenuBarAltFocus": false,
+    "window.menuBarVisibility": "compact",
+    "window.zoomLevel": 1,
+
+    // Workbench 
     "workbench.startupEditor": "none",
     "workbench.editor.highlightModifiedTabs": true,
     "workbench.tree.indent": 16, "workbench.colorCustomizations": {
         "editorCursor.foreground": "#ffd800",
     },
+    "workbench.editor.empty.hint": "hidden",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Remedy - Dark (Straight)",
+
+    // Editor 
     "editor.smoothScrolling": true,
     "editor.autoClosingBrackets": "never",
     "editor.autoClosingQuotes": "never",
@@ -24,41 +36,48 @@
     "editor.tabSize": 4,
     "editor.wordBasedSuggestions": "off",
     "editor.inlineSuggest.enabled": true,
-    /* Cursor settings */
-    // "editor.cursorSmoothCaretAnimation": "on",
+    "editor.suggest.showKeywords": false,
+    "editor.detectIndentation": false,
     "editor.cursorBlinking": "solid",
     "editor.cursorSurroundingLines": 10,
+    "editor.snippetSuggestions": "inline",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.accessibilitySupport": "off",
+
+    // Terminal 
     "terminal.integrated.enableMultiLinePasteWarning": "never",
     "terminal.integrated.gpuAcceleration": "on",
-    "security.workspace.trust.untrustedFiles": "open",
-    "security.workspace.trust.enabled": false,
+    "terminal.integrated.env.windows": {},
+    "terminal.integrated.env.linux": {},
+
+    // Emmet
     "emmet.showSuggestionsAsSnippets": true,
-    "editor.snippetSuggestions": "inline",
     "emmet.includeLanguages": {
         "javascript": "javascriptreact",
         "typescript": "javascriptreact",
         "php": "html"
     },
     "settingsSync.keybindingsPerPlatform": false,
-    "extensions.ignoreRecommendations": true,
-    /* File type settings */
+
+    // File types
     "javascript.suggest.autoImports": true,
-    "typescript.suggest.autoImports": true,
     "javascript.updateImportsOnFileMove.enabled": "always",
-    "[html]": {
-        "editor.tabSize": 2
-    },
     "[javascript]": {
         "editor.tabSize": 4,
-    },
-    "[typescript]": {
-        "editor.tabSize": 4,
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[javascriptreact]": {
         "editor.tabSize": 2
     },
+    "typescript.suggest.autoImports": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "[typescript]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     "[typescriptreact]": {
+        "editor.tabSize": 2
+    },
+    "[html]": {
         "editor.tabSize": 2
     },
     "[css]": {
@@ -66,35 +85,18 @@
     },
     "[php]": {
         "editor.tabSize": 4,
-        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+        "editor.defaultFormatter": "DEVSENSE.phptools-vscode"
     },
+    "python.analysis.autoImportCompletions": true,
     "[python]": {
         "editor.tabSize": 4,
         "editor.defaultFormatter": "ms-python.python"
-    },
-    "files.exclude": {
-        "**/.git": true,
-        "**/.svn": true,
-        "**/.hg": true,
-        "**/CVS": true,
-        "**/.DS_Store": true,
-        "**/Thumbs.db": true,
-        // "**/node_modules": true,
-        "**/package-lock.json": true
-    },
-    "search.exclude": {
-        "**/node_modules": true,
-        "**/bower_components": true,
-        "**/*.code-search": true
     },
     "css.enabledLanguages": [
         "html",
         "php"
     ],
-    "files.associations": {
-        "*.css": "tailwindcss"
-    },
-    "python.analysis.autoImportCompletions": true,
+
     /* Vim settings */
     "vim.ignorecase": false,
     "vim.highlightedyank.enable": true,
@@ -114,6 +116,7 @@
     "vim.surround": true,
     "vim.sneak": true,
     "vim.foldfix": true,
+
     /* Vim keybinds */
     "vim.normalModeKeyBindingsNonRecursive": [
         {
@@ -310,38 +313,39 @@
             ]
         }
     ],
+
+    // Files
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        // "**/node_modules": true,
+        "**/package-lock.json": true
+    },
+    "files.autoSave": "onFocusChange",
+    "files.associations": {
+        "*.css": "tailwindcss"
+    },
     "explorer.confirmDragAndDrop": false,
-    "telemetry.telemetryLevel": "off",
     "errorLens.removeLinebreaks": false,
     "git.openRepositoryInParentFolders": "never",
     "code-runner.runInTerminal": true,
-    "window.titleBarStyle": "custom",
-    "window.customMenuBarAltFocus": false,
-    "window.menuBarVisibility": "compact",
-    "terminal.integrated.env.windows": {},
-    "terminal.integrated.env.linux": {},
-    "files.autoSave": "onFocusChange",
     "search.quickOpen.includeHistory": false,
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/*.code-search": true
+    },
     "liveServer.settings.donotVerifyTags": true,
     "liveServer.settings.donotShowInfoMsg": true,
-    "editor.accessibilitySupport": "off",
-    "typescript.updateImportsOnFileMove.enabled": "always",
-    "window.zoomLevel": 1,
-    "editor.detectIndentation": false,
-    "intelephense.telemetry.enabled": false,
-    "intelephense.completion.triggerParameterHints": true,
-    "intelephense.completion.insertUseDeclaration": true,
-    "intelephense.trace.server": "messages",
-    "intelephense.diagnostics.undefinedClassConstants": false,
-    "intelephense.diagnostics.undefinedFunctions": false,
-    "intelephense.diagnostics.undefinedConstants": false,
-    "intelephense.diagnostics.undefinedProperties": false,
-    "intelephense.diagnostics.undefinedTypes": false,
-    "intelephense.diagnostics.undefinedMethods": false,
-    "workbench.editor.empty.hint": "hidden",
-    "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Remedy - Dark (Straight)",
     "extensions.experimental.affinity": {
         "vscodevim.vim": 1
     },
+    "extensions.ignoreRecommendations": true,
+    "security.workspace.trust.untrustedFiles": "open",
+    "security.workspace.trust.enabled": false,
+    "telemetry.telemetryLevel": "off",
 }
