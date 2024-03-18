@@ -1,6 +1,4 @@
 set relativenumber
-
-
 set clipboard=unnamedplus
 set scrolloff=10
 set backspace=indent,eol,start
@@ -16,7 +14,6 @@ set noswapfile
 set nowritebackup
 set noundofile
           
-color desert
 
 map <space> <nop>
 let mapleader=" "
