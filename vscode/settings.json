@@ -19,13 +19,14 @@
 
     // Editor 
     "editor.smoothScrolling": true,
+    "editor.rulers": [80],
     "editor.autoClosingBrackets": "never",
     "editor.autoClosingQuotes": "never",
     "editor.minimap.enabled": false,
     "editor.mouseWheelZoom": true,
     "editor.codeLens": false,
-    "editor.fontFamily": "'Victor Mono', 'Fantasque Sans Mono', 'JetBrainsMono NF'",
-    // "editor.fontWeight": "600",
+    // "editor.fontFamily": "'Victor Mono', 'Fantasque Sans Mono', 'JetBrainsMono NF'",
+    "editor.fontFamily": "JetBrains Mono NL",
     "editor.fontLigatures": true,
     "editor.fontSize": 13,
     "editor.lineNumbers": "relative",
@@ -122,199 +123,121 @@
 
     /* Vim keybinds */
     "vim.normalModeKeyBindingsNonRecursive": [
+        // gd, gh - built in
         {
-            "before": [
-                "<S-k>"
-            ],
-            "commands": [
-                "editor.action.showHover"
-            ]
-        },
-        {
-            "before": [
-                "g",
-                "d"
-            ],
-            "commands": [
-                "editor.action.revealDefinition"
-            ]
-        },
-        {
-            "before": [
-                "g",
-                "r"
-            ],
+            "before": [ "g", "r" ],
             "commands": [
                 "editor.action.goToReferences"
             ]
         },
         {
-            "before": [
-                "<leader>",
-                "w"
-            ],
+            "before": [ "<leader>", "w" ],
             "commands": [
                 ":w"
             ]
         },
         {
-            "before": [
-                "<leader>",
-                "z"
-            ],
-            "commands": [
-                "workbench.action.toggleZenMode"
-            ]
+            "before": [ "<leader>", "f", "f"],
+            "commands": ["editor.action.formatDocument"],
         },
         {
-            "before": [
-                "Y"
-            ],
-            "after": [
-                "y",
-                "$"
-            ]
+            "before": [ "<leader>", "f", "p" ],
+            "commands": [ "prettier.forceFormatDocument" ]
         },
         {
-            "before": [
-                "z",
-                "j"
-            ],
-            "after": [
-                "o",
-                "<ESC>",
-                "k"
-            ]
+            "before": [ "<leader>", "z" ],
+            "commands": [ "workbench.action.toggleZenMode" ]
         },
         {
-            "before": [
-                "z",
-                "k"
-            ],
-            "after": [
-                "O",
-                "<ESC>",
-                "j"
-            ]
+            "before": [ "Y" ],
+            "after": [ "y", "$" ]
         },
         {
-            "before": [
-                "z",
-                "l"
-            ],
-            "after": [
-                "a",
-                " ",
-                "<ESC>"
-            ]
+            "before": [ "z", "j" ],
+            "after": [ "o", "<ESC>", "k" ]
         },
         {
-            "before": [
-                "<leader>",
-                "h"
-            ],
-            "commands": [
-                ":nohl"
-            ]
+            "before": [ "z", "k" ],
+            "after": [ "O", "<ESC>", "j" ]
         },
         {
-            "before": [
-                "<leader>",
-                "y"
-            ],
-            "after": [
-                "\"",
-                "a",
-                "y",
-            ]
+            "before": [ "z", "l" ],
+            "after": [ "a", " ", "<ESC>" ]
         },
         {
-            "before": [
-                "<leader>",
-                "p"
-            ],
-            "after": [
-                "\"",
-                "a",
-                "p"
-            ]
+            "before": [ "<leader>", "h" ],
+            "commands": [ ":nohl" ]
         },
         {
-            "before": [
-                "<leader>",
-                "d"
-            ],
-            "after": [
-                "\"",
-                "a",
-                "d",
-            ]
+            "before": [ "<leader>", "b" ],
+            "commands": [ ":ls" ]
         },
         {
-            "before": [
-                "<C-d>"
-            ],
-            "after": [
-                "<C-d>",
-                "z",
-                "z"
-            ]
+            "before": [ "<leader>", "y" ],
+            "after": [ "\"", "a", "y", "y"]
         },
         {
-            "before": [
-                "<C-u>"
-            ],
-            "after": [
-                "<C-u>",
-                "z",
-                "z"
-            ]
-        }
+            "before": [ "<leader>", "Y" ],
+            "after": [ "\"", "a", "y", "$"]
+        },
+        {
+            "before": [ "<leader>", "p" ],
+            "after": [ "\"", "a", "p" ]
+        },
+        {
+            "before": [ "<leader>", "P" ],
+            "after": [ "\"", "a", "P" ]
+        },
+        {
+            "before": [ "<leader>", "d" ],
+            "after": [ "\"", "a", "d", "d"]
+        },
+        {
+            "before": [ "<leader>", "D" ],
+            "after": [ "\"", "a", "D"]
+        },
+        {
+            "before": [ "<C-d>" ],
+            "after": [ "<C-d>", "z", "z" ]
+        },
+        {
+            "before": [ "<C-u>" ],
+            "after": [ "<C-u>", "z", "z" ]
+        },
+        {
+            "before": [ "<leader>", "e", "w" ],
+            "commands": ["editor.emmet.action.wrapWithAbbreviation"]
+        },
+        {
+            "before": [ "<leader>", "e", "r" ],
+            "commands": ["editor.emmet.action.removeTag"]
+        },
+        {
+            "before": [ "<leader>", "e", "p" ],
+            "commands": ["editor.emmet.action.matchTag"]
+        },
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
         {
-            "before": [
-                ">"
-            ],
-            "after": [
-                ">",
-                "g",
-                "v"
-            ]
+            "before": [ ">" ],
+            "after": [ ">", "g", "v" ]
         },
         {
-            "before": [
-                "<"
-            ],
-            "after": [
-                "<",
-                "g",
-                "v"
-            ]
+            "before": [ "<" ],
+            "after": [ "<", "g", "v" ]
         },
         {
-            "before": [
-                "<leader>",
-                "y"
-            ],
-            "after": [
-                "\"",
-                "a",
-                "y",
-                "y"
-            ]
+            "before": [ "<leader>", "y" ],
+            "after": [ "\"", "a", "y"]
         },
         {
-            "before": [
-                "<leader>",
-                "d"
-            ],
-            "after": [
-                "\"",
-                "a",
-                "d"
-            ]
-        }
+            "before": [ "<leader>", "d" ],
+            "after": [ "\"", "a", "d"]
+        },
+        {
+            "before": [ "<leader>", "p" ],
+            "after": [ "\"", "a", "p" ]
+        },
     ],
 
     // Files
