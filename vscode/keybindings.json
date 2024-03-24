@@ -343,4 +343,6 @@
         "key": "ctrl+k ctrl+p",
         "command": "-workbench.action.showAllEditors"
     }
+
+
 ]
