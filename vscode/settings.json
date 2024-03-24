@@ -1,5 +1,6 @@
 {
     // Window 
+    
     "window.restoreFullscreen": true,
     "window.newWindowDimensions": "maximized",
     "window.titleBarStyle": "custom",
@@ -169,7 +170,7 @@
             "commands": [ ":nohl" ]
         },
         {
-            "before": [ "<leader>", "b" ],
+            "before": [ "l", "s" ],
             "commands": [ ":ls" ]
         },
         {
