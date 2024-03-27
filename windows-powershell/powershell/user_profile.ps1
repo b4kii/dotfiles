@@ -2,7 +2,7 @@
 Import-Module posh-git
 Import-Module oh-my-posh
 
-Set-PoshPrompt powerlevel10k_lean
+Set-PoshPrompt kali
 
 # Icons
 Import-Module Terminal-Icons
@@ -22,19 +22,29 @@ Set-Alias ll ls
 Set-Alias g git
 Set-Alias lg lazygit
 
-function vsc-sync {
-	cp C:\Users\baki\AppData\Roaming\Code\User\settings.json C:\Users\baki\dotfiles\vscode-settings
-	cp C:\Users\baki\AppData\Roaming\Code\User\keybindings.json C:\Users\baki\dotfiles\vscode-settings
+function sync-data {
+    $homeDir = $env:USERPROFILE
+
+    $paths = @(
+        "$homeDir\AppData\Roaming\Code\User\settings.json",
+        "$homeDir\AppData\Roaming\Code\User\keybindings.json",
+        "$homeDir\Documents\PowerToys\Backup\*.ptb"
+    )
+
+    $destinations = @(
+        "$homeDir\dotfiles\vscode",
+        "$homeDir\dotfiles\vscode",
+        "$homeDir\dotfiles\powertoys"
+    )
+
+    for ($i = 0; $i -lt $paths.Length; $i++) {
+        Copy-Item -Path $paths[$i] -Destination $destinations[$i] -Recurse
+    }
+
 }
 
 function ex {
 	explorer .
 }
 
-function ws($FolderName) {
-	webstorm64.exe $FolderName
-}
 
-function wget($Url, $File) {
-	Invoke-WebRequest -Uri $Url -OutFile $File
-}

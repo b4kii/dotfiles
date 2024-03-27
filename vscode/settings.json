@@ -68,6 +68,7 @@
     "javascript.suggest.paths": false,
     "[javascript]": {
         "editor.tabSize": 4,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
     },
     "[javascriptreact]": {
         "editor.tabSize": 2
@@ -146,10 +147,6 @@
             "commands": [ "prettier.forceFormatDocument" ]
         },
         {
-            "before": [ "<leader>", "z" ],
-            "commands": [ "workbench.action.toggleZenMode" ]
-        },
-        {
             "before": [ "Y" ],
             "after": [ "y", "$" ]
         },
@@ -214,7 +211,7 @@
             "commands": ["editor.emmet.action.removeTag"]
         },
         {
-            "before": [ "<leader>", "e", "p" ],
+            "before": [ "<leader>", "e", "m" ],
             "commands": ["editor.emmet.action.matchTag"]
         },
     ],
@@ -256,7 +253,8 @@
     "files.associations": {
         "*.css": "tailwindcss"
     },
-    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDragAndDrop": true,
+    "explorer.autoReveal": "focusNoScroll",
     "errorLens.removeLinebreaks": false,
     "git.openRepositoryInParentFolders": "never",
     "code-runner.runInTerminal": true,
@@ -275,4 +273,10 @@
     "security.workspace.trust.untrustedFiles": "open",
     "security.workspace.trust.enabled": false,
     "telemetry.telemetryLevel": "off",
+    "remote.SSH.remotePlatform": {
+        "192.168.1.17": "linux"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
 }
