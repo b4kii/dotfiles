@@ -93,6 +93,11 @@
         "when": "editorFocus"
     },
     {
+        "key": "alt+p",
+        "command": "cursorUndo",
+        "when": "editorTextFocus"
+    },
+    {
         "key": "ctrl+alt+p",
         "command": "code-runner.run"
     },
@@ -113,8 +118,8 @@
         "command": "workbench.action.moveEditorToBelowGroup"
     },
     {
-        "key": "alt+p",
-        "command": "editor.action.moveSelectionToPreviousFindMatch"
+        "key": "alt+u",
+        "command": "workbench.action.moveEditorToPreviousGroup"
     },
     {
         "key": "alt+v",
@@ -288,11 +293,6 @@
         "when": "editorTextFocus"
     },
     {
-        "key": "alt+u",
-        "command": "cursorUndo",
-        "when": "editorTextFocus"
-    },
-    {
         "key": "ctrl+alt+down",
         "command": "-editor.action.insertCursorBelow",
         "when": "editorTextFocus"
@@ -309,16 +309,11 @@
     },
     {
         "key": "ctrl+o",
-        "command": "-workbench.action.files.openFileFolder",
-        "when": "isMacNative && openFolderWorkspaceSupport"
-    },
-    {
-        "key": "ctrl+o",
         "command": "-workbench.action.files.openFolderViaWorkspace",
         "when": "!openFolderWorkspaceSupport && workbenchState == 'workspace'"
     },
     {
-        "key": "ctrl+o",
+        "key": "ctrl+shift+o",
         "command": "workbench.action.files.openFolder",
         "when": "openFolderWorkspaceSupport"
     },
@@ -373,6 +368,9 @@
         "key": "ctrl+shift+f",
         "command": "workbench.action.findInFiles",
         "when": "!explorerViewletVisible || !filesExplorerFocus || searchViewletVisible"
+    },
+    {
+        "key": "ctrl+o",
+        "command": "workbench.action.files.openFile"
     }
-
 ]

@@ -1,6 +1,5 @@
 {
     // Window 
-    
     "window.restoreFullscreen": true,
     "window.newWindowDimensions": "maximized",
     "window.titleBarStyle": "custom",
@@ -26,7 +25,6 @@
     "editor.minimap.enabled": false,
     "editor.mouseWheelZoom": true,
     "editor.codeLens": false,
-    // "editor.fontFamily": "'Victor Mono', 'Fantasque Sans Mono', 'JetBrainsMono NF'",
     "editor.fontFamily": "JetBrains Mono NL",
     "editor.fontLigatures": true,
     "editor.fontSize": 13,
@@ -116,7 +114,8 @@
     "vim.cursorStylePerMode.visual": "block",
     "vim.cursorStylePerMode.visualblock": "block",
     "vim.cursorStylePerMode.visualline": "block",
-    "vim.cursorStylePerMode.replace": "block",
+    "vim.cursorStylePerMode.replace": "underline",
+    "vim.showcmd": true,
     "vim.hlsearch": true,
     "vim.incsearch": true,
     "vim.surround": true,
@@ -255,6 +254,7 @@
     },
     "explorer.confirmDragAndDrop": true,
     "explorer.autoReveal": "focusNoScroll",
+    "explorer.compactFolders": false,
     "errorLens.removeLinebreaks": false,
     "git.openRepositoryInParentFolders": "never",
     "code-runner.runInTerminal": true,
