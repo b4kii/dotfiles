@@ -276,4 +276,6 @@
     "security.workspace.trust.enabled": false,
     "telemetry.telemetryLevel": "off",
     "window.menuBarVisibility": "compact",
+    "window.commandCenter": false,
+    "workbench.activityBar.location": "top",
 }
