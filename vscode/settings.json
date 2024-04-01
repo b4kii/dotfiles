@@ -4,7 +4,6 @@
     "window.newWindowDimensions": "maximized",
     "window.titleBarStyle": "custom",
     "window.customMenuBarAltFocus": false,
-    "window.menuBarVisibility": "compact",
     "window.zoomLevel": 1,
 
     // Workbench 
@@ -16,8 +15,9 @@
     "workbench.editor.empty.hint": "hidden",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.colorTheme": "Remedy - Dark (Straight)",
-
+    // "workbench.activityBar.location": "hidden",
     // Editor 
+    "breadcrumbs.enabled": false,
     "editor.smoothScrolling": true,
     "editor.rulers": [80],
     "editor.autoClosingBrackets": "never",
@@ -100,6 +100,9 @@
         "html",
         "php"
     ],
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
 
     /* Vim settings */
     "vim.ignorecase": false,
@@ -109,12 +112,11 @@
     "vim.leader": "<Space>",
     "vim.useSystemClipboard": true,
     "vim.timeout": 300,
-    "vim.cursorStylePerMode.insert": "block",
+    "vim.cursorStylePerMode.insert": "underline",
     "vim.cursorStylePerMode.normal": "block",
     "vim.cursorStylePerMode.visual": "block",
     "vim.cursorStylePerMode.visualblock": "block",
     "vim.cursorStylePerMode.visualline": "block",
-    "vim.cursorStylePerMode.replace": "underline",
     "vim.showcmd": true,
     "vim.hlsearch": true,
     "vim.incsearch": true,
@@ -273,10 +275,5 @@
     "security.workspace.trust.untrustedFiles": "open",
     "security.workspace.trust.enabled": false,
     "telemetry.telemetryLevel": "off",
-    "remote.SSH.remotePlatform": {
-        "192.168.1.17": "linux"
-    },
-    "[json]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
+    "window.menuBarVisibility": "compact",
 }
