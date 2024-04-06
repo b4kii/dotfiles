@@ -94,7 +94,7 @@
     "python.analysis.autoImportCompletions": true,
     "[python]": {
         "editor.tabSize": 4,
-        "editor.defaultFormatter": "ms-python.python"
+        "editor.defaultFormatter": "ms-python.vscode-pylance"
     },
     "css.enabledLanguages": [
         "html",
@@ -112,7 +112,7 @@
     "vim.leader": "<Space>",
     "vim.useSystemClipboard": true,
     "vim.timeout": 300,
-    "vim.cursorStylePerMode.insert": "underline",
+    "vim.cursorStylePerMode.insert": "block",
     "vim.cursorStylePerMode.normal": "block",
     "vim.cursorStylePerMode.visual": "block",
     "vim.cursorStylePerMode.visualblock": "block",
@@ -168,10 +168,6 @@
         {
             "before": [ "<leader>", "h" ],
             "commands": [ ":nohl" ]
-        },
-        {
-            "before": [ "l", "s" ],
-            "commands": [ ":ls" ]
         },
         {
             "before": [ "<leader>", "y" ],
@@ -276,8 +272,6 @@
         "**/bower_components": true,
         "**/*.code-search": true
     },
-    "liveServer.settings.donotVerifyTags": true,
-    "liveServer.settings.donotShowInfoMsg": true,
     "extensions.experimental.affinity": {
         "vscodevim.vim": 1
     },

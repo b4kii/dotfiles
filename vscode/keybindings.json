@@ -34,7 +34,7 @@
         "args": {
             "commands": ["editor.action.commentLine", "cursorDown"]
         },
-        "when": "editorTextFocus && !editorReadonly"
+        "when": "editorTextFocus && !editorReadonly && vim.mode == Normal"
     },
     {
         "key": "shift+f4",
