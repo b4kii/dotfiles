@@ -10,7 +10,7 @@
     "workbench.startupEditor": "none",
     "workbench.editor.highlightModifiedTabs": true,
     "workbench.tree.indent": 16, "workbench.colorCustomizations": {
-        "editorCursor.foreground": "#ffd800",
+        "editorCursor.foreground": "#fff",
     },
     "workbench.editor.empty.hint": "hidden",
     "workbench.iconTheme": "material-icon-theme",
@@ -112,7 +112,7 @@
     "vim.leader": "<Space>",
     "vim.useSystemClipboard": true,
     "vim.timeout": 300,
-    "vim.cursorStylePerMode.insert": "block",
+    "vim.cursorStylePerMode.insert": "underline",
     "vim.cursorStylePerMode.normal": "block",
     "vim.cursorStylePerMode.visual": "block",
     "vim.cursorStylePerMode.visualblock": "block",
@@ -261,7 +261,7 @@
         "*.css": "tailwindcss"
     },
     "explorer.confirmDragAndDrop": true,
-    "explorer.autoReveal": "focusNoScroll",
+    "explorer.autoReveal": false,
     "explorer.compactFolders": false,
     "errorLens.removeLinebreaks": false,
     "git.openRepositoryInParentFolders": "never",

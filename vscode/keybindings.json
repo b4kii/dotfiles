@@ -46,7 +46,7 @@
         "command": "workbench.action.quickOpen"
     },
     {
-        "key": "ctrl+9",
+        "key": "ctrl+1",
         "command": "workbench.action.toggleSidebarVisibility"
     },
     {
@@ -162,20 +162,8 @@
         "when": "editorFocus"
     },
     {
-        "key": "alt+m",
-        "command": "fileutils.moveFile"
-    },
-    {
-        "key": "alt+r",
-        "command": "fileutils.renameFile"
-    },
-    {
         "key": "ctrl+shift+t",
         "command": "workbench.view.extension.todo-tree-container"
-    },
-    {
-        "key": "alt+d",
-        "command": "fileutils.removeFile"
     },
     {
         "key": "ctrl+a",
@@ -203,7 +191,13 @@
     },
     {
         "key": "alt+f",
-        "command": "prettier.forceFormatDocument"
+        "command": "list.toggleFindMatchType",
+        "when": "listFocus && listSupportsFind"
+    },
+    {
+        "key": "alt+s",
+        "command": "list.toggleFilterOnType",
+        "when": "listFocus && listSupportsFind"
     },
     {
         "key": "ctrl+f", // "ctrl+f" on Windows/Linux
@@ -399,5 +393,27 @@
         "key": "alt+q",
         "command": "workbench.action.terminal.kill",
         "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
+    },
+    {
+        "key": "ctrl+r",
+        "command": "editor.action.startFindReplaceAction",
+        "when": "editorFocus && findInputFocussed"
+    },
+    {
+        "key": "ctrl+r",
+        "command": "workbench.action.replaceInFiles",
+        "when": "searchInputBoxFocus"
+    },
+    {
+        "key": "ctrl+r",
+        "command": "-workbench.action.openRecent"
+    },
+    {
+        "key": "alt+1",
+        "command": "-workbench.action.openEditorAtIndex1"
+    },
+    {
+        "key": "alt+e",
+        "command": "workbench.files.action.showActiveFileInExplorer"
     }
 ]
