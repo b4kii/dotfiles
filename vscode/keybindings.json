@@ -190,9 +190,24 @@
         "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
     },
     {
-        "key": "alt+f",
+        "key": "alt+m",
         "command": "list.toggleFindMatchType",
         "when": "listFocus && listSupportsFind"
+    },
+    {
+        "key": "alt+f",
+        "command": "list.toggleFilterOnType",
+        "when": "listFocus && listSupportsFind"
+    },
+    {
+        "key": "c",
+        "command": "list.collapseAll",
+        "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
+    },
+    {
+        "key": "-",
+        "command": "list.focusParent",
+        "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
     },
     {
         "key": "alt+s",
@@ -415,5 +430,29 @@
     {
         "key": "alt+e",
         "command": "workbench.files.action.showActiveFileInExplorer"
+    },
+    {
+        "key": "ctrl+shift+s",
+        "command": "workbench.view.remote"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "search.action.focusPreviousSearchResult",
+        "when": "hasSearchResult || inSearchEditor && !editorTextFocus && !searchInputFocus"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "search.action.focusNextSearchResult",
+        "when": "hasSearchResult || inSearchEditor"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "editor.action.previousMatchFindAction",
+        "when": "editorFocus && findInputFocussed"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "editor.action.nextMatchFindAction",
+        "when": "editorFocus && findInputFocussed"
     }
 ]
