@@ -122,7 +122,6 @@
     "vim.incsearch": true,
     "vim.surround": true,
     "vim.sneak": true,
-    "vim.foldfix": true,
 
     /* Vim keybinds */
     "vim.normalModeKeyBindingsNonRecursive": [
