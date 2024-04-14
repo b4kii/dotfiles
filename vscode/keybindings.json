@@ -210,11 +210,6 @@
         "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
     },
     {
-        "key": "alt+s",
-        "command": "list.toggleFilterOnType",
-        "when": "listFocus && listSupportsFind"
-    },
-    {
         "key": "ctrl+f", // "ctrl+f" on Windows/Linux
         "command": "list.find",
         "when": "listFocus && listSupportsFind"
