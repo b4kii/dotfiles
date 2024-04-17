@@ -21,17 +21,16 @@
     "editor.wordWrap": "off",
     "editor.tabCompletion": "on",
     "editor.tabSize": 4,
-    "editor.wordBasedSuggestions": "off",
-    "editor.inlineSuggest.enabled": true,
-    "editor.suggest.showKeywords": true,
     "editor.detectIndentation": false,
     "editor.cursorBlinking": "solid",
     "editor.cursorSurroundingLines": 10,
-    "editor.snippetSuggestions": "inline",
+    "editor.wordBasedSuggestions": "off",
     "editor.accessibilitySupport": "off",
+    "editor.inlineSuggest.enabled": true,
+    "editor.suggest.showKeywords": true,
+    "editor.snippetSuggestions": "inline",
     "editor.quickSuggestions": {
-        "other": "on",
-        "comments": "off",
+        "comments": false,
         "strings": true
     },
     // Terminal 
@@ -69,7 +68,6 @@
     "[typescript]": {
         "editor.tabSize": 4,
         "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "emmet.showAbbreviationSuggestions": false
     },
     "[typescriptreact]": {
         "editor.tabSize": 2
@@ -441,6 +439,7 @@
     "explorer.autoReveal": false,
     "explorer.compactFolders": false,
     "errorLens.removeLinebreaks": false,
+    "errorLens.onSave": true,
     "git.openRepositoryInParentFolders": "never",
     "code-runner.runInTerminal": true,
     "search.quickOpen.includeHistory": false,
