@@ -27,9 +27,13 @@
     "editor.detectIndentation": false,
     "editor.cursorBlinking": "solid",
     "editor.cursorSurroundingLines": 10,
-    // "editor.cursorSmoothCaretAnimation": "on",
     "editor.snippetSuggestions": "inline",
     "editor.accessibilitySupport": "off",
+    "editor.quickSuggestions": {
+        "other": "on",
+        "comments": "off",
+        "strings": true
+    },
     // Terminal 
     "terminal.integrated.enableMultiLinePasteWarning": "never",
     "terminal.integrated.gpuAcceleration": "on",
@@ -40,8 +44,13 @@
     "emmet.includeLanguages": {
         "javascript": "javascriptreact",
         "typescript": "javascriptreact",
-        "php": "html"
     },
+    "emmet.excludeLanguages": [
+        "markdown",
+        "typescript",
+        "php",
+    ],
+    "emmet.showAbbreviationSuggestions": false,
     "settingsSync.keybindingsPerPlatform": false,
     // File types
     "javascript.suggest.autoImports": true,
@@ -59,7 +68,8 @@
     "typescript.suggest.paths": false,
     "[typescript]": {
         "editor.tabSize": 4,
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "emmet.showAbbreviationSuggestions": false
     },
     "[typescriptreact]": {
         "editor.tabSize": 2
