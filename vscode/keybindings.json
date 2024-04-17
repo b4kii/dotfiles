@@ -32,9 +32,12 @@
         "key": "ctrl+oem_2",
         "command": "runCommands",
         "args": {
-            "commands": ["editor.action.commentLine", "cursorDown"]
+            "commands": [
+                "editor.action.commentLine",
+                "cursorDown"
+            ]
         },
-        "when": "editorTextFocus && !editorReadonly && vim.mode == Normal"
+        "when": "editorTextFocus && !editorReadonly && vim.mode == 'Normal'"
     },
     {
         "key": "shift+f4",
@@ -78,14 +81,6 @@
         "key": "ctrl+alt+k",
         "command": "editor.action.showHover",
         "when": "editorTextFocus"
-    },
-    {
-        "key": "ctrl+alt+right",
-        "command": "workbench.action.splitEditorToNextGroup"
-    },
-    {
-        "key": "ctrl+alt+left",
-        "command": "workbench.action.splitEditorToFirstGroup"
     },
     {
         "key": "alt+n",
@@ -170,11 +165,6 @@
         "command": "editor.action.selectAll"
     },
     {
-        "key": "ctrl+n",
-        "command": "explorer.newFile",
-        "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
-    },
-    {
         "key": "ctrl+shift+n",
         "command": "explorer.newFolder",
         "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
@@ -210,7 +200,7 @@
         "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
     },
     {
-        "key": "ctrl+f", // "ctrl+f" on Windows/Linux
+        "key": "/",
         "command": "list.find",
         "when": "listFocus && listSupportsFind"
     },
@@ -224,12 +214,12 @@
         "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
     },
     {
-        "key": "shift+f",
+        "key": "d",
         "command": "explorer.newFolder",
         "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
     },
     {
-        "key": "d",
+        "key": "shift+D",
         "command": "deleteFile",
         "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
     },
@@ -355,11 +345,12 @@
         "command": "-workbench.action.focusSecondEditorGroup"
     },
     {
-        "key": "ctrl+shift+c",
+        "key": "ctrl+c",
         "command": "search.action.clearSearchResults",
+        "when": "searchInputBoxFocus"
     },
     {
-        "key": "ctrl+shift+f",
+        "key": "ctrl+f",
         "command": "filesExplorer.findInFolder",
         "when": "explorerViewletVisible && filesExplorerFocus && !searchViewletVisible"
     },
@@ -433,12 +424,12 @@
     {
         "key": "ctrl+p",
         "command": "search.action.focusPreviousSearchResult",
-        "when": "hasSearchResult || inSearchEditor && !editorTextFocus && !searchInputFocus"
+        "when": "(hasSearchResult || inSearchEditor) && vim.mode != 'Insert'"
     },
     {
         "key": "ctrl+n",
         "command": "search.action.focusNextSearchResult",
-        "when": "hasSearchResult || inSearchEditor"
+        "when": "(hasSearchResult || inSearchEditor) && vim.mode != 'Insert'"
     },
     {
         "key": "ctrl+p",
@@ -449,5 +440,44 @@
         "key": "ctrl+n",
         "command": "editor.action.nextMatchFindAction",
         "when": "editorFocus && findInputFocussed"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "-workbench.action.files.newUntitledFile"
+    },
+    {
+        "key": "shift+k",
+        "command": "editor.action.showHover",
+        "when": "editorFocus && vim.mode == 'Normal'"
+    },
+    {
+        "key": "ctrl+shift+p",
+        "command": "workbench.action.quickOpenNavigatePreviousInFilePicker",
+        "when": "inFilesPicker && inQuickOpen"
+    },
+    {
+        "key": "ctrl+shift+p",
+        "command": "-workbench.action.quickOpenNavigatePreviousInFilePicker",
+        "when": "inFilesPicker && inQuickOpen"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "workbench.action.quickOpenNavigateNextInFilePicker",
+        "when": "inFilesPicker && inQuickOpen"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "-workbench.action.quickOpenNavigateNextInFilePicker",
+        "when": "inFilesPicker && inQuickOpen"
+    },
+    {
+        "key": "ctrl+alt+r",
+        "command": "-reactSnippets.search",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+alt+e",
+        "command": "-namespaceResolver.expand",
+        "when": "editorTextFocus"
     }
 ]

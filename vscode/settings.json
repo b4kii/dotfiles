@@ -1,25 +1,11 @@
 {
-    // Window 
-    "window.restoreFullscreen": true,
-    "window.newWindowDimensions": "maximized",
-    "window.titleBarStyle": "custom",
-    "window.customMenuBarAltFocus": false,
-    "window.zoomLevel": 1,
-
-    // Workbench 
-    "workbench.startupEditor": "none",
-    "workbench.editor.highlightModifiedTabs": true,
-    "workbench.tree.indent": 16, "workbench.colorCustomizations": {
-        "editorCursor.foreground": "#fff",
-    },
-    "workbench.editor.empty.hint": "hidden",
-    "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Remedy - Dark (Straight)",
-    // "workbench.activityBar.location": "hidden",
     // Editor 
     "breadcrumbs.enabled": false,
     "editor.smoothScrolling": true,
-    "editor.rulers": [80],
+    "editor.formatOnSave": true,
+    "editor.rulers": [
+        80
+    ],
     "editor.autoClosingBrackets": "never",
     "editor.autoClosingQuotes": "never",
     "editor.minimap.enabled": false,
@@ -44,13 +30,11 @@
     // "editor.cursorSmoothCaretAnimation": "on",
     "editor.snippetSuggestions": "inline",
     "editor.accessibilitySupport": "off",
-
     // Terminal 
     "terminal.integrated.enableMultiLinePasteWarning": "never",
     "terminal.integrated.gpuAcceleration": "on",
     "terminal.integrated.env.windows": {},
     "terminal.integrated.env.linux": {},
-
     // Emmet
     "emmet.showSuggestionsAsSnippets": true,
     "emmet.includeLanguages": {
@@ -59,7 +43,6 @@
         "php": "html"
     },
     "settingsSync.keybindingsPerPlatform": false,
-
     // File types
     "javascript.suggest.autoImports": true,
     "javascript.updateImportsOnFileMove.enabled": "always",
@@ -103,7 +86,9 @@
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features"
     },
-
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
     /* Vim settings */
     "vim.ignorecase": false,
     "vim.highlightedyank.enable": true,
@@ -112,7 +97,7 @@
     "vim.leader": "<Space>",
     "vim.useSystemClipboard": true,
     "vim.timeout": 300,
-    "vim.cursorStylePerMode.insert": "underline",
+    "vim.cursorStylePerMode.insert": "block",
     "vim.cursorStylePerMode.normal": "block",
     "vim.cursorStylePerMode.visual": "block",
     "vim.cursorStylePerMode.visualblock": "block",
@@ -122,128 +107,312 @@
     "vim.incsearch": true,
     "vim.surround": true,
     "vim.sneak": true,
-
     /* Vim keybinds */
     "vim.normalModeKeyBindingsNonRecursive": [
-        // gd, gh - built in
         {
-            "before": [ "g", "r" ],
+            "before": [
+                "g",
+                "r"
+            ],
             "commands": [
                 "editor.action.goToReferences"
             ]
         },
         {
-            "before": [ "<leader>", "w" ],
-            "commands": [ ":w" ]
+            "before": [
+                "<leader>",
+                "w"
+            ],
+            "commands": [
+                ":w"
+            ]
         },
         {
-            "before": [ "<leader>", "w", "r"],
-            "commands": [ "save-as-root.saveFile" ]
+            "before": [
+                "<leader>",
+                "w",
+                "r"
+            ],
+            "commands": [
+                "save-as-root.saveFile"
+            ]
         },
         {
-            "before": [ "<leader>", "f", "f"],
-            "commands": ["editor.action.formatDocument"],
+            "before": [
+                "<leader>",
+                "f",
+                "f"
+            ],
+            "commands": [
+                "editor.action.formatDocument"
+            ],
         },
         {
-            "before": [ "<leader>", "f", "p" ],
-            "commands": [ "prettier.forceFormatDocument" ]
+            "before": [
+                "<leader>",
+                "f",
+                "p"
+            ],
+            "commands": [
+                "prettier.forceFormatDocument"
+            ]
         },
         {
-            "before": [ "Y" ],
-            "after": [ "y", "$" ]
+            "before": [
+                "Y"
+            ],
+            "after": [
+                "y",
+                "$"
+            ]
         },
         {
-            "before": [ "z", "j" ],
-            "after": [ "o", "<ESC>", "k" ]
+            "before": [
+                "z",
+                "j"
+            ],
+            "after": [
+                "o",
+                "<ESC>",
+                "k"
+            ]
         },
         {
-            "before": [ "z", "k" ],
-            "after": [ "O", "<ESC>", "j" ]
+            "before": [
+                "z",
+                "k"
+            ],
+            "after": [
+                "O",
+                "<ESC>",
+                "j"
+            ]
         },
         {
-            "before": [ "z", "l" ],
-            "after": [ "a", " ", "<ESC>" ]
+            "before": [
+                "z",
+                "l"
+            ],
+            "after": [
+                "a",
+                " ",
+                "<ESC>"
+            ]
         },
         {
-            "before": [ "<leader>", "h" ],
-            "commands": [ ":nohl" ]
+            "before": [
+                "<leader>",
+                "h"
+            ],
+            "commands": [
+                ":nohl",
+                "notifications.clearAll"
+            ]
         },
         {
-            "before": [ "<leader>", "y" ],
-            "after": [ "\"", "a", "y"]
+            "before": [
+                "<leader>",
+                "y"
+            ],
+            "after": [
+                "\"",
+                "a",
+                "y"
+            ]
         },
         {
-            "before": [ "<leader>", "Y" ],
-            "after": [ "\"", "a", "y", "$"]
+            "before": [
+                "<leader>",
+                "Y"
+            ],
+            "after": [
+                "\"",
+                "a",
+                "y",
+                "$"
+            ]
         },
         {
-            "before": [ "<leader>", "d" ],
-            "after": [ "\"", "a", "d"]
+            "before": [
+                "<leader>",
+                "d"
+            ],
+            "after": [
+                "\"",
+                "a",
+                "d"
+            ]
         },
         {
-            "before": [ "<leader>", "D" ],
-            "after": [ "\"", "a", "D"]
+            "before": [
+                "<leader>",
+                "D"
+            ],
+            "after": [
+                "\"",
+                "a",
+                "D"
+            ]
         },
         {
-            "before": [ "<leader>", "c" ],
-            "after": [ "\"", "a", "c"]
+            "before": [
+                "<leader>",
+                "c"
+            ],
+            "after": [
+                "\"",
+                "a",
+                "c"
+            ]
         },
         {
-            "before": [ "<leader>", "C" ],
-            "after": [ "\"", "a", "C"]
+            "before": [
+                "<leader>",
+                "C"
+            ],
+            "after": [
+                "\"",
+                "a",
+                "C"
+            ]
         },
         {
-            "before": [ "<leader>", "p" ],
-            "after": [ "\"", "a", "p" ]
+            "before": [
+                "<leader>",
+                "p"
+            ],
+            "after": [
+                "\"",
+                "a",
+                "p"
+            ]
         },
         {
-            "before": [ "<leader>", "P" ],
-            "after": [ "\"", "a", "P" ]
+            "before": [
+                "<leader>",
+                "P"
+            ],
+            "after": [
+                "\"",
+                "a",
+                "P"
+            ]
         },
         {
-            "before": [ "<C-d>" ],
-            "after": [ "<C-d>", "z", "z" ]
+            "before": [
+                "<C-d>"
+            ],
+            "after": [
+                "<C-d>",
+                "z",
+                "z"
+            ]
         },
         {
-            "before": [ "<C-u>" ],
-            "after": [ "<C-u>", "z", "z" ]
+            "before": [
+                "<C-u>"
+            ],
+            "after": [
+                "<C-u>",
+                "z",
+                "z"
+            ]
         },
         {
-            "before": [ "<leader>", "e", "w" ],
-            "commands": ["editor.emmet.action.wrapWithAbbreviation"]
+            "before": [
+                "<leader>",
+                "e",
+                "w"
+            ],
+            "commands": [
+                "editor.emmet.action.wrapWithAbbreviation"
+            ]
         },
         {
-            "before": [ "<leader>", "e", "r" ],
-            "commands": ["editor.emmet.action.removeTag"]
+            "before": [
+                "<leader>",
+                "e",
+                "r"
+            ],
+            "commands": [
+                "editor.emmet.action.removeTag"
+            ]
         },
         {
-            "before": [ "<leader>", "e", "m" ],
-            "commands": ["editor.emmet.action.matchTag"]
+            "before": [
+                "<leader>",
+                "e",
+                "m"
+            ],
+            "commands": [
+                "editor.emmet.action.matchTag"
+            ]
         },
+        {
+            "before": [
+                "<leader>",
+                "o"
+            ],
+            "commands": [
+                "projectManager.listGitProjects#sideBarGit"
+            ]
+        }
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
         {
-            "before": [ ">" ],
-            "after": [ ">", "g", "v" ]
+            "before": [
+                ">"
+            ],
+            "after": [
+                ">",
+                "g",
+                "v"
+            ]
         },
         {
-            "before": [ "<" ],
-            "after": [ "<", "g", "v" ]
+            "before": [
+                "<"
+            ],
+            "after": [
+                "<",
+                "g",
+                "v"
+            ]
         },
         {
-            "before": [ "<leader>", "y" ],
-            "after": [ "\"", "a", "y"]
+            "before": [
+                "<leader>",
+                "y"
+            ],
+            "after": [
+                "\"",
+                "a",
+                "y"
+            ]
         },
         {
-            "before": [ "<leader>", "d" ],
-            "after": [ "\"", "a", "d"]
+            "before": [
+                "<leader>",
+                "d"
+            ],
+            "after": [
+                "\"",
+                "a",
+                "d"
+            ]
         },
         {
-            "before": [ "<leader>", "p" ],
-            "after": [ "\"", "a", "p" ]
+            "before": [
+                "<leader>",
+                "p"
+            ],
+            "after": [
+                "\"",
+                "a",
+                "p"
+            ]
         },
     ],
-
     // Files
     "files.exclude": {
         "**/.git": true,
@@ -255,7 +424,6 @@
         // "**/node_modules": true,
         "**/package-lock.json": true
     },
-    "files.autoSave": "onFocusChange",
     "files.associations": {
         "*.css": "tailwindcss"
     },
@@ -278,7 +446,27 @@
     "security.workspace.trust.untrustedFiles": "open",
     "security.workspace.trust.enabled": false,
     "telemetry.telemetryLevel": "off",
+    // Window 
     "window.menuBarVisibility": "compact",
     "window.commandCenter": false,
+    "window.restoreFullscreen": true,
+    "window.newWindowDimensions": "maximized",
+    "window.titleBarStyle": "custom",
+    "window.customMenuBarAltFocus": false,
+    "window.zoomLevel": 1,
+    // Workbench 
     "workbench.activityBar.location": "top",
+    "workbench.startupEditor": "none",
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.tree.indent": 16,
+    "workbench.colorCustomizations": {
+        "editorCursor.foreground": "#fff",
+    },
+    "workbench.editor.empty.hint": "hidden",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Remedy - Dark (Straight)",
+    "projectManager.git.baseFolders": [
+        "E:\\programming"
+    ],
+    "projectManager.sortList": "Recent"
 }
