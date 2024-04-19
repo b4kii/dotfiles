@@ -105,7 +105,7 @@
     "vim.leader": "<Space>",
     "vim.useSystemClipboard": true,
     "vim.timeout": 300,
-    "vim.cursorStylePerMode.insert": "block",
+    "vim.cursorStylePerMode.insert": "underline",
     "vim.cursorStylePerMode.normal": "block",
     "vim.cursorStylePerMode.visual": "block",
     "vim.cursorStylePerMode.visualblock": "block",
@@ -445,8 +445,7 @@
     "search.quickOpen.includeHistory": false,
     "search.exclude": {
         "**/node_modules": true,
-        "**/bower_components": true,
-        "**/*.code-search": true
+        "**/vendor": true,
     },
     "extensions.experimental.affinity": {
         "vscodevim.vim": 1
