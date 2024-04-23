@@ -105,7 +105,7 @@
     "vim.leader": "<Space>",
     "vim.useSystemClipboard": true,
     "vim.timeout": 300,
-    "vim.cursorStylePerMode.insert": "underline",
+    "vim.cursorStylePerMode.insert": "block",
     "vim.cursorStylePerMode.normal": "block",
     "vim.cursorStylePerMode.visual": "block",
     "vim.cursorStylePerMode.visualblock": "block",
@@ -435,6 +435,7 @@
     "files.associations": {
         "*.css": "tailwindcss"
     },
+    "files.simpleDialog.enable": true,
     "explorer.confirmDragAndDrop": true,
     "explorer.autoReveal": false,
     "explorer.compactFolders": false,
@@ -470,11 +471,14 @@
     "workbench.colorCustomizations": {
         "editorCursor.foreground": "#fff",
     },
+    "editor.tokenColorCustomizations": {
+        "comments": "#6a9955",
+    },
     "workbench.editor.empty.hint": "hidden",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.colorTheme": "Remedy - Dark (Straight)",
     "projectManager.git.baseFolders": [
         "E:\\programming"
     ],
-    "projectManager.sortList": "Recent"
+    "projectManager.sortList": "Recent",
 }

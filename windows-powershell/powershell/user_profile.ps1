@@ -47,5 +47,3 @@ function sync-data {
 function ex {
 	explorer .
 }
-
-
