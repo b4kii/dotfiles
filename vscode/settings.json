@@ -355,15 +355,6 @@
             "commands": [
                 "editor.emmet.action.matchTag"
             ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "o"
-            ],
-            "commands": [
-                "projectManager.listGitProjects#sideBarGit"
-            ]
         }
     ],
     "vim.visualModeKeyBindingsNonRecursive": [

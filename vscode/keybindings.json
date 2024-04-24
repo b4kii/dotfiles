@@ -129,7 +129,7 @@
     {
         "key": "ctrl+f",
         "command": "actions.find",
-        "when": "editorFocus || editorIsOpen"
+        "when": "editorFocus && editorIsOpen"
     },
     {
         "key": "ctrl+h",
@@ -157,7 +157,8 @@
         "when": "editorFocus"
     },
     {
-        "key": "ctrl+shift+t",
+        // "key": "ctrl+shift+t",
+        "key": "ctrl+i ctrl+t",
         "command": "workbench.view.extension.todo-tree-container"
     },
     {
@@ -320,7 +321,7 @@
         "command": "-workbench.action.lastEditorInGroup"
     },
     {
-        "key": "alt+o",
+        "key": "ctrl+i l",
         "command": "workbench.action.showAllEditors"
     },
     {
@@ -355,9 +356,10 @@
         "when": "explorerViewletVisible && filesExplorerFocus && !searchViewletVisible"
     },
     {
-        "key": "ctrl+shift+f",
+        // "key": "ctrl+shift+f",
+        "key": "ctrl+i ctrl+f",
         "command": "workbench.action.findInFiles",
-        "when": "!explorerViewletVisible || !filesExplorerFocus || searchViewletVisible"
+        // "when": "!explorerViewletVisible || !filesExplorerFocus || searchViewletVisible"
     },
     {
         "key": "ctrl+o",
@@ -414,7 +416,8 @@
         "command": "workbench.files.action.showActiveFileInExplorer"
     },
     {
-        "key": "ctrl+shift+s",
+        // "key": "ctrl+shift+s",
+        "key": "ctrl+i ctrl+s",
         "command": "workbench.view.remote"
     },
     {
@@ -470,5 +473,109 @@
         "key": "ctrl+alt+e",
         "command": "-namespaceResolver.expand",
         "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "workbench.action.quickOpenSelectNext",
+        "when": "inQuickOpen"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "workbench.action.quickOpenSelectPrevious",
+        "when": "inQuickOpen"
+    },
+    {
+        "key": "ctrl+i ctrl+e",
+        "command": "workbench.view.explorer",
+        "when": "viewContainer.workbench.view.explorer.enabled"
+    },
+    {
+        "key": "ctrl+shift+e",
+        "command": "-workbench.view.explorer",
+        "when": "viewContainer.workbench.view.explorer.enabled"
+    },
+    {
+        "key": "ctrl+k f",
+        "command": "-workbench.action.closeFolder",
+        "when": "emptyWorkspaceSupport && workbenchState != 'empty'"
+    },
+    {
+        "key": "ctrl+i ctrl+g",
+        "command": "workbench.view.scm",
+        "when": "workbench.scm.active"
+    },
+    {
+        "key": "ctrl+shift+g",
+        "command": "-workbench.view.scm",
+        "when": "workbench.scm.active"
+    },
+    {
+        "key": "ctrl+i t",
+        "command": "workbench.view.extension.test"
+    },
+    {
+        "key": "ctrl+i ctrl+x",
+        "command": "workbench.view.extensions",
+        "when": "viewContainer.workbench.view.extensions.enabled"
+    },
+    {
+        "key": "ctrl+shift+x",
+        "command": "-workbench.view.extensions",
+        "when": "viewContainer.workbench.view.extensions.enabled"
+    },
+    {
+        "key": "ctrl+i ctrl+r",
+        "command": "workbench.view.extension.thunder-client"
+    },
+    {
+        "key": "ctrl+shift+r",
+        "command": "-workbench.view.extension.thunder-client"
+    },
+    {
+        "key": "shift+alt+p",
+        "command": "-projectManager.listProjects"
+    },
+    {
+        "key": "ctrl+i ctrl+p",
+        "command": "projectManager.listGitProjects#sideBarGit"
+    },
+    {
+        "key": "ctrl+i ctrl+i",
+        "command": "workbench.action.showCommands"
+    },
+    {
+        "key": "ctrl+shift+p",
+        "command": "-workbench.action.showCommands"
+    },
+    {
+        "key": "ctrl+shift+f",
+        "command": "-workbench.action.findInFiles"
+    },
+    {
+        "key": "ctrl+i r",
+        "command": "workbench.action.replaceInFiles"
+    },
+    {
+        "key": "ctrl+shift+h",
+        "command": "-workbench.action.replaceInFiles"
+    },
+    {
+        "key": "alt+oem_1",
+        "command": "search.action.replace",
+        // "when": "isEditableItem && matchFocus && replaceActive && searchViewletVisible"
+    },
+    {
+        "key": "ctrl+shift+1",
+        "command": "-search.action.replace",
+        "when": "isEditableItem && matchFocus && replaceActive && searchViewletVisible"
+    },
+    {
+        "key": "alt+oem_7",
+        "command": "search.action.replaceAllInFile",
+    },
+    {
+        "key": "ctrl+shift+enter",
+        "command": "-search.action.replaceAllInFile",
+        "when": "fileMatchFocus && isEditableItem && replaceActive && searchViewletVisible"
     }
 ]
