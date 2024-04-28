@@ -321,7 +321,7 @@
         "command": "-workbench.action.lastEditorInGroup"
     },
     {
-        "key": "ctrl+i l",
+        "key": "ctrl+i ctrl+l",
         "command": "workbench.action.showAllEditors"
     },
     {
@@ -577,5 +577,5 @@
         "key": "ctrl+shift+enter",
         "command": "-search.action.replaceAllInFile",
         "when": "fileMatchFocus && isEditableItem && replaceActive && searchViewletVisible"
-    }
+    },
 ]

@@ -355,7 +355,7 @@
             "commands": [
                 "editor.emmet.action.matchTag"
             ]
-        }
+        },
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
         {
@@ -467,7 +467,6 @@
     },
     "workbench.editor.empty.hint": "hidden",
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Remedy - Dark (Straight)",
     "projectManager.git.baseFolders": [
         "E:\\programming"
     ],
