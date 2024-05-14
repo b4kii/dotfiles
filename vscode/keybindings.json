@@ -162,10 +162,6 @@
         "command": "workbench.view.extension.todo-tree-container"
     },
     {
-        "key": "ctrl+a",
-        "command": "editor.action.selectAll"
-    },
-    {
         "key": "ctrl+shift+n",
         "command": "explorer.newFolder",
         "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
@@ -577,5 +573,14 @@
         "key": "ctrl+shift+enter",
         "command": "-search.action.replaceAllInFile",
         "when": "fileMatchFocus && isEditableItem && replaceActive && searchViewletVisible"
+    },
+    {
+        "key": "ctrl+a",
+        "command": "-notebook.cell.output.selectAll",
+        "when": "notebookEditorFocused && notebookOutputFocused"
+    },
+    {
+        "key": "ctrl+a",
+        "command": "-editor.action.selectAll"
     },
 ]
