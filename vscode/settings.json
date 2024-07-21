@@ -2,7 +2,7 @@
     // Editor 
     "breadcrumbs.enabled": false,
     "editor.smoothScrolling": true,
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "editor.rulers": [
         80
     ],
@@ -47,7 +47,6 @@
     "emmet.excludeLanguages": [
         "markdown",
         "typescript",
-        "php",
     ],
     "emmet.showAbbreviationSuggestions": false,
     "settingsSync.keybindingsPerPlatform": false,
@@ -106,7 +105,7 @@
     "vim.leader": "<Space>",
     "vim.useSystemClipboard": true,
     "vim.timeout": 300,
-    "vim.cursorStylePerMode.insert": "line",
+    "vim.cursorStylePerMode.insert": "block",
     "vim.cursorStylePerMode.normal": "block",
     "vim.cursorStylePerMode.visual": "block",
     "vim.cursorStylePerMode.visualblock": "block",
@@ -484,7 +483,7 @@
     "window.newWindowDimensions": "maximized",
     "window.titleBarStyle": "custom",
     "window.customMenuBarAltFocus": false,
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 0,
     // Workbench 
     "workbench.activityBar.location": "top",
     "workbench.startupEditor": "none",
