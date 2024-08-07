@@ -1,9 +1,4 @@
-;Numpad2::MsgBox, 64, Test, Test!
 
-;xd
-#Persistent
-#NoEnv
-#SingleInstance force
 
 ; Set the initial speed for mouse movement
 speed := 1
@@ -22,9 +17,7 @@ MoveMouse(x, y) {
 }
 
 ; Timer to handle continuous movement
-SetTimer, MoveMouseLoop, 30
-
-MoveMouseLoop:
+MoveMouseLoop() {
     ; Get the state of each Numpad key
     up := GetKeyState("Numpad8", "P")
     down := GetKeyState("Numpad2", "P")
@@ -40,34 +33,21 @@ MoveMouseLoop:
         MoveMouse(x, y)
     else
         ResetSpeed()
-Return
+}
 
-#If (GetKeyState("Numpad8", "P") or GetKeyState("Numpad2", "P") or GetKeyState("Numpad4", "P") or GetKeyState("Numpad6", "P"))
+SetTimer MoveMouseLoop, 30
+
+#HotIf GetKeyState("Numpad8", "P") || GetKeyState("Numpad2", "P") || GetKeyState("Numpad4", "P") || GetKeyState("Numpad6", "P")
 Numpad8::return
 Numpad2::return
 Numpad4::return
 Numpad6::return
-#If
+#HotIf
 
 NumpadAdd::LButton
-return
-
 NumpadSub::RButton
-return
-
-NumpadMult::
-send {WheelUp 1}
-return
-
+NumpadMult::Send("{WheelUp 1}")
 NumpadDiv::MButton
-return
-
-NumpadDot::
-send {WheelDown 1}
-return
-
+NumpadDot::Send("{WheelDown 1}")
 Numpad0::XButton1
-return
-
 Numpad1::XButton2
-return
