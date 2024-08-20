@@ -1,19 +1,17 @@
-
-
 ; Set the initial speed for mouse movement
-speed := 1
+speed := 1.5
 
 ; Function to reset speed
 ResetSpeed() {
     global speed
-    speed := 1
+    speed := 1.5
 }
 
 ; Function to handle mouse movement with acceleration
 MoveMouse(x, y) {
     global speed
     DllCall("mouse_event", "UInt", 1, "Int", x * speed, "Int", y * speed, "UInt", 0, "UInt", 0)
-    speed := Min(speed + 2, 50)
+    speed := Min(speed + 3, 100)
 }
 
 ; Timer to handle continuous movement
