@@ -105,7 +105,7 @@
     "vim.leader": "<Space>",
     "vim.useSystemClipboard": true,
     "vim.timeout": 300,
-    "vim.cursorStylePerMode.insert": "block",
+    "vim.cursorStylePerMode.insert": "block-outline",
     "vim.cursorStylePerMode.normal": "block",
     "vim.cursorStylePerMode.visual": "block",
     "vim.cursorStylePerMode.visualblock": "block",
@@ -115,6 +115,7 @@
     "vim.incsearch": true,
     "vim.surround": true,
     "vim.sneak": true,
+    "vim.easymotion": true,
     /* Vim keybinds */
     "vim.normalModeKeyBindingsNonRecursive": [
         {
@@ -194,17 +195,6 @@
                 "O",
                 "<ESC>",
                 "j"
-            ]
-        },
-        {
-            "before": [
-                "z",
-                "l"
-            ],
-            "after": [
-                "a",
-                " ",
-                "<ESC>"
             ]
         },
         {
@@ -490,7 +480,8 @@
     "workbench.editor.highlightModifiedTabs": true,
     "workbench.tree.indent": 16,
     "workbench.colorCustomizations": {
-        "editorCursor.foreground": "#fff",
+        // "editorCursor.foreground": "#fff",
+        "editorCursor.foreground": "#ffde21",
     },
     "editor.tokenColorCustomizations": {
         "comments": "#6a9955",
@@ -501,6 +492,6 @@
         "C:\\Users\\baki\\workspace"
     ],
     "projectManager.sortList": "Recent",
-    "workbench.colorTheme": "Remedy - Dark (Straight)",
     "explorer.confirmPasteNative": false,
+    "workbench.colorTheme": "Remedy - Dark (Straight)",
 }
