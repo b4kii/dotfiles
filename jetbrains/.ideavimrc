@@ -13,6 +13,7 @@ sethandler <C-a> a:vim
 sethandler <C-M-s> a:vim
 sethandler <C-M-v> a:vim
 sethandler <C-v> a:vim
+
 sethandler <M-s> a:vim
 sethandler <M-v> a:vim
 sethandler <M-u> a:vim
@@ -32,6 +33,7 @@ sethandler <C-f> a:ide
 sethandler <C-r> a:ide
 sethandler <C-n> a:vim
 sethandler <C-p> a:vim
+sethandler <C-o> a:vim
 
 
 "" Settings
