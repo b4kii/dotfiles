@@ -1,7 +1,10 @@
+Plug 'preservim/nerdtree'
+
 "" Plugins
 set easymotion
 set sneak
 set surround
+set NERDTree
 
 "" Vim handlers
 sethandler <C-d> a:vim
@@ -13,6 +16,9 @@ sethandler <C-a> a:vim
 sethandler <C-M-s> a:vim
 sethandler <C-M-v> a:vim
 sethandler <C-v> a:vim
+sethandler <C-n> a:vim
+sethandler <C-p> a:vim
+sethandler <C-r> a:vim
 
 sethandler <M-s> a:vim
 sethandler <M-v> a:vim
@@ -30,10 +36,6 @@ sethandler <C-h> a:ide
 sethandler <C-l> a:ide
 sethandler <C-g> a:ide
 sethandler <C-f> a:ide
-sethandler <C-r> a:ide
-sethandler <C-n> a:vim
-sethandler <C-p> a:vim
-sethandler <C-o> a:vim
 
 
 "" Settings
@@ -42,6 +44,7 @@ set incsearch
 set relativenumber
 set clipboard+=unnamed
 set showmode
+set ideajoin
 
 set guicursor=a:block
 

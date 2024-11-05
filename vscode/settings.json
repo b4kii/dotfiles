@@ -494,4 +494,7 @@
     "projectManager.sortList": "Recent",
     "explorer.confirmPasteNative": false,
     "workbench.colorTheme": "Remedy - Dark (Straight)",
+    "security.allowedUNCHosts": [
+        "192.168.121.111"
+    ],
 }
