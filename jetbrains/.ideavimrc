@@ -47,6 +47,7 @@ set showmode
 set ideajoin
 
 set guicursor=a:block
+set guicursor+=i:hor20
 
 "" Apperance
 set highlightedyank
@@ -89,14 +90,7 @@ nmap <M-v> <Action>(MoveTabRight)
 nmap <M-u> <Action>(Unsplit)
 nmap <M-q> <Action>(CloseEditor)
 nmap gh <Action>(QuickJavaDoc)
+
 nmap <leader>f <Action>(ReformatCode)
-
-
-""  TODO: Remap those keys
-""  go to next/prev splitter
-""  open terminal
-""  split terminal vertically
-""  move between instances of termianl
-""  add cursors
-"" emmet
-"" open folder
+nmap <leader>ej <Action>(SurroundWithEmmet)
+nmap <leader>m <Action>(EditorMatchBrace)

@@ -105,7 +105,7 @@
     "vim.leader": "<Space>",
     "vim.useSystemClipboard": true,
     "vim.timeout": 300,
-    "vim.cursorStylePerMode.insert": "block-outline",
+    "vim.cursorStylePerMode.insert": "block",
     "vim.cursorStylePerMode.normal": "block",
     "vim.cursorStylePerMode.visual": "block",
     "vim.cursorStylePerMode.visualblock": "block",
@@ -493,7 +493,7 @@
     ],
     "projectManager.sortList": "Recent",
     "explorer.confirmPasteNative": false,
-    "workbench.colorTheme": "Remedy - Dark (Straight)",
+    "workbench.colorTheme": "Dark Purple - Webstorm",
     "security.allowedUNCHosts": [
         "192.168.121.111"
     ],

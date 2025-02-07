@@ -49,7 +49,7 @@
         "command": "workbench.action.quickOpen"
     },
     {
-        "key": "ctrl+1",
+        "key": "alt+1",
         "command": "workbench.action.toggleSidebarVisibility"
     },
     {
@@ -206,12 +206,12 @@
         "command": "-workbench.action.closeActiveEditor"
     },
     {
-        "key": "f",
+        "key": "n",
         "command": "explorer.newFile",
         "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
     },
     {
-        "key": "d",
+        "key": "shift+n",
         "command": "explorer.newFolder",
         "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
     },
