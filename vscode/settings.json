@@ -12,8 +12,10 @@
     "editor.mouseWheelZoom": true,
     "editor.codeLens": false,
     "editor.fontFamily": "JetBrains Mono NL",
+    "editor.lineHeight": 1.5,
+    // "editor.letterSpacing": 0.2,
     "editor.fontLigatures": true,
-    "editor.fontSize": 13,
+    "editor.fontSize": 14,
     "editor.lineNumbers": "relative",
     "editor.bracketPairColorization.enabled": true,
     "editor.guides.bracketPairs": true,
@@ -29,6 +31,7 @@
     "editor.inlineSuggest.enabled": true,
     "editor.suggest.showKeywords": true,
     "editor.snippetSuggestions": "inline",
+    "editor.inlayHints.enabled": "off",
     "editor.quickSuggestions": {
         "comments": false,
         "strings": true
@@ -119,317 +122,127 @@
     /* Vim keybinds */
     "vim.normalModeKeyBindingsNonRecursive": [
         {
-            "before": [
-                "g",
-                "r"
-            ],
-            "commands": [
-                "editor.action.goToReferences"
+            "before": [ "g", "r" ],
+            "commands": [ "editor.action.goToReferences" ]
+        },
+        {
+            "before": [ "<leader>", "w" ],
+            "commands": [ ":w" ]
+        },
+        {
+            "before": [ "<leader>", "w", "r" ],
+            "commands": [ "save-as-root.saveFile" ]
+        },
+        {
+            "before": [ "<leader>", "f", "f" ],
+            "commands": [ "editor.action.formatDocument" ],
+        },
+        {
+            "before": [ "<leader>", "f", "p" ],
+            "commands": [ "prettier.forceFormatDocument" ]
+        },
+        {
+            "before": [ "Y" ],
+            "after": [ "y", "$" ]
+        },
+        {
+            "before": [ "z", "j" ],
+            "after": [ "o", "<ESC>", "k"
             ]
         },
         {
-            "before": [
-                "<leader>",
-                "w"
-            ],
-            "commands": [
-                ":w"
-            ]
+            "before": [ "z", "k" ],
+            "after": [ "O", "<ESC>", "j" ]
         },
         {
-            "before": [
-                "<leader>",
-                "w",
-                "r"
-            ],
-            "commands": [
-                "save-as-root.saveFile"
-            ]
+            "before": [ "<leader>", "h" ],
+            "commands": [ ":nohl", "notifications.clearAll" ]
         },
         {
-            "before": [
-                "<leader>",
-                "f",
-                "f"
-            ],
-            "commands": [
-                "editor.action.formatDocument"
-            ],
+            "before": [ "<leader>", "y" ],
+            "after": [ "\"", "a", "y" ]
         },
         {
-            "before": [
-                "<leader>",
-                "f",
-                "p"
-            ],
-            "commands": [
-                "prettier.forceFormatDocument"
-            ]
+            "before": [ "<leader>", "Y" ],
+            "after": [ "\"", "a", "y", "$" ]
         },
         {
-            "before": [
-                "Y"
-            ],
-            "after": [
-                "y",
-                "$"
-            ]
+            "before": [ "<leader>", "d" ],
+            "after": [ "\"", "a", "d" ]
         },
         {
-            "before": [
-                "z",
-                "j"
-            ],
-            "after": [
-                "o",
-                "<ESC>",
-                "k"
-            ]
+            "before": [ "<leader>", "D" ],
+            "after": [ "\"", "a", "D" ]
         },
         {
-            "before": [
-                "z",
-                "k"
-            ],
-            "after": [
-                "O",
-                "<ESC>",
-                "j"
-            ]
+            "before": [ "<leader>", "c" ],
+            "after": [ "\"", "a", "c" ]
         },
         {
-            "before": [
-                "<leader>",
-                "h"
-            ],
-            "commands": [
-                ":nohl",
-                "notifications.clearAll"
-            ]
+            "before": [ "<leader>", "C" ],
+            "after": [ "\"", "a", "C" ]
         },
         {
-            "before": [
-                "<leader>",
-                "y"
-            ],
-            "after": [
-                "\"",
-                "a",
-                "y"
-            ]
+            "before": [ "<leader>", "p" ],
+            "after": [ "\"", "a", "p" ]
         },
         {
-            "before": [
-                "<leader>",
-                "Y"
-            ],
-            "after": [
-                "\"",
-                "a",
-                "y",
-                "$"
-            ]
+            "before": [ "<leader>", "P" ],
+            "after": [ "\"", "a", "P" ]
         },
         {
-            "before": [
-                "<leader>",
-                "d"
-            ],
-            "after": [
-                "\"",
-                "a",
-                "d"
-            ]
+            "before": [ "<C-d>" ],
+            "after": [ "<C-d>", "z", "z" ]
         },
         {
-            "before": [
-                "<leader>",
-                "D"
-            ],
-            "after": [
-                "\"",
-                "a",
-                "D"
-            ]
+            "before": [ "<C-u>" ],
+            "after": [ "<C-u>", "z", "z" ]
         },
         {
-            "before": [
-                "<leader>",
-                "c"
-            ],
-            "after": [
-                "\"",
-                "a",
-                "c"
-            ]
+            "before": [ "<leader>", "e", "w" ],
+            "commands": [ "editor.emmet.action.wrapWithAbbreviation" ]
         },
         {
-            "before": [
-                "<leader>",
-                "C"
-            ],
-            "after": [
-                "\"",
-                "a",
-                "C"
-            ]
+            "before": [ "<leader>", "e", "r" ],
+            "commands": [ "editor.emmet.action.removeTag" ]
         },
         {
-            "before": [
-                "<leader>",
-                "p"
-            ],
-            "after": [
-                "\"",
-                "a",
-                "p"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "P"
-            ],
-            "after": [
-                "\"",
-                "a",
-                "P"
-            ]
-        },
-        {
-            "before": [
-                "<C-d>"
-            ],
-            "after": [
-                "<C-d>",
-                "z",
-                "z"
-            ]
-        },
-        {
-            "before": [
-                "<C-u>"
-            ],
-            "after": [
-                "<C-u>",
-                "z",
-                "z"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "e",
-                "w"
-            ],
-            "commands": [
-                "editor.emmet.action.wrapWithAbbreviation"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "e",
-                "r"
-            ],
-            "commands": [
-                "editor.emmet.action.removeTag"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "e",
-                "m"
-            ],
-            "commands": [
-                "editor.emmet.action.matchTag"
-            ]
+            "before": [ "<leader>", "e", "m" ],
+            "commands": [ "editor.emmet.action.matchTag" ]
         },
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
         {
-            "before": [
-                ">"
-            ],
-            "after": [
-                ">",
-                "g",
-                "v"
-            ]
+            "before": [ ">" ],
+            "after": [ ">", "g", "v" ]
         },
         {
-            "before": [
-                "<"
-            ],
-            "after": [
-                "<",
-                "g",
-                "v"
-            ]
+            "before": [ "<" ],
+            "after": [ "<", "g", "v" ]
         },
         {
-            "before": [
-                "<leader>",
-                "y"
-            ],
-            "after": [
-                "\"",
-                "a",
-                "y"
-            ]
+            "before": [ "<leader>", "y" ],
+            "after": [ "\"", "a", "y" ]
         },
         {
-            "before": [
-                "<leader>",
-                "d"
-            ],
-            "after": [
-                "\"",
-                "a",
-                "d"
-            ]
+            "before": [ "<leader>", "d" ],
+            "after": [ "\"", "a", "d" ]
         },
         {
-            "before": [
-                "<leader>",
-                "p"
-            ],
-            "after": [
-                "\"",
-                "a",
-                "p"
-            ]
+            "before": [ "<leader>", "p" ],
+            "after": [ "\"", "a", "p" ]
         },
         {
-            "before": [
-                "<leader>",
-                "e",
-                "w"
-            ],
-            "commands": [
-                "editor.emmet.action.wrapWithAbbreviation"
-            ]
+            "before": [ "<leader>", "e", "w" ],
+            "commands": [ "editor.emmet.action.wrapWithAbbreviation" ]
         },
         {
-            "before": [
-                "<leader>",
-                "e",
-                "r"
-            ],
-            "commands": [
-                "editor.emmet.action.removeTag"
-            ]
+            "before": [ "<leader>", "e", "r" ],
+            "commands": [ "editor.emmet.action.removeTag" ]
         },
         {
-            "before": [
-                "<leader>",
-                "e",
-                "m"
-            ],
-            "commands": [
-                "editor.emmet.action.matchTag"
-            ]
+            "before": [ "<leader>", "e", "m" ],
+            "commands": [ "editor.emmet.action.matchTag" ]
         },
     ],
     // Files
@@ -473,7 +286,6 @@
     "window.newWindowDimensions": "maximized",
     "window.titleBarStyle": "custom",
     "window.customMenuBarAltFocus": false,
-    "window.zoomLevel": 0,
     // Workbench 
     "workbench.activityBar.location": "top",
     "workbench.startupEditor": "none",
@@ -494,7 +306,7 @@
     "projectManager.sortList": "Recent",
     "explorer.confirmPasteNative": false,
     "workbench.colorTheme": "Dark Purple - Webstorm",
-    "security.allowedUNCHosts": [
-        "192.168.121.111"
-    ],
+    "javascript.validate.enable": true,
+    "javascript.suggest.enabled": true,
+    "typescript.tsserver.experimental.enableProjectDiagnostics": true
 }

@@ -1,13 +1,5 @@
 [
     {
-        "key": "ctrl+j",
-        "command": "terminal.focus"
-    },
-    {
-        "key": "ctrl+0",
-        "command": "workbench.action.focusActiveEditorGroup"
-    },
-    {
         "key": "ctrl+alt+j",
         "command": "-code-runner.runByLanguage"
     },
@@ -64,14 +56,6 @@
         "key": "ctrl+t",
         "command": "workbench.action.terminal.toggleTerminal",
         "when": "terminal.active"
-    },
-    {
-        "key": "ctrl+h",
-        "command": "workbench.action.focusLeftGroup"
-    },
-    {
-        "key": "ctrl+l",
-        "command": "workbench.action.focusRightGroup"
     },
     {
         "key": "alt+u",
@@ -583,4 +567,40 @@
         "key": "ctrl+a",
         "command": "-editor.action.selectAll"
     },
+    {
+        "key": "ctrl+;",
+        "command": "workbench.action.focusActiveEditorGroup",
+    },
+    {
+        "key": "ctrl+i ctrl+c",
+        "command": "workbench.panel.chat",
+        "when": "workbench.panel.chat.view.copilot.active"
+    },
+    {
+        "key": "ctrl+alt+i",
+        "command": "-workbench.panel.chat",
+        "when": "workbench.panel.chat.view.copilot.active"
+    },
+    {
+        "key": "ctrl+i c",
+        "command": "workbench.panel.chatEditing",
+        "when": "workbench.panel.chat.view.edits.active"
+    },
+    {
+        "key": "ctrl+shift+i",
+        "command": "-workbench.panel.chatEditing",
+        "when": "workbench.panel.chat.view.edits.active"
+    },
+    {
+        "key": "ctrl+i v",
+        "command": "workbench.action.splitEditor"
+    },
+    {
+        "key": "ctrl+i h",
+        "command": "workbench.action.splitEditorDown"
+    },
+    {
+        "key": "ctrl+, ctrl+,",
+        "command": "workbench.action.toggleSidebarVisibility"
+    }
 ]

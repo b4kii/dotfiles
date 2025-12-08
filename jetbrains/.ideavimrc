@@ -11,15 +11,10 @@ sethandler <C-d> a:vim
 sethandler <C-u> a:vim
 sethandler <C-e> a:vim
 sethandler <C-y> a:vim
-sethandler <C-[> a:vim
 sethandler <C-a> a:vim
 sethandler <C-M-s> a:vim
 sethandler <C-M-v> a:vim
 sethandler <C-v> a:vim
-sethandler <C-n> a:vim
-sethandler <C-p> a:vim
-sethandler <C-r> a:vim
-
 sethandler <M-s> a:vim
 sethandler <M-v> a:vim
 sethandler <M-u> a:vim
@@ -28,6 +23,10 @@ sethandler <M-l> a:vim
 sethandler <M-C-s> a:vim
 sethandler <M-C-v> a:vim
 sethandler <M-q> a:vim
+sethandler <C-p> a:vim
+sethandler <C-k> a:vim
+sethandler <C-[> a:vim
+sethandler <C-]> a:vim
 
 "" Ide handlers
 sethandler <C-t> a:ide
@@ -36,6 +35,8 @@ sethandler <C-h> a:ide
 sethandler <C-l> a:ide
 sethandler <C-g> a:ide
 sethandler <C-f> a:ide
+sethandler <C-r> a:ide
+sethandler <C-n> a:vim
 
 
 "" Settings
@@ -47,15 +48,31 @@ set showmode
 set ideajoin
 
 set guicursor=a:block
-set guicursor+=i:hor20
+"" set guicursor+=i:hor20
 
 "" Apperance
 set highlightedyank
 let g:highlightedyank_highlight_duration = "100"
 
+"" Fixing yanking and deleting
+nnoremap dd "add
+nnoremap D "aD
+nnoremap C "aC
+nnoremap cc "acc
+nnoremap x "ax
+nnoremap X "aX
+
+vnoremap d "ad
+vnoremap D "aD
+vnoremap x "ax
+vnoremap X "aX
+vnoremap c "ac
+vnoremap C "aC
+
 "" Leader Mappings
 nmap <space> <nop>
 let mapleader=" "
+
 nmap <leader>w :w<cr>
 nmap <leader>h :nohl<cr>
 nmap <leader>y "ay
@@ -66,10 +83,11 @@ nmap <leader>c "ac
 nmap <leader>C "aC
 nmap <leader>p "ap
 nmap <leader>P "aP
-nmap <leader>cl :source ~/.ideavimrc<cr>
+nmap <leader>rl :source ~/.ideavimrc<cr>
 
 vnoremap <leader>y "ay
 vnoremap <leader>d "ad
+vnoremap <leader>p "ap 
 
 "" Mappings
 nmap Y y$
@@ -90,7 +108,7 @@ nmap <M-v> <Action>(MoveTabRight)
 nmap <M-u> <Action>(Unsplit)
 nmap <M-q> <Action>(CloseEditor)
 nmap gh <Action>(QuickJavaDoc)
-
 nmap <leader>f <Action>(ReformatCode)
+
 nmap <leader>ej <Action>(SurroundWithEmmet)
 nmap <leader>m <Action>(EditorMatchBrace)
