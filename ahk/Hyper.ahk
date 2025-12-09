@@ -12,20 +12,35 @@ AppsKey::
 		Send("{Esc}")
 }
 
-ScrollLock:: {
+Pause:: {
     ; Press Shift + Alt + LWin down
     Send("{Shift down}{Alt down}{LWin down}")
 
-    ; Wait for ScrollLock to be released
-    KeyWait("ScrollLock")
+    ; Wait for Pause to be released
+    KeyWait("Pause")
 
     ; Release the keys
     Send("{LWin up}{Alt up}{Shift up}")
 
-    ; If ScrollLock was the previous key, send Esc
-    if (A_PriorKey = "ScrollLock")
+    ; If Pause was the previous key, send Esc
+    if (A_PriorKey = "Pause")
         Send("{Esc}")
 }
+
+;ScrollLock:: {
+;    ; Press Shift + Alt + LWin down
+;    Send("{Shift down}{Alt down}{LWin down}")
+;
+;    ; Wait for ScrollLock to be released
+;    KeyWait("ScrollLock")
+;
+;    ; Release the keys
+;    Send("{LWin up}{Alt up}{Shift up}")
+;
+;    ; If ScrollLock was the previous key, send Esc
+;    if (A_PriorKey = "ScrollLock")
+;        Send("{Esc}")
+;}
 
 ;; Deactivate CapsLock completely
 ;SetCapsLockState("AlwaysOff")
