@@ -1,0 +1,7 @@
+inherits = "material_oceanic"
+
+"comment" = { modifiers = [] }
+
+"ui.cursor" = { fg = "#000000", bg = "#FFFF00" }        # normalny tryb: czarny znak na żółtym tle
+"ui.cursor.insert" = { bg = "#FFFF00" }                # tryb insert: żółte tło
+"ui.cursor.select" = { bg = "#FFFF00" }                # tryb select: żółte tło

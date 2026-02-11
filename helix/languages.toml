@@ -1,0 +1,139 @@
+
+# =========================================================
+# 📦 INSTALL LSP SERVERS
+# =========================================================
+# npm install -g typescript typescript-language-server vscode-langservers-extracted emmet-language-server intelephense @tailwindcss/language-server sql-language-server @prisma/language-server dockerfile-language-server-nodejs bash-language-server
+# go install golang.org/x/tools/gopls@latest
+# export PATH=$PATH:$(go env GOPATH)/bin
+
+
+# ------------------------
+# LANGUAGE SERVERS
+# ------------------------
+
+[language-server.typescript]
+command = "typescript-language-server"
+args = ["--stdio"]
+
+[language-server.eslint]
+command = "vscode-eslint-language-server"
+args = ["--stdio"]
+
+[language-server.emmet-lsp]
+command = "emmet-language-server"
+args = ["--stdio"]
+
+[language-server.tailwindcss]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
+
+[language-server.vscode-json-language-server]
+command = "vscode-json-language-server"
+args = ["--stdio"]
+
+[language-server.vscode-json-language-server.config]
+json = { validate = { enable = true }, format = { enable = true } }
+provideFormatter = true
+
+[language-server.vscode-css-language-server]
+command = "vscode-css-language-server"
+args = ["--stdio"]
+
+[language-server.vscode-css-language-server.config]
+css = { validate = { enable = true } }
+scss = { validate = { enable = true } }
+less = { validate = { enable = true } }
+provideFormatter = true
+
+[language-server.vscode-html-language-server]
+command = "vscode-html-language-server"
+args = ["--stdio"]
+
+[language-server.intelephense]
+command = "intelephense"
+args = ["--stdio"]
+
+[language-server.gopls]
+command = "gopls"
+
+[language-server.sql]
+command = "sql-language-server"
+args = ["up", "--method", "stdio"]
+
+[language-server.prisma]
+command = "prisma-language-server"
+args = ["--stdio"]
+
+[language-server.docker]
+command = "docker-langserver"
+args = ["--stdio"]
+
+[language-server.bash]
+command = "bash-language-server"
+args = ["start"]
+
+
+# ------------------------
+# LANGUAGE CONFIGURATION
+# ------------------------
+
+[[language]]
+name = "typescript"
+language-servers = ["typescript", "eslint", "emmet-lsp", "tailwindcss"]
+auto-format = true
+
+[[language]]
+name = "tsx"
+language-servers = ["typescript", "eslint", "emmet-lsp", "tailwindcss"]
+auto-format = true
+
+[[language]]
+name = "javascript"
+language-servers = ["typescript", "eslint", "emmet-lsp", "tailwindcss"]
+auto-format = true
+
+[[language]]
+name = "jsx"
+language-servers = ["typescript", "eslint", "emmet-lsp", "tailwindcss"]
+auto-format = true
+
+[[language]]
+name = "json"
+language-servers = ["vscode-json-language-server"]
+auto-format = true
+
+[[language]]
+name = "html"
+language-servers = ["vscode-html-language-server", "emmet-lsp", "tailwindcss"]
+auto-format = true
+
+[[language]]
+name = "css"
+language-servers = ["vscode-css-language-server", "emmet-lsp", "tailwindcss"]
+auto-format = true
+
+[[language]]
+name = "go"
+language-servers = ["gopls"]
+auto-format = true
+
+[[language]]
+name = "php"
+language-servers = ["intelephense"]
+indent = { tab-width = 4, unit = " " }
+
+[[language]]
+name = "sql"
+language-servers = ["sql"]
+
+[[language]]
+name = "prisma"
+language-servers = ["prisma"]
+
+[[language]]
+name = "dockerfile"
+language-servers = ["docker"]
+
+[[language]]
+name = "bash"
+language-servers = ["bash"]
