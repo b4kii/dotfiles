@@ -4,6 +4,8 @@ local act = wezterm.action
 return {
   default_prog = { "pwsh.exe", "-NoLogo" },
 
+  front_end = "Software",
+
   -- brak paddingu
   window_padding = {
     left = 0,
