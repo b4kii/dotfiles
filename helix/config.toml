@@ -8,6 +8,7 @@ auto-pairs = false
 scrolloff = 10        
 bufferline = "always"
 true-color = true
+gutters = ["diff", "diagnostics", "line-numbers", "spacer"]
 
 [editor.cursor-shape]
 insert = "block"
@@ -27,12 +28,6 @@ render = true
 [editor.soft-wrap]
 enable = false
 
-[keys.normal]
-A-s = ":w"              # zapis
-A-q = ":buffer-close"   # zamknij buffer
-C-d = ["page_down", "align_view_center"]
-C-u = ["page_up", "align_view_center"]
-
 [editor.statusline]
 left = ["mode", "spinner"]
 center = ["file-name"]
@@ -44,4 +39,30 @@ mode.select = "SELECT"
 diagnostics = ["warning", "error"]
 workspace-diagnostics = ["warning", "error"]
 
+[keys.normal.space]
+c = ["toggle_comments", "move_line_down"]
+w = ":w"
+q = ":buffer-close"
 
+[keys.select.space]
+c = ["toggle_comments", "move_line_down"]
+w = ":w"
+q = ":buffer-close"
+
+[keys.normal]
+A-w = ":w"            
+A-q = ":buffer-close" 
+"C-[" = "normal_mode"
+A-f = ":format"           
+A-h = ":bp"
+A-l = ":bn"
+C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+
+[keys.insert]
+"C-[" = "normal_mode"
+
+[keys.select]
+A-f = ":format"           
+A-h = ":bp"
+A-l = ":bn"
+C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
