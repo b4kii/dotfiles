@@ -5,6 +5,7 @@ line-number = "relative"
 mouse = true
 cursorline = true
 auto-pairs = false
+auto-format = false
 scrolloff = 10        
 bufferline = "always"
 true-color = true
@@ -29,40 +30,56 @@ render = true
 enable = false
 
 [editor.statusline]
-left = ["mode", "spinner"]
-center = ["file-name"]
-right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
-separator = "│"
-mode.normal = "NORMAL"
-mode.insert = "INSERT"
-mode.select = "SELECT"
-diagnostics = ["warning", "error"]
-workspace-diagnostics = ["warning", "error"]
+right = [
+    "version-control",
+    "file-encoding",
+    "file-type",
+    "file-line-ending",
+    "separator",
+    "file-name",
+    "read-only-indicator",
+    "separator",
+    "spacer",
+    "file-modification-indicator",
+]
+left = [
+    "mode",
+    "selections",
+    "primary-selection-length",
+    "separator",
+    "position",
+    "position-percentage",
+]
+center = ["spinner", "diagnostics", "separator", "workspace-diagnostics"]
+
+[editor.statusline.mode]
+insert = "INSERT"
+normal = "NORMAL"
+select = "SELECT"
 
 [keys.normal.space]
-c = ["toggle_comments", "move_line_down"]
 w = ":w"
 q = ":buffer-close"
 
 [keys.select.space]
-c = ["toggle_comments", "move_line_down"]
 w = ":w"
 q = ":buffer-close"
 
 [keys.normal]
 A-w = ":w"            
 A-q = ":buffer-close" 
-"C-[" = "normal_mode"
 A-f = ":format"           
 A-h = ":bp"
 A-l = ":bn"
+"A-/" = ["toggle_comments", "move_line_down"]
 C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
-
-[keys.insert]
-"C-[" = "normal_mode"
+C-e = [":insert-output yazi %{buffer_name}", ":redraw"]
+Y = ["extend_to_line_end", "yank", "collapse_selection"]
 
 [keys.select]
 A-f = ":format"           
 A-h = ":bp"
 A-l = ":bn"
+"A-/" = ["toggle_comments", "move_line_down"]
 C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+C-e = [":insert-output yazi %{buffer_name}", ":redraw"]
