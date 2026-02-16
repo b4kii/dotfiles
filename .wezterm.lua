@@ -9,10 +9,20 @@ wezterm.on("gui-startup", function()
   window:gui_window():maximize()
 end)
 
+wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
+  local index = tab.tab_index + 1
+  return {
+    { Text = ' ' .. index .. ' ' },
+  }
+end)
+
 return {
 
   default_prog = { "pwsh.exe", "-NoLogo" },
 
+  tab_bar_at_bottom = true,
+  hide_tab_bar_if_only_one_tab = true,
+ 
   front_end = "Software",
 
   -- brak paddingu
