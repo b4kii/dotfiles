@@ -33,8 +33,9 @@ return {
     bottom = 0,
   },
 
-  -- LEADER jak prefix C-a
-  leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 },
+  -- LEADER jak prefix C-q
+  -- leader = { key = "q", mods = "CTRL", timeout_milliseconds = 1000 },
+  leader = { key = "s", mods = "ALT", timeout_milliseconds = 1000 },
 
   keys = {
 
