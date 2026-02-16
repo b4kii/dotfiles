@@ -23,6 +23,9 @@ args = ["--stdio"]
 command = "emmet-language-server"
 args = ["--stdio"]
 
+[language-server.emmet-lsp.config]
+includeLanguages = { php = "html" }
+
 [language-server.tailwindcss]
 command = "tailwindcss-language-server"
 args = ["--stdio"]
@@ -33,6 +36,7 @@ args = ["--stdio"]
 
 [language-server.vscode-json-language-server.config]
 json = { validate = { enable = true }, format = { enable = true } }
+includeLanguages = { php = "html" }
 provideFormatter = true
 
 [language-server.vscode-css-language-server]
@@ -117,10 +121,15 @@ name = "go"
 language-servers = ["gopls"]
 auto-format = true
 
+# [[language]]
+# name = "php"
+# language-servers = ["intelephense"]
+# indent = { tab-width = 4, unit = " " }
 [[language]]
 name = "php"
-language-servers = ["intelephense"]
+language-servers = ["intelephense", "emmet-lsp"]
 indent = { tab-width = 4, unit = " " }
+ 
 
 [[language]]
 name = "sql"
