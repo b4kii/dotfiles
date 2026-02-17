@@ -10,6 +10,7 @@ scrolloff = 10
 bufferline = "always"
 true-color = true
 gutters = ["diff", "diagnostics", "line-numbers", "spacer"]
+color-modes = true
 
 [editor.cursor-shape]
 insert = "block"
@@ -51,11 +52,9 @@ left = [
     "position-percentage",
 ]
 center = ["spinner", "diagnostics", "separator", "workspace-diagnostics"]
-
-[editor.statusline.mode]
-insert = "INSERT"
-normal = "NORMAL"
-select = "SELECT"
+mode.insert = "INSERT"
+mode.normal = "NORMAL"
+mode.select = "SELECT"
 
 [keys.normal.space]
 w = ":w"
