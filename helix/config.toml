@@ -62,12 +62,16 @@ w = ":w"
 q = ":buffer-close"
 r = "replace_selections_with_clipboard"
 R = "rename_symbol"
+p = "paste_clipboard_before"
+P = "paste_clipboard_after"
 
 [keys.select.space]
 w = ":w"
 q = ":buffer-close"
 r = "replace_selections_with_clipboard"
 R = "rename_symbol"
+p = "paste_clipboard_before"
+P = "paste_clipboard_after"
 
 [keys.normal]
 Y = ["extend_to_line_end", "yank", "collapse_selection"]
