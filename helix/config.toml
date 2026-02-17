@@ -60,10 +60,14 @@ select = "SELECT"
 [keys.normal.space]
 w = ":w"
 q = ":buffer-close"
+r = "replace_selections_with_clipboard"
+R = "rename_symbol"
 
 [keys.select.space]
 w = ":w"
 q = ":buffer-close"
+r = "replace_selections_with_clipboard"
+R = "rename_symbol"
 
 [keys.normal]
 Y = ["extend_to_line_end", "yank", "collapse_selection"]
@@ -95,6 +99,7 @@ A-h = ":bp"
 A-l = ":bn"
 "A-/" = ["toggle_comments", "move_line_down"]
 C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+"C-[" = "normal_mode"
 # C-e = [
   # ':sh rm -f /tmp/unique-file',
   # ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file',
@@ -108,3 +113,7 @@ C-e = [
     ':open %sh{type C:\unique-file}',
     ':redraw'
 ]
+
+[keys.insert]
+"C-[" = "normal_mode"
+
