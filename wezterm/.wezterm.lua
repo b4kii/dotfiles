@@ -69,9 +69,18 @@ return {
     { key = "8", mods = "LEADER", action = act.ActivateTab(7) },
     { key = "9", mods = "LEADER", action = act.ActivateTab(8) },
 
-    -- copy mode (vi style)
-    { key = "[", mods = "LEADER", action = act.ActivateCopyMode },
+    -- toogle panes
+    { key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
 
+    -- adjust pane size
+    { key = "LeftArrow",  mods = "LEADER", action = act.AdjustPaneSize { "Left", 1 } },
+    { key = "RightArrow", mods = "LEADER", action = act.AdjustPaneSize { "Right", 1 } },
+    { key = "UpArrow",    mods = "LEADER", action = act.AdjustPaneSize { "Up", 1 } },
+    { key = "DownArrow",  mods = "LEADER", action = act.AdjustPaneSize { "Down", 1 } },
+
+    -- move tabs
+    { key = "PageUp", mods = "LEADER", action = act.MoveTabRelative(-1) },
+    { key = "PageDown", mods = "LEADER", action = act.MoveTabRelative(1) },
   },
 
   -- vi-like copy mode
