@@ -70,4 +70,5 @@ Pop-Location
 # 6. Zwrot treści dla Helixa
 # Get-Content $file -Raw
 
-# sh pwsh.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File ./history.ps1 index.html
+# sh pwsh.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File ~/dotfiles/history.ps1 '%{buffer_name}'
+
