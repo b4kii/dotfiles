@@ -87,7 +87,7 @@ return {
     { key = "W", mods = "LEADER", action = act.PaneSelect { mode = "SwapWithActive" } },
     { key = "m", mods = "LEADER", action = act.PaneSelect { mode = "MoveToNewTab" } },
 
-
+    { key = 'c', mods = 'CTRL', action = wezterm.action.Nop,  },
   },
 
   -- vi-like copy mode
