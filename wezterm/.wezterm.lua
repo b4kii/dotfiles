@@ -81,6 +81,13 @@ return {
     -- move tabs
     { key = "PageUp", mods = "LEADER", action = act.MoveTabRelative(-1) },
     { key = "PageDown", mods = "LEADER", action = act.MoveTabRelative(1) },
+
+    -- move panes
+    { key = "w", mods = "LEADER", action = act.PaneSelect { mode = "SwapWithActiveKeepFocus" } },
+    { key = "W", mods = "LEADER", action = act.PaneSelect { mode = "SwapWithActive" } },
+    { key = "m", mods = "LEADER", action = act.PaneSelect { mode = "MoveToNewTab" } },
+
+
   },
 
   -- vi-like copy mode
