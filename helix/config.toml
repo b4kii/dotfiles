@@ -60,7 +60,7 @@ mode.select = "SELECT"
 w = ":w"
 # w = [
 #  ":w",
-#  ":sh pwsh.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File C:\\Users\\d.halibart\\dotfiles\\history.ps1 %{buffer_name}"
+#  ":sh pwsh.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File C:\\Users\\baki\\dotfiles\\history.ps1 %{buffer_name}"
 # ]
 q = ":buffer-close"
 r = "replace_selections_with_clipboard"
@@ -71,7 +71,7 @@ R = "rename_symbol"
 w = ":w"
 # w = [
 #  ":w",
-#  ":sh pwsh.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File C:\\Users\\d.halibart\\dotfiles\\history.ps1 %{buffer_name}"
+#  ":sh pwsh.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File C:\\Users\\baki\\dotfiles\\history.ps1 %{buffer_name}"
 # ]
 q = ":buffer-close"
 r = "replace_selections_with_clipboard"
