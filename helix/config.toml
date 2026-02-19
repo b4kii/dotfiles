@@ -79,13 +79,10 @@ R = "rename_symbol"
 
 
 [keys.normal]
-Y = ["extend_to_line_end", "yank", "collapse_selection"]
-A-w = ":w"            
-A-q = ":buffer-close" 
 A-f = ":format"           
 A-h = ":bp"
 A-l = ":bn"
-"A-/" = ["toggle_comments", "move_line_down"]
+"C-/" = ["toggle_comments", "move_line_down"]
 C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
 # C-e = [":insert-output yazi %{buffer_name}", ":redraw"]
 # C-e = [
@@ -106,9 +103,9 @@ C-e = [
 A-f = ":format"           
 A-h = ":bp"
 A-l = ":bn"
-"A-/" = ["toggle_comments", "move_line_down"]
+"C-/" = ["toggle_comments", "move_line_down"]
 C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
-"C-[" = "normal_mode"
+"C-[" = ["normal_mode", "collapse_selection"]
 # C-e = [
   # ':sh rm -f /tmp/unique-file',
   # ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file',
@@ -124,5 +121,5 @@ C-e = [
 ]
 
 [keys.insert]
-"C-[" = "normal_mode"
+"C-[" = ["normal_mode", "collapse_selection"]
 
