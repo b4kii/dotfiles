@@ -90,20 +90,7 @@ A-h = ":bp"
 A-l = ":bn"
 "C-/" = ["toggle_comments", "move_line_down"]
 C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
-# C-e = [":insert-output yazi %{buffer_name}", ":redraw"]
-# C-e = [
-  # ':sh rm -f /tmp/unique-file',
-  # ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file',
-  # ':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
-  # ':open %sh{cat /tmp/unique-file}',
-  # ':redraw',
-# ]
-C-e = [
-    ':sh del C:\unique-file 2>nul',
-    ':insert-output yazi %{buffer_name} --chooser-file=C:\unique-file',
-    ':open %sh{type C:\unique-file}',
-    ':redraw'
-]
+"C-[" = ["normal_mode", "collapse_selection", "keep_primary_selection"]
 
 [keys.select]
 z.j = ["add_newline_below" ]
@@ -114,21 +101,8 @@ A-h = ":bp"
 A-l = ":bn"
 "C-/" = ["toggle_comments", "move_line_down"]
 C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
-"C-[" = ["normal_mode", "collapse_selection"]
-# C-e = [
-  # ':sh rm -f /tmp/unique-file',
-  # ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file',
-  # ':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
-  # ':open %sh{cat /tmp/unique-file}',
-  # ':redraw',
-# ]
-C-e = [
-    ':sh del C:\unique-file 2>nul',
-    ':insert-output yazi %{buffer_name} --chooser-file=C:\unique-file',
-    ':open %sh{type C:\unique-file}',
-    ':redraw'
-]
+"C-[" = ["normal_mode", "collapse_selection", "keep_primary_selection"]
 
 [keys.insert]
-"C-[" = ["normal_mode", "collapse_selection"]
+"C-[" = ["normal_mode", "collapse_selection", "keep_primary_selection"]
 
