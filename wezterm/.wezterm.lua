@@ -50,6 +50,7 @@ return {
 
     -- zamknij pane
     { key = "x", mods = "LEADER", action = act.CloseCurrentPane { confirm = false } },
+    { key = "X", mods = "LEADER", action = act.CloseCurrentTab { confirm = false } },
 
     -- nowe taby (jak nowe window)
     { key = "c", mods = "LEADER", action = act.SpawnTab "CurrentPaneDomain" },
