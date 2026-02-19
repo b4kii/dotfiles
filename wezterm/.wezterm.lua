@@ -18,6 +18,10 @@ end)
 
 return {
 
+  -- color_scheme = 'Apprentice (base16)',
+  -- color_scheme = 'BlulocoDark',
+  color_scheme = 'Whimsy',
+
   default_prog = { "pwsh.exe", "-NoLogo" },
 
   tab_bar_at_bottom = true,
