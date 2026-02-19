@@ -65,7 +65,8 @@ w = ":w"
 q = ":buffer-close"
 r = "replace_selections_with_clipboard"
 R = "rename_symbol"
-
+e = "file_explorer_in_current_buffer_directory"
+E = "file_explorer"
 
 [keys.select.space]
 w = ":w"
@@ -76,9 +77,14 @@ w = ":w"
 q = ":buffer-close"
 r = "replace_selections_with_clipboard"
 R = "rename_symbol"
+e = "file_explorer_in_current_buffer_directory"
+E = "file_explorer"
 
 
 [keys.normal]
+z.j = ["add_newline_below" ]
+z.k = ["add_newline_above" ]
+
 A-f = ":format"           
 A-h = ":bp"
 A-l = ":bn"
@@ -100,6 +106,9 @@ C-e = [
 ]
 
 [keys.select]
+z.j = ["add_newline_below" ]
+z.k = ["add_newline_above" ]
+
 A-f = ":format"           
 A-h = ":bp"
 A-l = ":bn"
