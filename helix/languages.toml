@@ -2,10 +2,10 @@
 # =========================================================
 # 📦 INSTALL LSP SERVERS
 # =========================================================
-# npm install -g typescript typescript-language-server vscode-langservers-extracted emmet-language-server intelephense @tailwindcss/language-server sql-language-server @prisma/language-server dockerfile-language-server-nodejs bash-language-server
+# npm install -g typescript typescript-language-server vscode-langservers-extracted emmet-language-server intelephense @tailwindcss/language-server sql-language-server @prisma/language-server dockerfile-language-server-nodejs bash-language-server stylelint-lsp
 # go install golang.org/x/tools/gopls@latest
 # export PATH=$PATH:$(go env GOPATH)/bin
-
+# cargo install --force hx-lsp
 
 # ------------------------
 # LANGUAGE SERVERS
@@ -76,6 +76,9 @@ args = ["--stdio"]
 command = "bash-language-server"
 args = ["start"]
 
+[language-server.stylelint]
+command = "stylelint-lsp"
+args = ["--stdio"]
 
 # ------------------------
 # LANGUAGE CONFIGURATION
@@ -85,35 +88,41 @@ args = ["start"]
 name = "typescript"
 language-servers = ["typescript", "eslint", "emmet-lsp", "tailwindcss"]
 auto-format = true
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+
+[[language]]
+name = "javascript"
+language-servers = ["typescript", "eslint", "emmet-lsp", "tailwindcss"]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+auto-format = true
 
 [[language]]
 name = "tsx"
 language-servers = ["typescript", "eslint", "emmet-lsp", "tailwindcss"]
 auto-format = true
-
-[[language]]
-name = "javascript"
-language-servers = ["typescript", "eslint", "emmet-lsp", "tailwindcss"]
-auto-format = true
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
 
 [[language]]
 name = "jsx"
 language-servers = ["typescript", "eslint", "emmet-lsp", "tailwindcss"]
 auto-format = true
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
 
 [[language]]
 name = "json"
 language-servers = ["vscode-json-language-server"]
 auto-format = true
+formatter = { command = "prettier", args = ["--parser", "json"] }
 
 [[language]]
 name = "html"
 language-servers = ["vscode-html-language-server", "emmet-lsp", "tailwindcss"]
 auto-format = true
+formatter = { command = "prettier", args = ["--parser", "html"] }
 
 [[language]]
 name = "css"
-language-servers = ["vscode-css-language-server", "emmet-lsp", "tailwindcss"]
+language-servers = ["stylelint", "vscode-css-language-server", "emmet-lsp", "tailwindcss"]
 auto-format = true
 
 [[language]]
@@ -121,15 +130,11 @@ name = "go"
 language-servers = ["gopls"]
 auto-format = true
 
-# [[language]]
-# name = "php"
-# language-servers = ["intelephense"]
-# indent = { tab-width = 4, unit = " " }
 [[language]]
 name = "php"
-language-servers = ["intelephense", "emmet-lsp"]
+language-servers = ["intelephense", "vscode-html-language-server", "tailwindcss", "emmet-lsp"]
 indent = { tab-width = 4, unit = " " }
- 
+auto-format = true
 
 [[language]]
 name = "sql"
