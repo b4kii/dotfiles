@@ -1,3 +1,128 @@
+# theme = "custom_theme"
+
+# [editor]
+# line-number = "relative"
+# mouse = true
+# cursorline = true
+# auto-pairs = false
+# auto-format = false
+# scrolloff = 10        
+# bufferline = "always"
+# true-color = true
+# gutters = ["diff", "diagnostics", "line-numbers", "spacer"]
+# color-modes = true
+
+# [editor.inline-diagnostics]
+# cursor-line = "warning"
+# other-lines = "warning"
+
+# [editor.cursor-shape]
+# insert = "block"
+# normal = "block"
+# select = "block"
+
+# [editor.whitespace]
+# render = "all"
+
+# [editor.whitespace.characters]
+# space = "·"
+# nbsp = "⍽"
+# tab = "→"
+# newline = "⏎"
+# tabpad = "·"
+
+# [editor.file-picker]
+# hidden = false
+
+# [editor.lsp]
+# enable = true
+# display-messages = true
+# display-inlay-hints = true
+
+# [editor.indent-guides]
+# render = true
+# character = "╎" # Some characters that work well: "▏", "┆", "┊", "⸽"
+# skip-levels = 1
+
+# [editor.soft-wrap]
+# enable = false
+
+# [editor.statusline]
+# right = [
+#     "version-control",
+#     "file-encoding",
+#     "file-type",
+#     "file-line-ending",
+#     "separator",
+#     "file-name",
+#     "read-only-indicator",
+#     "separator",
+#     "spacer",
+#     "file-modification-indicator",
+# ]
+# left = [
+#     "mode",
+#     "selections",
+#     "primary-selection-length",
+#     "separator",
+#     "position",
+#     "position-percentage",
+# ]
+# center = ["spinner", "diagnostics", "separator", "workspace-diagnostics"]
+# mode.insert = "INSERT"
+# mode.normal = "NORMAL"
+# mode.select = "SELECT"
+
+# [keys.normal.space]
+# w = ":w"
+# # w = [
+# #  ":w",
+# #  ":sh pwsh.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File C:\\Users\\baki\\dotfiles\\history.ps1 %{buffer_name}"
+# # ]
+# q = ":buffer-close"
+# r = "replace_selections_with_clipboard"
+# R = "rename_symbol"
+# e = "file_explorer_in_current_buffer_directory"
+# E = "file_explorer"
+
+# [keys.select.space]
+# w = ":w"
+# # w = [
+# #  ":w",
+# #  ":sh pwsh.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File C:\\Users\\baki\\dotfiles\\history.ps1 %{buffer_name}"
+# # ]
+# q = ":buffer-close"
+# r = "replace_selections_with_clipboard"
+# R = "rename_symbol"
+# e = "file_explorer_in_current_buffer_directory"
+# E = "file_explorer"
+
+
+# [keys.normal]
+# z.j = ["add_newline_below" ]
+# z.k = ["add_newline_above" ]
+
+# A-f = ":format"           
+# A-h = ":bp"
+# A-l = ":bn"
+# "C-/" = ["toggle_comments", "move_line_down"]
+# C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+# "C-[" = ["normal_mode", "collapse_selection", "keep_primary_selection"]
+
+# [keys.select]
+# z.j = ["add_newline_below" ]
+# z.k = ["add_newline_above" ]
+
+# A-f = ":format"           
+# A-h = ":bp"
+# A-l = ":bn"
+# "C-/" = ["toggle_comments", "move_line_down"]
+# C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+# "C-[" = ["normal_mode", "collapse_selection", "keep_primary_selection"]
+
+# [keys.insert]
+# "C-[" = ["normal_mode", "collapse_selection", "keep_primary_selection"]
+
 theme = "custom_theme"
 
 [editor]
@@ -11,38 +136,21 @@ bufferline = "always"
 true-color = true
 gutters = ["diff", "diagnostics", "line-numbers", "spacer"]
 color-modes = true
-
-[editor.inline-diagnostics]
-cursor-line = "warning"
-other-lines = "warning"
+end-of-line-diagnostics = "hint"
 
 [editor.cursor-shape]
 insert = "block"
 normal = "block"
-select = "block"
-
-[editor.whitespace]
-render = "all"
-
-[editor.whitespace.characters]
-space = "·"
-nbsp = "⍽"
-tab = "→"
-newline = "⏎"
-tabpad = "·"
+select = "underline"
 
 [editor.file-picker]
 hidden = false
 
 [editor.lsp]
-enable = true
 display-messages = true
-display-inlay-hints = true
 
 [editor.indent-guides]
 render = true
-character = "╎" # Some characters that work well: "▏", "┆", "┊", "⸽"
-skip-levels = 1
 
 [editor.soft-wrap]
 enable = false
@@ -75,10 +183,6 @@ mode.select = "SELECT"
 
 [keys.normal.space]
 w = ":w"
-# w = [
-#  ":w",
-#  ":sh pwsh.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File C:\\Users\\baki\\dotfiles\\history.ps1 %{buffer_name}"
-# ]
 q = ":buffer-close"
 r = "replace_selections_with_clipboard"
 R = "rename_symbol"
@@ -87,10 +191,6 @@ E = "file_explorer"
 
 [keys.select.space]
 w = ":w"
-# w = [
-#  ":w",
-#  ":sh pwsh.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File C:\\Users\\baki\\dotfiles\\history.ps1 %{buffer_name}"
-# ]
 q = ":buffer-close"
 r = "replace_selections_with_clipboard"
 R = "rename_symbol"
