@@ -17,12 +17,9 @@ end)
 -- end)
 
 return {
-
-  -- color_scheme = 'Apprentice (base16)',
-  -- color_scheme = 'BlulocoDark',
-  -- color_scheme = 'Whimsy',
   color_scheme = 'Obsidian',
 
+  harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
   default_prog = { "pwsh.exe", "-NoLogo" },
 
   tab_bar_at_bottom = true,
