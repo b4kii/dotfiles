@@ -48,7 +48,7 @@ make keychron/k12_pro/ansi/white:default:flash
 
 ---
 
-## Co bym zrobił
+## Kroki
 
 Sklonuj konkretnie branch `wireless_playground`:
 
@@ -183,8 +183,6 @@ To jest ważne, żeby mieć możliwość powrotu do fabrycznego firmware’u, gd
 ---
 
 ## Podsumowanie
-
-Tak, możesz zrobić custom firmware dla Keychron K12 Pro.
 
 Użyj:
 
