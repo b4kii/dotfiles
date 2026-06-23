@@ -750,19 +750,19 @@ vim.api.nvim_create_user_command("TodoCreateInProgress", create_todo_in_progress
   desc = "Create TODO in ## IN PROGRESS section",
 })
 
-map({ "n", "v" }, "<leader>nt", cycle_todo_next, {
+map({ "n", "v" }, "<leader>tt", cycle_todo_next, {
   desc = "Cycle TODO state and normalize sections",
 })
 
-map({ "n", "v" }, "<leader>nT", cycle_todo_previous, {
+map({ "n", "v" }, "<leader>tT", cycle_todo_previous, {
   desc = "Cycle TODO state backwards and normalize sections",
 })
 
-map({ "n", "v" }, "<leader>nd", mark_todo_done, {
+map({ "n", "v" }, "<leader>td", mark_todo_done, {
   desc = "Mark TODO done and move to archive",
 })
 
-map({ "n", "v" }, "<leader>nu", mark_todo_unchecked, {
+map({ "n", "v" }, "<leader>tu", mark_todo_unchecked, {
   desc = "Mark TODO undone and move to TODO section",
 })
 
@@ -770,15 +770,15 @@ map("n", "<leader>nn", create_todo_in_todo_section, {
   desc = "Create TODO in TODO section",
 })
 
-map({ "n", "v" }, "<leader>nr", remove_todo_under_cursor, {
+map({ "n", "v" }, "<leader>tr", remove_todo_under_cursor, {
   desc = "Remove TODO marker",
 })
 
-map("n", "<leader>na", normalize_todo_sections, {
+map("n", "<leader>ta", normalize_todo_sections, {
   desc = "Normalize TODO sections",
 })
 
-map({ "n", "v" }, "<leader>ni", mark_todo_in_progress, {
+map({ "n", "v" }, "<leader>ti", mark_todo_in_progress, {
   desc = "Mark TODO in progress and move to IN PROGRESS",
 })
 
@@ -1034,14 +1034,14 @@ end
 -- g c        -> zakomentuj/odkomentuj zaznaczenie w visualu
 
 -- Custom TODO:
--- Space n n  -> dodaj nowe TODO w ## TODO i wejdz w insert
--- Space n t  -> TODO -> IN PROGRESS -> ARCHIVE -> TODO
--- Space n T  -> cykl wstecz
--- Space n d  -> oznacz done i przenies do ## ARCHIVE
--- Space n u  -> odznacz i przenies do ## TODO
--- Space n r  -> usun checkbox
--- Space n a  -> recznie odswiez sekcje
--- Space n i  -> oznacz jako in progress i przenies do ## IN PROGRESS
+-- Space t n  -> dodaj nowe TODO w ## TODO i wejdz w insert
+-- Space t t  -> TODO -> IN PROGRESS -> ARCHIVE -> TODO
+-- Space t T  -> cykl wstecz
+-- Space t d  -> oznacz done i przenies do ## ARCHIVE
+-- Space t u  -> odznacz i przenies do ## TODO
+-- Space t r  -> usun checkbox
+-- Space t a  -> recznie odswiez sekcje
+-- Space t i  -> oznacz jako in progress i przenies do ## IN PROGRESS
 
 -- Komendy:
 -- :TodoCreate
