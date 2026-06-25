@@ -20,6 +20,27 @@ local function safe_setup(name, fn)
   end
 end
 
+local function current_file_is_md()
+  local name = vim.api.nvim_buf_get_name(0)
+
+  if name == "" then
+    return false
+  end
+
+  return vim.fn.fnamemodify(name, ":e"):lower() == "md"
+end
+
+local function markdown_only(name, fn)
+  return function(...)
+    if not current_file_is_md() then
+      vim.notify((name or "This action") .. " works only in .md files", vim.log.levels.INFO)
+      return
+    end
+
+    return fn(...)
+  end
+end
+
 -- =========================
 -- PLUGINS (vim-plug)
 -- =========================
@@ -75,15 +96,8 @@ vim.opt.undofile = false
 
 vim.opt.guicursor = "v-i:block"
 
--- Checkmate dziala tylko na markdownach, wiec pliki "todo"/"TODO"
--- bez rozszerzenia ustawiamy automatycznie jako markdown.
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = { "todo", "TODO", "*.todo", "*.todo.md" },
-  callback = function()
-    vim.bo.filetype = "markdown"
-  end,
-})
-
+-- Checkmate i custom worklog sa celowo ograniczone do realnych plikow .md.
+-- Nie wymuszamy markdown filetype dla plikow bez rozszerzenia.
 -- =========================
 -- MAPPINGS
 -- =========================
@@ -1208,63 +1222,63 @@ local function create_or_jump_today_worklog()
   vim.api.nvim_win_set_cursor(0, { target_line, 0 })
 end
 
-vim.api.nvim_create_user_command("TodoNormalizeSections", normalize_todo_sections, {
+vim.api.nvim_create_user_command("TodoNormalizeSections", markdown_only("TodoNormalizeSections", normalize_todo_sections), {
   desc = "Normalize TODO sections in current worklog day or globally",
 })
 
-vim.api.nvim_create_user_command("TodoMoveInProgress", mark_todo_in_progress, {
+vim.api.nvim_create_user_command("TodoMoveInProgress", markdown_only("TodoMoveInProgress", mark_todo_in_progress), {
   desc = "Mark TODO in progress and move to current IN PROGRESS section",
 })
 
-vim.api.nvim_create_user_command("TodoCreate", create_todo_in_todo_section, {
+vim.api.nvim_create_user_command("TodoCreate", markdown_only("TodoCreate", create_todo_in_todo_section), {
   desc = "Create TODO in current TODO section",
 })
 
-vim.api.nvim_create_user_command("TodoCreateInProgress", create_todo_in_progress_section, {
+vim.api.nvim_create_user_command("TodoCreateInProgress", markdown_only("TodoCreateInProgress", create_todo_in_progress_section), {
   desc = "Create TODO in current IN PROGRESS section",
 })
 
-vim.api.nvim_create_user_command("TodoToday", create_or_jump_today_worklog, {
+vim.api.nvim_create_user_command("TodoToday", markdown_only("TodoToday", create_or_jump_today_worklog), {
   desc = "Create or jump to today's worklog section",
 })
 
-map({ "n", "v" }, "<leader>jj", cycle_todo_next, {
+map({ "n", "v" }, "<leader>jj", markdown_only("Cycle TODO state", cycle_todo_next), {
   desc = "Cycle TODO state and normalize current section",
 })
 
-map({ "n", "v" }, "<leader>jJ", cycle_todo_previous, {
+map({ "n", "v" }, "<leader>jJ", markdown_only("Cycle TODO state backwards", cycle_todo_previous), {
   desc = "Cycle TODO state backwards and normalize current section",
 })
 
-map({ "n", "v" }, "<leader>jd", mark_todo_done, {
+map({ "n", "v" }, "<leader>jd", markdown_only("Mark TODO done", mark_todo_done), {
   desc = "Mark TODO done and move to current archive",
 })
 
-map({ "n", "v" }, "<leader>ju", mark_todo_unchecked, {
+map({ "n", "v" }, "<leader>ju", markdown_only("Mark TODO undone", mark_todo_unchecked), {
   desc = "Mark TODO undone and move to current TODO section",
 })
 
-map("n", "<leader>jn", create_todo_in_todo_section, {
+map("n", "<leader>jn", markdown_only("Create TODO", create_todo_in_todo_section), {
   desc = "Create TODO in current TODO section",
 })
 
-map({ "n", "v" }, "<leader>jr", remove_todo_under_cursor, {
+map({ "n", "v" }, "<leader>jr", markdown_only("Remove TODO marker", remove_todo_under_cursor), {
   desc = "Remove TODO marker",
 })
 
-map("n", "<leader>ja", normalize_todo_sections, {
+map("n", "<leader>ja", markdown_only("Normalize TODO sections", normalize_todo_sections), {
   desc = "Normalize current TODO sections",
 })
 
-map({ "n", "v" }, "<leader>ji", mark_todo_in_progress, {
+map({ "n", "v" }, "<leader>ji", markdown_only("Mark TODO in progress", mark_todo_in_progress), {
   desc = "Mark TODO in progress and move to current IN PROGRESS",
 })
 
-map("n", "<leader>jD", create_or_jump_today_worklog, {
+map("n", "<leader>jD", markdown_only("Create/jump to today worklog", create_or_jump_today_worklog), {
   desc = "Create/jump to today's worklog date section",
 })
 
-map("n", "<leader>js", create_or_jump_today_worklog, {
+map("n", "<leader>js", markdown_only("Create/jump to today worklog", create_or_jump_today_worklog), {
   desc = "Create/jump to today's worklog date section",
 })
 
@@ -1539,31 +1553,31 @@ local function metadata_jump(next_direction)
   vim.notify("No metadata tag found", vim.log.levels.INFO)
 end
 
-map("n", "<leader>ka", metadata_add_or_update_current_line, {
+map("n", "<leader>ka", markdown_only("Metadata: add/update tag", metadata_add_or_update_current_line), {
   desc = "Metadata: add/update tag on current line",
 })
 
-map("n", "<leader>kr", metadata_remove_current_line, {
+map("n", "<leader>kr", markdown_only("Metadata: remove tag", metadata_remove_current_line), {
   desc = "Metadata: remove tag under cursor/current line",
 })
 
-map("n", "<leader>kR", metadata_remove_user_metadata_current_line, {
+map("n", "<leader>kR", markdown_only("Metadata: remove user tags", metadata_remove_user_metadata_current_line), {
   desc = "Metadata: remove user tags, keep worklog time tags",
 })
 
-map("n", "<leader>kv", metadata_edit_value_under_cursor, {
+map("n", "<leader>kv", markdown_only("Metadata: edit value", metadata_edit_value_under_cursor), {
   desc = "Metadata: edit value under cursor",
 })
 
-map("n", "<leader>k]", function()
+map("n", "<leader>k]", markdown_only("Metadata: jump to next tag", function()
   metadata_jump(true)
-end, {
+end), {
   desc = "Metadata: jump to next tag",
 })
 
-map("n", "<leader>k[", function()
+map("n", "<leader>k[", markdown_only("Metadata: jump to previous tag", function()
   metadata_jump(false)
-end, {
+end), {
   desc = "Metadata: jump to previous tag",
 })
 
@@ -1725,12 +1739,6 @@ if checkmate_ok then
 
       files = {
         "*.md",
-        "todo",
-        "TODO",
-        "todo.md",
-        "TODO.md",
-        "*.todo",
-        "*.todo.md",
       },
 
       default_list_marker = "-",
