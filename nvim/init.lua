@@ -170,7 +170,7 @@ local DAY_IN_PROGRESS_SECTION = "### IN PROGRESS"
 local DAY_ARCHIVE_SECTION = "### ARCHIVE"
 
 local DAY_HEADING_PATTERN = "^#%s+%d%d%-%d%d%-%d%d%d%d%s*$"
-local DAY_SEPARATOR = "---------"
+local DAY_SEPARATOR = "+---------------+"
 
 local function refresh_checkmate_visuals()
   pcall(vim.cmd, "redraw!")
@@ -384,6 +384,11 @@ local function strip_worklog_time_metadata(text)
   remove_tag("%s*@done%(([^)]*)%)", "end_time")
   remove_tag("%s*@lasted%(([^)]*)%)", "lasted")
 
+  -- Jezeli tagi byly w bloku:
+  -- [ @start(...) @end(...) @lasted(...) ],
+  -- po ich wyjeciu zostaje puste "[ ]", wiec je sprzatamy.
+  text = text:gsub("%s*%[%s*%]%s*", " ")
+
   text = trim_text(text)
 
   return metadata.start, metadata.end_time, metadata.lasted, text
@@ -393,6 +398,10 @@ local function append_worklog_time_metadata(text, metadata_parts)
   text = trim_text(text)
 
   local suffix = table.concat(metadata_parts, " ")
+
+  if suffix ~= "" then
+    suffix = "[ " .. suffix .. " ]"
+  end
 
   if text == "" then
     if suffix == "" then
@@ -1828,7 +1837,7 @@ end
 -- g c        -> zakomentuj/odkomentuj zaznaczenie w visualu
 
 -- Custom TODO / Worklog:
--- Space j D  -> dodaj/przejdz do dzisiejszej sekcji # dd-mm-yyyy z separatorem ---------
+-- Space j D  -> dodaj/przejdz do dzisiejszej sekcji # dd-mm-yyyy z separatorem +---------------+
 -- Space j s  -> to samo co Space j D
 -- Space j n  -> dodaj nowe TODO w aktualnym dniu albo globalnym ## TODO
 -- Space j j  -> TODO -> IN PROGRESS @start -> ARCHIVE @start/@end/@lasted -> TODO w aktualnym dniu
