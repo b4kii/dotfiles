@@ -906,6 +906,12 @@ local function normalize_todo_lines(lines, scope)
 
   trim_trailing_blank_lines(output)
 
+  -- W dziennym worklogu zostawiamy jedna pusta linie po ARCHIVE,
+  -- zeby separator nastepnego dnia nie przyklejal sie do sekcji.
+  if scope.daily then
+    append_blank(output)
+  end
+
   return output
 end
 
