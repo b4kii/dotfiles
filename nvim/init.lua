@@ -827,12 +827,147 @@ local function append_todo_item(output, item)
   append_line(output, item)
 end
 
+local function todo_marker_prefix_and_suffix(line)
+  local prefix, suffix = line:match("^(%s*[-*+]%s+)%[.-%](.*)$")
+
+  if prefix then
+    return prefix, suffix
+  end
+
+  prefix, suffix = line:match("^(%s*%d+%.%s+)%[.-%](.*)$")
+
+  if prefix then
+    return prefix, suffix
+  end
+
+  prefix, suffix = match_unicode_todo_marker(line)
+
+  if prefix then
+    return prefix, suffix
+  end
+
+  return nil, nil
+end
+
+local function worklog_metadata_parts_for_state(state, start_time, end_time, lasted)
+  if state == "unchecked" then
+    return {}
+  end
+
+  if state == "in_progress" then
+    start_time = start_time or now_worklog_datetime()
+
+    return {
+      "@start(" .. start_time .. ")",
+    }
+  end
+
+  if state == "checked" then
+    local now = now_worklog_datetime()
+    start_time = start_time or now
+    end_time = end_time or now
+    lasted = format_worklog_duration(start_time, end_time) or lasted or "0m"
+
+    return {
+      "@start(" .. start_time .. ")",
+      "@end(" .. end_time .. ")",
+      "@lasted(" .. lasted .. ")",
+    }
+  end
+
+  return {}
+end
+
+local function append_worklog_metadata_to_line_end(line, metadata_parts)
+  if #metadata_parts == 0 then
+    return line
+  end
+
+  local suffix = "[ " .. table.concat(metadata_parts, " ") .. " ]"
+  local text = (line or ""):gsub("%s+$", "")
+
+  if text == "" then
+    return suffix
+  end
+
+  return text .. " " .. suffix
+end
+
+local function clean_continuation_worklog_metadata(line)
+  local indent = (line or ""):match("^(%s*)") or ""
+  local start_time, end_time, lasted, text = strip_worklog_time_metadata(line)
+
+  if text == "" then
+    return start_time, end_time, lasted, indent
+  end
+
+  return start_time, end_time, lasted, indent .. text
+end
+
 local function make_todo_block(first_line, state, continuation_lines)
+  continuation_lines = continuation_lines or {}
+
+  -- Jednowierszowy task dziala jak dotychczas.
+  if #continuation_lines == 0 then
+    return {
+      set_todo_state(first_line, state),
+    }
+  end
+
+  local mark = ({
+    unchecked = " ",
+    in_progress = "/",
+    checked = "x",
+  })[state]
+
+  if not mark then
+    return {
+      first_line,
+    }
+  end
+
+  local first_prefix, first_suffix = todo_marker_prefix_and_suffix(first_line)
+
+  if not first_prefix then
+    local block = {
+      set_todo_state(first_line, state),
+    }
+
+    for _, line in ipairs(continuation_lines) do
+      table.insert(block, line)
+    end
+
+    return block
+  end
+
+  -- Z pierwszej linii zdejmujemy worklog metadata, bo w tasku multiline
+  -- kanoniczne miejsce na @start/@end/@lasted to koniec ostatniej linii taska.
+  local start_time, end_time, lasted, first_text = strip_worklog_time_metadata(first_suffix)
+  local cleaned_continuation_lines = {}
+
+  for _, line in ipairs(continuation_lines) do
+    local line_start, line_end, line_lasted, clean_line = clean_continuation_worklog_metadata(line)
+
+    -- Metadata znaleziona w dalszych liniach wygrywa z metadata z pierwszej linii.
+    -- To chroni stary @start, gdy zmieniasz fixed multiline task z IN PROGRESS na ARCHIVE:
+    -- set_todo_state() moze chwilowo dodac nowy @start na pierwszej linii przed normalize.
+    start_time = line_start or start_time
+    end_time = line_end or end_time
+    lasted = line_lasted or lasted
+
+    table.insert(cleaned_continuation_lines, clean_line)
+  end
+
+  local metadata_parts = worklog_metadata_parts_for_state(state, start_time, end_time, lasted)
+
+  cleaned_continuation_lines[#cleaned_continuation_lines] =
+    append_worklog_metadata_to_line_end(cleaned_continuation_lines[#cleaned_continuation_lines], metadata_parts)
+
   local block = {
-    set_todo_state(first_line, state),
+    first_prefix .. "[" .. mark .. "]" .. normalize_plain_todo_suffix(first_text),
   }
 
-  for _, line in ipairs(continuation_lines or {}) do
+  for _, line in ipairs(cleaned_continuation_lines) do
     table.insert(block, line)
   end
 
