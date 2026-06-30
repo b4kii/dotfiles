@@ -152,7 +152,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- =========================
 -- TODO SECTIONS / WORKLOG
--- custom logika zamiast Checkmate archive/smart toggle
+-- custom logika zamiast Checkmate checked/smart toggle
 --
 -- Jesli kursor jest w sekcji dnia "# dd-mm-yyyy", wszystkie operacje TODO
 -- dzialaja tylko w obrebie tego dnia i uzywaja podsekcji:
@@ -377,11 +377,12 @@ local function strip_worklog_time_metadata(text)
     end)
   end
 
-  -- Wspieramy tez aliasy z przykladu: @started(...) i @done(...), ale zapisujemy juz jako @start/@end.
+  -- Wspieramy tez aliasy: @started(...), @archive(...) i @archived(...), ale zapisujemy juz jako @start/@end.
   remove_tag("%s*@start%(([^)]*)%)", "start")
   remove_tag("%s*@started%(([^)]*)%)", "start")
   remove_tag("%s*@end%(([^)]*)%)", "end_time")
-  remove_tag("%s*@done%(([^)]*)%)", "end_time")
+  remove_tag("%s*@archive%(([^)]*)%)", "end_time")
+  remove_tag("%s*@archived%(([^)]*)%)", "end_time")
   remove_tag("%s*@lasted%(([^)]*)%)", "lasted")
 
   -- Jezeli tagi byly w bloku:
@@ -433,7 +434,7 @@ local function build_worklog_todo_suffix(suffix, state)
     })
   end
 
-  if state == "done" then
+  if state == "checked" then
     local now = now_worklog_datetime()
     start_time = start_time or now
     end_time = end_time or now
@@ -453,7 +454,7 @@ local function make_todo_line(state)
   local marks = {
     unchecked = " ",
     in_progress = "/",
-    done = "x",
+    checked = "x",
   }
 
   local mark = marks[state] or " "
@@ -471,7 +472,7 @@ local function match_unicode_todo_marker(line)
   local markers = {
     unchecked = "○",
     in_progress = "◉",
-    done = "●",
+    checked = "●",
   }
 
   for state, marker in pairs(markers) do
@@ -504,14 +505,14 @@ local function is_in_progress_todo(line)
   return state == "in_progress"
 end
 
-local function is_done_todo(line)
-  if line:match("^%s*[-*+]%s+%[[xX]%]%s*") ~= nil
-    or line:match("^%s*%d+%.%s+%[[xX]%]%s*") ~= nil then
+local function is_checked_todo(line)
+  if line:match("^%s*[-*+]%s+%[[xXaA]%]%s*") ~= nil
+    or line:match("^%s*%d+%.%s+%[[xXaA]%]%s*") ~= nil then
     return true
   end
 
   local _, _, state = match_unicode_todo_marker(line)
-  return state == "done"
+  return state == "checked"
 end
 
 local function get_todo_state(line)
@@ -523,8 +524,8 @@ local function get_todo_state(line)
     return "in_progress"
   end
 
-  if is_done_todo(line) then
-    return "done"
+  if is_checked_todo(line) then
+    return "checked"
   end
 
   return nil
@@ -534,7 +535,7 @@ local function set_todo_state(line, state)
   local marks = {
     unchecked = " ",
     in_progress = "/",
-    done = "x",
+    checked = "x",
   }
 
   local mark = marks[state]
@@ -808,19 +809,58 @@ local function insert_section_after_first_line(lines, section_name)
   return output
 end
 
-local function insert_items_after_section(lines, section_name, items, create_strategy)
-  if #items == 0 then
-    if create_strategy == "global_top" then
-      return insert_section_near_top(lines, section_name)
+local function is_managed_todo_section(line, scope)
+  return is_section(line, scope.todo)
+    or is_section(line, scope.in_progress)
+    or is_section(line, scope.archive)
+end
+
+local function append_todo_item(output, item)
+  if type(item) == "table" then
+    for _, line in ipairs(item) do
+      append_line(output, line)
     end
 
-    if create_strategy == "after_first_line" then
-      return insert_section_after_first_line(lines, section_name)
-    end
-
-    return lines
+    return
   end
 
+  append_line(output, item)
+end
+
+local function make_todo_block(first_line, state, continuation_lines)
+  local block = {
+    set_todo_state(first_line, state),
+  }
+
+  for _, line in ipairs(continuation_lines or {}) do
+    table.insert(block, line)
+  end
+
+  return block
+end
+
+local function collect_todo_continuation_lines(lines, start_index, scope)
+  local continuation = {}
+  local i = start_index
+
+  while i <= #lines do
+    local line = lines[i]
+
+    if is_managed_todo_section(line, scope)
+      or is_heading(line)
+      or get_todo_state(line)
+      or vim.trim(line or "") == "" then
+      break
+    end
+
+    table.insert(continuation, line)
+    i = i + 1
+  end
+
+  return continuation, i
+end
+
+local function insert_items_after_section(lines, section_name, items, create_strategy)
   local section_index = find_section(lines, section_name)
   local output = {}
 
@@ -831,6 +871,8 @@ local function insert_items_after_section(lines, section_name, items, create_str
     elseif create_strategy == "after_first_line" then
       lines = insert_section_after_first_line(lines, section_name)
       section_index = find_section(lines, section_name)
+    elseif #items == 0 then
+      return lines
     else
       for _, line in ipairs(lines) do
         append_line(output, line)
@@ -842,11 +884,15 @@ local function insert_items_after_section(lines, section_name, items, create_str
       append_blank(output)
 
       for _, item in ipairs(items) do
-        append_line(output, item)
+        append_todo_item(output, item)
       end
 
       return output
     end
+  end
+
+  if not section_index then
+    return lines
   end
 
   local i = 1
@@ -857,18 +903,37 @@ local function insert_items_after_section(lines, section_name, items, create_str
     if i == section_index then
       i = i + 1
 
-      while i <= #lines and lines[i] == "" do
+      -- Usun wszystkie puste linie po naglowku sekcji.
+      -- Ponizej dodajemy dokladnie jedna pusta linie tam, gdzie jest potrzebna.
+      while i <= #lines and vim.trim(lines[i] or "") == "" do
         i = i + 1
       end
 
-      append_blank(output)
-
-      for _, item in ipairs(items) do
-        append_line(output, item)
-      end
-
-      if i <= #lines then
+      if #items > 0 then
+        -- Sekcja z taskami:
+        -- ### TODO
+        --
+        -- - [ ] task
         append_blank(output)
+
+        for _, item in ipairs(items) do
+          append_todo_item(output, item)
+        end
+
+        -- Jedna pusta linia po taskach przed nastepna sekcja/trescia.
+        if i <= #lines then
+          append_blank(output)
+        end
+      else
+        -- Sekcja pusta:
+        -- ### TODO
+        --
+        -- ### IN PROGRESS
+        --
+        -- Zostawiamy dokladnie jedna pusta linie, jezeli dalej jest jakas tresc.
+        if i <= #lines then
+          append_blank(output)
+        end
       end
     else
       i = i + 1
@@ -881,18 +946,46 @@ end
 local function normalize_todo_lines(lines, scope)
   local unchecked = {}
   local in_progress = {}
-  local done = {}
+  local archive = {}
   local rest = {}
 
-  for _, line in ipairs(lines) do
-    if is_unchecked_todo(line) then
-      table.insert(unchecked, set_todo_state(line, "unchecked"))
-    elseif is_in_progress_todo(line) then
-      table.insert(in_progress, set_todo_state(line, "in_progress"))
-    elseif is_done_todo(line) then
-      table.insert(done, set_todo_state(line, "done"))
-    else
+  local inside_managed_section = false
+  local i = 1
+
+  while i <= #lines do
+    local line = lines[i]
+
+    if is_managed_todo_section(line, scope) then
+      inside_managed_section = true
       table.insert(rest, line)
+      i = i + 1
+    elseif is_heading(line) then
+      inside_managed_section = false
+      table.insert(rest, line)
+      i = i + 1
+    else
+      local state = get_todo_state(line)
+
+      if state then
+        local continuation_lines, next_index = collect_todo_continuation_lines(lines, i + 1, scope)
+
+        if state == "unchecked" then
+          table.insert(unchecked, make_todo_block(line, "unchecked", continuation_lines))
+        elseif state == "in_progress" then
+          table.insert(in_progress, make_todo_block(line, "in_progress", continuation_lines))
+        elseif state == "checked" then
+          table.insert(archive, make_todo_block(line, "checked", continuation_lines))
+        end
+
+        i = next_index
+      elseif inside_managed_section and vim.trim(line or "") == "" then
+        -- Puste wiersze w zarzadzanych sekcjach sa tylko formatowaniem.
+        -- Usuwamy je, zeby po przeniesieniu taska nie zostawaly smieci.
+        i = i + 1
+      else
+        table.insert(rest, line)
+        i = i + 1
+      end
     end
   end
 
@@ -902,7 +995,7 @@ local function normalize_todo_lines(lines, scope)
 
   output = insert_items_after_section(output, scope.todo, unchecked, todo_create_strategy)
   output = insert_items_after_section(output, scope.in_progress, in_progress, false)
-  output = insert_items_after_section(output, scope.archive, done, false)
+  output = insert_items_after_section(output, scope.archive, archive, false)
 
   trim_trailing_blank_lines(output)
 
@@ -980,8 +1073,8 @@ end
 local function cycle_todo_next()
   local next_state = {
     unchecked = "in_progress",
-    in_progress = "done",
-    done = "unchecked",
+    in_progress = "checked",
+    checked = "unchecked",
   }
 
   transform_todos_in_range(function(line, state)
@@ -991,9 +1084,9 @@ end
 
 local function cycle_todo_previous()
   local previous_state = {
-    unchecked = "done",
+    unchecked = "checked",
     in_progress = "unchecked",
-    done = "in_progress",
+    checked = "in_progress",
   }
 
   transform_todos_in_range(function(line, state)
@@ -1001,9 +1094,9 @@ local function cycle_todo_previous()
   end)
 end
 
-local function mark_todo_done()
+local function mark_todo_archive()
   transform_todos_in_range(function(line)
-    return set_todo_state(line, "done")
+    return set_todo_state(line, "checked")
   end)
 end
 
@@ -1103,7 +1196,7 @@ local function create_todo_in_section(section_kind, state)
   local marks = {
     unchecked = " ",
     in_progress = "/",
-    done = "x",
+    checked = "x",
   }
 
   local mark = marks[state]
@@ -1265,12 +1358,12 @@ map({ "n", "v" }, "<leader>jJ", markdown_only("Cycle TODO state backwards", cycl
   desc = "Cycle TODO state backwards and normalize current section",
 })
 
-map({ "n", "v" }, "<leader>jd", markdown_only("Mark TODO done", mark_todo_done), {
-  desc = "Mark TODO done and move to current archive",
+map({ "n", "v" }, "<leader>jd", markdown_only("Mark TODO archive", mark_todo_archive), {
+  desc = "Mark TODO archive and move to current ARCHIVE",
 })
 
-map({ "n", "v" }, "<leader>ju", markdown_only("Mark TODO undone", mark_todo_unchecked), {
-  desc = "Mark TODO undone and move to current TODO section",
+map({ "n", "v" }, "<leader>ju", markdown_only("Mark TODO unchecked", mark_todo_unchecked), {
+  desc = "Mark TODO unchecked and move to current TODO section",
 })
 
 map("n", "<leader>jn", markdown_only("Create TODO", create_todo_in_todo_section), {
@@ -1306,7 +1399,7 @@ local WORKLOG_SYSTEM_METADATA = {
   start = true,
   started = true,
   ["end"] = true,
-  done = true,
+  archive = true,
   lasted = true,
 }
 
@@ -1764,22 +1857,7 @@ if checkmate_ok then
         enabled = false,
       },
 
-      -- TODO i IN PROGRESS bez przekreslenia.
-      -- DONE/ARCHIVE z przekresleniem tylko glownej linii,
-      -- bez additional content, zeby nie przekreslalo wielu linii naraz.
-      style = {
-        CheckmateUncheckedMarker = { strikethrough = false },
-        CheckmateUncheckedMainContent = { strikethrough = false },
-        CheckmateUncheckedAdditionalContent = { strikethrough = false },
-
-        CheckmateInProgressMarker = { strikethrough = false },
-        CheckmateInProgressMainContent = { strikethrough = false },
-        CheckmateInProgressAdditionalContent = { strikethrough = false },
-
-        CheckmateCheckedMarker = { strikethrough = true },
-        CheckmateCheckedMainContent = { strikethrough = true },
-        CheckmateCheckedAdditionalContent = { strikethrough = false },
-      },
+      -- Nie nadpisujemy style Checkmate: domyslne CheckedMainContent robi strikethrough.
 
       todo_states = {
         unchecked = {
@@ -1846,9 +1924,9 @@ end
 -- Space j D  -> dodaj/przejdz do dzisiejszej sekcji # dd-mm-yyyy z separatorem +---------------+
 -- Space j s  -> to samo co Space j D
 -- Space j n  -> dodaj nowe TODO w aktualnym dniu albo globalnym ## TODO
--- Space j j  -> TODO -> IN PROGRESS @start -> ARCHIVE @start/@end/@lasted -> TODO w aktualnym dniu
+-- Space j j  -> TODO -> IN PROGRESS @start -> ARCHIVE/checked @start/@end/@lasted -> TODO w aktualnym dniu
 -- Space j J  -> cykl wstecz w aktualnym dniu
--- Space j d  -> oznacz done, dodaj @end/@lasted na koncu i przenies do ARCHIVE w aktualnym dniu
+-- Space j d  -> oznacz archive, dodaj @end/@lasted na koncu i przenies do ARCHIVE w aktualnym dniu
 -- Space j u  -> odznacz i przenies do TODO w aktualnym dniu
 -- Space j r  -> usun checkbox
 -- Space j a  -> recznie odswiez sekcje aktualnego dnia
