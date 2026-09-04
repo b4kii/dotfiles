@@ -1,7 +1,39 @@
 # ~/.config/sway/config
 #
-# Sway config based on my old i3 config
+# Sway config
 #
+# ============================================================
+# REQUIRED PACKAGES
+# ============================================================
+#
+# Launcher + clipboard manager:
+#
+#   sudo dnf install rofi copyq wl-clipboard
+#
+# XDG portals for Sway / Wayland:
+#
+#   sudo dnf install \
+#       xdg-desktop-portal \
+#       xdg-desktop-portal-wlr \
+#       xdg-desktop-portal-gtk
+#
+# Shortcuts:
+#
+#   Super+D -> Rofi application launcher
+#   Super+V -> CopyQ clipboard history
+#
+# CopyQ:
+#   - clipboard history
+#   - search
+#   - images
+#   - pinned items
+#   - tags
+#
+# CopyQ is started by Sway, so its own Autostart option
+# does not need to be enabled.
+#
+# ============================================================
+
 
 # ============================================================
 # BASIC
@@ -17,14 +49,22 @@ floating_modifier $mod normal
 
 
 # ============================================================
-# WAYLAND / SYSTEMD ENVIRONMENT
+# WAYLAND / SYSTEMD / XDG PORTALS
 # ============================================================
 
-# Make WAYLAND_DISPLAY/SWAYSOCK visible to systemd user services.
-# Useful for programs such as Vicinae.
+# Make Sway / Wayland environment visible to systemd user
+# services and D-Bus activated applications.
 
-exec systemctl --user import-environment WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
+exec systemctl --user import-environment \
+    WAYLAND_DISPLAY \
+    SWAYSOCK \
+    XDG_CURRENT_DESKTOP
+
+exec dbus-update-activation-environment \
+    --systemd \
+    WAYLAND_DISPLAY \
+    SWAYSOCK \
+    XDG_CURRENT_DESKTOP=sway
 
 
 # ============================================================
@@ -37,8 +77,9 @@ exec dex --autostart --environment sway
 # NetworkManager tray icon
 exec nm-applet --indicator
 
-# Vicinae daemon
-exec systemctl --user start vicinae.service
+# CopyQ clipboard manager
+# Start in background without showing the main window.
+exec copyq --start-server hide
 
 # Status bar
 exec waybar
@@ -73,20 +114,27 @@ bindsym $mod+Shift+q kill
 
 
 # ============================================================
-# VICINAE
+# ROFI
 # ============================================================
 
-# Main launcher / Raycast
-bindsym $mod+d exec vicinae toggle
+# Application launcher
+bindsym $mod+d exec rofi -show drun
+
+
+# ============================================================
+# COPYQ
+# ============================================================
 
 # Clipboard history
-bindsym $mod+v exec vicinae vicinae://extensions/vicinae/clipboard/history
+#
+# Super+V:
+# - if CopyQ is hidden -> show it
+# - if CopyQ is visible -> hide it
+bindsym $mod+v exec copyq -e "toggle()"
 
 
 # ============================================================
 # FOCUS
-#
-# Same layout as my old i3 config:
 #
 # j = left
 # k = down
@@ -119,18 +167,6 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
-
-
-# ============================================================
-# SPLITS
-# ============================================================
-
-# Horizontal split
-bindsym $mod+h split h
-
-# Super+V is now Vicinae clipboard,
-# so vertical split moved here:
-bindsym $mod+Shift+v split v
 
 
 # ============================================================
