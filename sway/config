@@ -1,0 +1,296 @@
+# ~/.config/sway/config
+#
+# Sway config based on my old i3 config
+#
+
+# ============================================================
+# BASIC
+# ============================================================
+
+set $mod Mod4
+set $term wezterm
+
+font pango:monospace 8
+
+# Mod + mouse = move/resize floating windows
+floating_modifier $mod normal
+
+
+# ============================================================
+# WAYLAND / SYSTEMD ENVIRONMENT
+# ============================================================
+
+# Make WAYLAND_DISPLAY/SWAYSOCK visible to systemd user services.
+# Useful for programs such as Vicinae.
+
+exec systemctl --user import-environment WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
+
+
+# ============================================================
+# AUTOSTART
+# ============================================================
+
+# Start .desktop autostart applications
+exec dex --autostart --environment sway
+
+# NetworkManager tray icon
+exec nm-applet --indicator
+
+# Vicinae daemon
+exec systemctl --user start vicinae.service
+
+# Status bar
+exec waybar
+
+
+# ============================================================
+# IDLE / LOCK
+# ============================================================
+
+exec swayidle -w \
+    timeout 300 'swaylock -f' \
+    timeout 600 'swaymsg "output * power off"' \
+    resume 'swaymsg "output * power on"' \
+    before-sleep 'swaylock -f'
+
+# Manual lock
+bindsym $mod+Shift+x exec swaylock -f
+
+
+# ============================================================
+# TERMINAL
+# ============================================================
+
+bindsym $mod+Return exec $term
+
+
+# ============================================================
+# CLOSE WINDOW
+# ============================================================
+
+bindsym $mod+Shift+q kill
+
+
+# ============================================================
+# VICINAE
+# ============================================================
+
+# Main launcher / Raycast
+bindsym $mod+d exec vicinae toggle
+
+# Clipboard history
+bindsym $mod+v exec vicinae vicinae://extensions/vicinae/clipboard/history
+
+
+# ============================================================
+# FOCUS
+#
+# Same layout as my old i3 config:
+#
+# j = left
+# k = down
+# l = up
+# ; = right
+# ============================================================
+
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# Arrow keys
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+
+# ============================================================
+# MOVE WINDOWS
+# ============================================================
+
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+
+# ============================================================
+# SPLITS
+# ============================================================
+
+# Horizontal split
+bindsym $mod+h split h
+
+# Super+V is now Vicinae clipboard,
+# so vertical split moved here:
+bindsym $mod+Shift+v split v
+
+
+# ============================================================
+# FULLSCREEN
+# ============================================================
+
+bindsym $mod+f fullscreen toggle
+
+
+# ============================================================
+# LAYOUT
+# ============================================================
+
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+
+# ============================================================
+# FLOATING
+# ============================================================
+
+bindsym $mod+Shift+space floating toggle
+
+# Switch focus between floating and tiled windows
+bindsym $mod+space focus mode_toggle
+
+# Parent container
+bindsym $mod+a focus parent
+
+
+# ============================================================
+# WORKSPACES
+# ============================================================
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Switch workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# Move window to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+
+# ============================================================
+# AUDIO - PipeWire / WirePlumber
+# ============================================================
+
+bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+
+bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym --locked XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+
+
+# ============================================================
+# MEDIA
+# ============================================================
+
+bindsym --locked XF86AudioPlay exec playerctl play-pause
+bindsym --locked XF86AudioPause exec playerctl play-pause
+bindsym --locked XF86AudioNext exec playerctl next
+bindsym --locked XF86AudioPrev exec playerctl previous
+bindsym --locked XF86AudioStop exec playerctl stop
+
+
+# ============================================================
+# BRIGHTNESS
+# ============================================================
+
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+
+
+# ============================================================
+# SCREENSHOTS
+# ============================================================
+
+# Print
+# Screenshot all outputs -> clipboard
+bindsym Print exec grim - | wl-copy
+
+# Super + Shift + S
+# Select region -> clipboard
+bindsym $mod+Shift+s exec sh -c 'grim -g "$(slurp)" - | wl-copy'
+
+# Super + Print
+# Select region -> open immediately in Swappy
+bindsym $mod+Print exec sh -c 'grim -g "$(slurp)" - | swappy -f -'
+
+
+# ============================================================
+# RESIZE MODE
+# ============================================================
+
+mode "resize" {
+
+    bindsym j resize shrink width 10 px
+    bindsym k resize grow height 10 px
+    bindsym l resize shrink height 10 px
+    bindsym semicolon resize grow width 10 px
+
+    bindsym Left resize shrink width 10 px
+    bindsym Down resize grow height 10 px
+    bindsym Up resize shrink height 10 px
+    bindsym Right resize grow width 10 px
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+
+# ============================================================
+# SWAY
+# ============================================================
+
+# Reload config
+bindsym $mod+Shift+c reload
+
+# Logout
+bindsym $mod+Shift+e exec swaynag \
+    -t warning \
+    -m 'Exit Sway?' \
+    -B 'Yes, exit' \
+    'swaymsg exit'
+
+
+# ============================================================
+# WALLPAPER
+# ============================================================
+
+# Uncomment and change path:
+#
+# output * bg ~/Pictures/wallpaper.jpg fill
