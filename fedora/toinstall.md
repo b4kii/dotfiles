@@ -7,3 +7,5 @@ lnav
 Visdata
 harlequin
 fastfetch
+wiremix
+impala
