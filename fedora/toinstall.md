@@ -6,3 +6,4 @@ Posting
 lnav
 Visdata
 harlequin
+fastfetch
