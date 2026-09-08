@@ -9,3 +9,4 @@ harlequin
 fastfetch
 wiremix
 impala
+wttr
