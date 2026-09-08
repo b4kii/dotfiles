@@ -29,8 +29,8 @@
 #   - pinned items
 #   - tags
 #
-# CopyQ is started by Sway, so its own Autostart option
-# does not need to be enabled.
+# CopyQ is not started automatically by this Sway config.
+# Open/toggle it with Super+Shift+V.
 #
 # ============================================================
 
@@ -77,10 +77,6 @@ exec dex --autostart --environment sway
 # NetworkManager tray icon
 exec nm-applet --indicator
 
-# CopyQ clipboard manager
-# Start in background without showing the main window.
-exec copyq --start-server hide
-
 # Status bar
 exec waybar
 
@@ -126,10 +122,6 @@ bindsym $mod+d exec rofi -show drun
 # ============================================================
 
 # Clipboard history
-#
-# Super+V:
-# - if CopyQ is hidden -> show it
-# - if CopyQ is visible -> hide it
 bindsym $mod+Shift+v exec copyq -e "toggle()"
 
 
@@ -189,6 +181,7 @@ bindsym $mod+v split v
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
+
 
 # ============================================================
 # FLOATING
