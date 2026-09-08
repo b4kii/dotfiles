@@ -130,7 +130,7 @@ bindsym $mod+d exec rofi -show drun
 # Super+V:
 # - if CopyQ is hidden -> show it
 # - if CopyQ is visible -> hide it
-bindsym $mod+v exec copyq -e "toggle()"
+bindsym $mod+Shift+v exec copyq -e "toggle()"
 
 
 # ============================================================
@@ -180,13 +180,15 @@ bindsym $mod+f fullscreen toggle
 # LAYOUT
 # ============================================================
 
+# Horizontal split
+bindsym $mod+h split h
+
+# Vertical split
+bindsym $mod+v split v
+
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-
-# Ustaw kierunek następnego podziału
-bindsym $mod+h split h
-bindsym $mod+b split v
 
 # ============================================================
 # FLOATING
