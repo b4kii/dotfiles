@@ -5,8 +5,9 @@
 #### Zainstaluj qmk msys 
 
 `https://github.com/qmk/qmk_distro_msys/releases`
+[qmk_msys](https://github.com/qmk/qmk_distro_msys/releases)
 ### Zainstaluj qmk toolbox
-`https://github.com/qmk/qmk_toolbox/releases/`
+[qmk_toolbox](https://github.com/qmk/qmk_toolbox/releases/)
 
 ```bash
 git clone --recurse-submodules -b wireless_playground --single-branch https://github.com/Keychron/qmk_firmware.git keychron_qmk
