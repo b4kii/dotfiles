@@ -4,7 +4,6 @@
 
 #### Zainstaluj qmk msys 
 
-`https://github.com/qmk/qmk_distro_msys/releases`
 [qmk_msys](https://github.com/qmk/qmk_distro_msys/releases)
 ### Zainstaluj qmk toolbox
 [qmk_toolbox](https://github.com/qmk/qmk_toolbox/releases/)
