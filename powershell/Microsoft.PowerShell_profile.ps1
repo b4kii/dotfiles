@@ -8,6 +8,8 @@ Set-PSReadLineOption -BellStyle None
 # Fzf
 Import-Module PSFzf
 Set-PsFzfOption -PSReadLineChordReverseHistory 'Alt+r'
+Set-PsFzfOption -PSReadLineChordProvider 'Alt+t'
+Set-PsFzfOption -PSReadLineChordSetLocation 'Alt+c'
 
 function ex {
 	explorer .
