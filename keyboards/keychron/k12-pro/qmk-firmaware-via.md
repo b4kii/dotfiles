@@ -38,9 +38,9 @@ Minimum:
         VIA_ENABLE = yes
 
 ### Zbuduj firmware firmware
-cd /c/Users/baki/keyboards/keychron_qmk 
-qmk compile -kb <keyboard> -km default
-qmk compile -kb keychron/k12_pro/ansi/rgb -km b4kii
+`cd /c/Users/baki/keyboards/keychron_qmk`
+`qmk compile -kb <keyboard> -km default`
+`qmk compile -kb keychron/k12_pro/ansi/rgb -km b4kii`
 
 ### Flash 
 https://keychron.be/pages/how-to-factory-reset-and-flash-firmware-for-your-k12-pro-keyboard
