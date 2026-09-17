@@ -9,12 +9,12 @@ wezterm.on("gui-startup", function()
   window:gui_window():maximize()
 end)
 
--- wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
---  local index = tab.tab_index + 1
---  return {
---    { Text = ' ' .. index .. ' ' },
---  }
--- end)
+wezterm.on('format-tab-title', function(tab)
+  local title = tab.active_pane.title
+
+  return wezterm.truncate_right(title, 25)
+end)
+
 
 return {
   color_scheme = 'Obsidian',
