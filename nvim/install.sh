@@ -81,7 +81,8 @@ else
   if [ -e "$TARGET" ]; then
     # An init.vim next to an init.lua is not merged -- Neovim loads one or the
     # other, so an old Vim config left behind silently wins or loses.
-    BACKUP="$TARGET.$(date +%Y%m%d-%H%M%S).bak"
+    BACKUP="$TARGET.bak"
+
     if [ "$FORCE" -eq 0 ]; then
       printf '   A config already exists at %s\n' "$TARGET"
       printf '   It will be moved to %s\n' "$BACKUP"
@@ -92,9 +93,14 @@ else
         *) echo 'Aborted.'; exit 1 ;;
       esac
     fi
+
+    # Remove previous backup
+    rm -rf "$BACKUP"
+
     mv "$TARGET" "$BACKUP"
     ok "existing config backed up to $BACKUP"
   fi
+
   mkdir -p "$TARGET"
   cp -R "$SOURCE"/. "$TARGET"/
   ok "config copied to $TARGET"

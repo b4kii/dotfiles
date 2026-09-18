@@ -59,22 +59,26 @@ $env:YAZI_FILE_ONE = $fileExe
 $configDir = Join-Path $env:APPDATA "yazi\config"
 New-Item -ItemType Directory -Force -Path $configDir | Out-Null
 
-$timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
 foreach ($name in @("yazi.toml", "theme.toml", "keymap.toml")) {
     $target = Join-Path $configDir $name
+    $backup = "$target.bak"
+
+    # Usuń poprzedni backup
+    Remove-Item $backup -Force -ErrorAction SilentlyContinue
+
     if (Test-Path $target) {
-        Copy-Item $target "$target.$timestamp.bak" -Force
-        Write-Host "Backup: $target.$timestamp.bak"
+        Copy-Item $target $backup -Force
+        Write-Host "Backup: $backup"
     }
 
     Copy-Item (Join-Path $PSScriptRoot $name) $target -Force
     Write-Host "Installed: $target"
 }
 
-$flavorDir = Join-Path $configDir "flavors\vscode-dark-plus.yazi"
+$flavorDir = Join-Path $configDir "flavors\kanagawa.yazi"
 if (-not (Test-Path $flavorDir)) {
     Write-Host "Installing VS Code Dark+ Yazi flavor..."
-    ya pkg add 956MB/vscode-dark-plus
+	ya pkg add dangooddd/kanagawa
 } else {
     Write-Host "VS Code Dark+ flavor already present."
 }

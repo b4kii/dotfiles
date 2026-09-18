@@ -82,22 +82,26 @@ script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 config_dir="$HOME/.config/yazi"
 mkdir -p "$config_dir"
 
-timestamp=$(date +%Y%m%d-%H%M%S)
 for name in yazi.toml theme.toml keymap.toml; do
     target="$config_dir/$name"
+
+    # Usuń poprzedni backup
+    rm -f "$target.bak"
+
     if [ -f "$target" ]; then
-        cp "$target" "$target.$timestamp.bak"
-        printf 'Backup: %s\n' "$target.$timestamp.bak"
+        cp "$target" "$target.bak"
+        printf 'Backup: %s\n' "$target.bak"
     fi
+
     cp "$script_dir/$name" "$target"
     printf 'Installed: %s\n' "$target"
 done
 
-if [ ! -d "$config_dir/flavors/vscode-dark-plus.yazi" ]; then
-    printf '%s\n' 'Installing VS Code Dark+ Yazi flavor...'
-    ya pkg add 956MB/vscode-dark-plus
+if [ ! -d "$config_dir/flavors/kanagawa.yazi" ]; then
+    printf '%s\n' 'Installing theme'
+	ya pkg add dangooddd/kanagawa
 else
-    printf '%s\n' 'VS Code Dark+ flavor already present.'
+    printf '%s\n' 'Theme present'
 fi
 
 ya cache clear

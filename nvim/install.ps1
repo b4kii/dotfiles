@@ -78,8 +78,7 @@ if ($source -ieq $target) {
   if (Test-Path $target) {
     # An init.vim next to an init.lua is not merged -- Neovim loads one or the
     # other, so an old Vim config left behind silently wins or loses.
-    $stamp  = Get-Date -Format 'yyyyMMdd-HHmmss'
-    $backup = "$target.$stamp.bak"
+    $backup = "$target.bak"
 
     if (-not $Force) {
       Say "   A config already exists at $target"
@@ -87,9 +86,14 @@ if ($source -ieq $target) {
       $answer = Read-Host '   Continue? [y/N]'
       if ($answer -notmatch '^(y|yes)$') { Say 'Aborted.'; exit 1 }
     }
+
+    # Usuń poprzedni backup
+    Remove-Item -LiteralPath $backup -Recurse -Force -ErrorAction SilentlyContinue
+
     Move-Item -LiteralPath $target -Destination $backup
     Ok "existing config backed up to $backup"
   }
+
   New-Item -ItemType Directory -Force -Path $target | Out-Null
   Copy-Item -Path (Join-Path $source '*') -Destination $target -Recurse -Force
   Ok "config copied to $target"
