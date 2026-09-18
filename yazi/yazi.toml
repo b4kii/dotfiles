@@ -70,7 +70,7 @@
 # Git, if missing:
 #   scoop install git
 #
-# VS Code Dark+ flavor:
+# Kanagawa:
 # ya pkg add dangooddd/kanagawa
 #
 # Clear image cache after changing preview dimensions:
@@ -179,6 +179,5 @@ image_quality = 85
 [opener]
 
 edit = [
-    { run = 'nvim %s', block = true, desc = "Edit with Neovim", for = "unix" },
-    { run = 'nvim %s', block = true, desc = "Edit with Neovim", for = "windows" },
+    { run = 'wezterm cli spawn --cwd %d1 -- nvim %s', orphan = true, desc = "Edit with Neovim in new WezTerm tab" },
 ]
