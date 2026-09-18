@@ -1,0 +1,9 @@
+#:schema https://yazi-rs.github.io/schemas/theme.json
+
+# VS Code Dark+ flavor.
+# Install once in each OS/user profile with:
+#   ya pkg add 956MB/vscode-dark-plus
+#
+# Using it for both light and dark terminal modes keeps Yazi visually stable.
+[flavor]
+dark = "kanagawa"
