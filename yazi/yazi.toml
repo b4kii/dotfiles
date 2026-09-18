@@ -1,1 +1,183 @@
+#:schema https://yazi-rs.github.io/schemas/yazi.json
 
+# =============================================================================
+# YAZI - CROSS PLATFORM CONFIG (Windows + Linux)
+# =============================================================================
+#
+# Config locations:
+#   Windows: %APPDATA%\yazi\config\yazi.toml
+#   Linux:   ~/.config/yazi/yazi.toml
+#
+# This config is intentionally mostly OS-independent.
+# OS-specific installation steps are documented below and in README.md.
+#
+# -----------------------------------------------------------------------------
+# WINDOWS - file.exe (IMPORTANT)
+# -----------------------------------------------------------------------------
+# Yazi uses file(1) to detect MIME types. On Windows, use file.exe shipped with
+# Git for Windows. Do NOT install a separate Scoop/Chocolatey 'file' package.
+#
+# Find Git:
+#   (Get-Command git).Source
+#
+# Common file.exe paths:
+#   Scoop Git:
+#     $env:USERPROFILE\scoop\apps\git\current\usr\bin\file.exe
+#
+#   Git installer:
+#     C:\Program Files\Git\usr\bin\file.exe
+#
+# Check Scoop path:
+#   Test-Path "$env:USERPROFILE\scoop\apps\git\current\usr\bin\file.exe"
+#
+# Robust one-time setup (checks both common locations):
+#
+#   $candidates = @(
+#       "$env:USERPROFILE\scoop\apps\git\current\usr\bin\file.exe",
+#       "C:\Program Files\Git\usr\bin\file.exe"
+#   )
+#
+#   $fileExe = $candidates |
+#       Where-Object { Test-Path $_ } |
+#       Select-Object -First 1
+#
+#   if (-not $fileExe) {
+#       throw "Git file.exe not found"
+#   }
+#
+#   [Environment]::SetEnvironmentVariable(
+#       "YAZI_FILE_ONE",
+#       $fileExe,
+#       "User"
+#   )
+#
+#   # Only needed for the CURRENT terminal session:
+#   $env:YAZI_FILE_ONE = $fileExe
+#
+# The User environment variable is persistent. You only set it once.
+# Restart WezTerm after setting it so new shells inherit the variable.
+#
+# Verify:
+#   $env:YAZI_FILE_ONE
+#   & $env:YAZI_FILE_ONE --version
+#
+# -----------------------------------------------------------------------------
+# WINDOWS - recommended Scoop installation
+# -----------------------------------------------------------------------------
+#   scoop install yazi
+#   scoop install ffmpeg 7zip jq poppler fd ripgrep fzf zoxide resvg imagemagick
+#
+# Git, if missing:
+#   scoop install git
+#
+# Kanagawa:
+# ya pkg add dangooddd/kanagawa
+#
+# Clear image cache after changing preview dimensions:
+#   ya cache clear
+#
+# -----------------------------------------------------------------------------
+# LINUX - examples
+# -----------------------------------------------------------------------------
+# Arch Linux:
+#   sudo pacman -S --needed yazi file ffmpeg 7zip jq poppler fd ripgrep fzf zoxide resvg imagemagick
+#
+# Debian/Ubuntu Yazi repository:
+#   curl -fsSL https://yazi-rs.github.io/builds/yazi-keyring.gpg | sudo tee /usr/share/keyrings/yazi-keyring.gpg >/dev/null
+#   echo 'deb [signed-by=/usr/share/keyrings/yazi-keyring.gpg] https://yazi-rs.github.io/builds/ stable main' | sudo tee /etc/apt/sources.list.d/yazi.list >/dev/null
+#   sudo apt update
+#   sudo apt install yazi
+#
+# Recommended Debian/Ubuntu helpers:
+#   sudo apt install file ffmpeg 7zip jq poppler-utils fd-find ripgrep fzf zoxide imagemagick
+#
+# Debian/Ubuntu calls fd 'fdfind'. If 'fd' is missing:
+#   mkdir -p ~/.local/bin
+#   ln -sf "$(command -v fdfind)" ~/.local/bin/fd
+#   export PATH="$HOME/.local/bin:$PATH"
+#
+# Theme:
+#   ya pkg add 956MB/vscode-dark-plus
+#
+# Full install scripts are included with this config:
+#   install-windows.ps1
+#   install-linux.sh
+# =============================================================================
+
+[mgr]
+# Layout: [ parent | current directory | preview ]
+# Large preview panel for source code, Markdown, logs and images.
+ratio = [1, 3, 5]
+
+sort_by = "natural"
+sort_sensitive = false
+sort_reverse = false
+sort_dir_first = true
+linemode = "size"
+show_hidden = false
+show_symlink = true
+scrolloff = 5
+
+[preview]
+# Wrap long source/text lines instead of horizontal clipping.
+wrap = "yes"
+tab_size = 4
+
+# Image preview cache limits. These work well with a wide 1:3:5 layout.
+# Run `ya cache clear` after changing max_width/max_height.
+max_width = 1200
+max_height = 1000
+image_delay = 30
+image_filter = "lanczos3"
+image_quality = 85
+
+# =============================================================================
+# Built-in preview support
+# =============================================================================
+# Text/code preview is built into Yazi, so no separate rules are required for
+# PHP, JS, TS, Lua, Python, TXT, Markdown, JSON, YAML, TOML, XML, SQL, etc.
+#
+# Recommended helper tools add richer previews/features:
+#   ffmpeg      - video thumbnails
+#   7zip        - archive preview/extraction
+#   jq          - JSON preview
+#   poppler     - PDF preview (pdftoppm)
+#   fd          - file search
+#   ripgrep     - content search
+#   fzf         - quick subtree navigation
+#   zoxide      - directory history navigation
+#   resvg       - SVG preview
+#   ImageMagick - HEIC, JPEG XL and font preview
+#
+# WezTerm supports Yazi image preview directly; no image-preview plugin is
+# required for normal JPG/PNG/WebP previews.
+# =============================================================================
+# =============================================================================
+# EDITOR
+# =============================================================================
+#
+# Domyslny edytor: Neovim
+#
+# Windows - ustaw jednorazowo:
+#
+#   [Environment]::SetEnvironmentVariable("EDITOR", "nvim", "User")
+#   [Environment]::SetEnvironmentVariable("VISUAL", "nvim", "User")
+#
+# Dla aktualnej sesji:
+#
+#   $env:EDITOR = "nvim"
+#   $env:VISUAL = "nvim"
+#
+#
+# Linux - ~/.bashrc lub ~/.zshrc:
+#
+#   export EDITOR=nvim
+#   export VISUAL=nvim
+#
+# =============================================================================
+
+[opener]
+
+edit = [
+    { run = 'wezterm cli spawn --cwd %d1 -- nvim %s', orphan = true, desc = "Edit with Neovim in new WezTerm tab" },
+]

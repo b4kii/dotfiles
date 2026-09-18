@@ -1,4 +1,5 @@
 set relativenumber
+let g:clipboard = 'osc52'
 set clipboard=unnamedplus
 set scrolloff=10
 set backspace=indent,eol,start

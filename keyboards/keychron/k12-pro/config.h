@@ -16,6 +16,26 @@
 // #define MOUSEKEY_WHEEL_MAX_SPEED 4
 // #define MOUSEKEY_WHEEL_TIME_TO_MAX 40
 
+// CD
+// #define MK_KINETIC_SPEED
+
+// #define MOUSEKEY_DELAY 2
+// #define MOUSEKEY_INTERVAL 8
+// #define MOUSEKEY_MOVE_DELTA 160        // 20 -> 160: rozpęd ~1,2 s -> ~0,5 s
+
+// #define MOUSEKEY_INITIAL_SPEED 300     // 2 -> 2 px/raport, wciąż precyzyjnie
+// #define MOUSEKEY_BASE_SPEED 10000      // 52 -> 80 px/raport
+// #define MOUSEKEY_DECELERATED_SPEED 125 // i tak było 125, teraz szczerze
+// #define MOUSEKEY_ACCELERATED_SPEED 14000  // blisko sufitu 15875
+
+// #define MOUSEKEY_WHEEL_INITIAL_MOVEMENTS 8
+// #define MOUSEKEY_WHEEL_BASE_MOVEMENTS 32
+// #define MOUSEKEY_WHEEL_ACCELERATED_MOVEMENTS 64
+// #define MOUSEKEY_WHEEL_DECELERATED_MOVEMENTS 4
+
+// #define MOUSEKEY_OVERLAP_RESET
+// CD
+
 #define MK_KINETIC_SPEED
 
 #define MOUSEKEY_DELAY 2

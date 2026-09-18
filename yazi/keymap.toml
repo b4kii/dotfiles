@@ -1,0 +1,16 @@
+#:schema https://yazi-rs.github.io/schemas/keymap.json
+
+# Open a shell in the current Yazi directory with '!'.
+# The same key works on Linux and Windows.
+
+[[mgr.prepend_keymap]]
+on = "!"
+for = "unix"
+run = 'shell "$SHELL" --block'
+desc = "Open shell here"
+
+[[mgr.prepend_keymap]]
+on = "!"
+for = "windows"
+run = 'shell "pwsh.exe" --block'
+desc = "Open PowerShell here"
