@@ -405,105 +405,146 @@ The flavor itself is not copied into this repository. Install/update it using Ya
 ya pkg add 956MB/vscode-dark-plus
 ```
 
-# =============================================================================
-# YAZI - CHEAT SHEET
-# =============================================================================
+# Yazi Cheat Sheet
 
-# NAWIGACJA
-j / ↓         następny plik
-k / ↑         poprzedni plik
-h / ←         katalog wyżej
-l / →         wejście do katalogu
-Enter         otwórz plik / katalog
-gg            początek listy
-G             koniec listy
-Ctrl+u        pół strony w górę
-Ctrl+d        pół strony w dół
+## Nawigacja
 
-# ZAZNACZANIE
-Space         zaznacz / odznacz
-Ctrl+a        zaznacz wszystko
-Ctrl+r        odwróć zaznaczenie
-v             visual mode
-Esc           wyczyść zaznaczenie / wyjdź z trybu
+| Skrót     | Akcja                 |
+| --------- | --------------------- |
+| `j` / `↓` | następny plik         |
+| `k` / `↑` | poprzedni plik        |
+| `h` / `←` | katalog wyżej         |
+| `l` / `→` | wejście do katalogu   |
+| `Enter`   | otwórz plik / katalog |
+| `gg`      | początek listy        |
+| `G`       | koniec listy          |
+| `Ctrl+u`  | pół strony w górę     |
+| `Ctrl+d`  | pół strony w dół      |
 
-# OPERACJE NA PLIKACH
-y             kopiuj
-x             wytnij
-p             wklej
-P             wklej z nadpisaniem
-d             przenieś do kosza
-D             usuń permanentnie
-r             zmień nazwę
-a             nowy plik / katalog
+## Zaznaczanie
 
-# PRZYKLAD:
-# a -> test.php
-# a -> nowy-folder/
+| Skrót    | Akcja                               |
+| -------- | ----------------------------------- |
+| `Space`  | zaznacz / odznacz                   |
+| `Ctrl+a` | zaznacz wszystko                    |
+| `Ctrl+r` | odwróć zaznaczenie                  |
+| `v`      | visual mode                         |
+| `Esc`    | wyczyść zaznaczenie / wyjdź z trybu |
 
-# UKRYTE PLIKI
-.             pokaż / ukryj hidden files
+## Operacje na plikach
 
-# WYSZUKIWANIE
-f             filtruj bieżącą listę
-/             szukaj nazwy na liście
-n             następny wynik
-N             poprzedni wynik
-s             szukaj plików przez fd
-S             szukaj w zawartości przez ripgrep
-Ctrl+s        przerwij wyszukiwanie
+| Skrót | Akcja               |
+| ----- | ------------------- |
+| `y`   | kopiuj              |
+| `x`   | wytnij              |
+| `p`   | wklej               |
+| `P`   | wklej z nadpisaniem |
+| `d`   | przenieś do kosza   |
+| `D`   | usuń permanentnie   |
+| `r`   | zmień nazwę         |
+| `a`   | nowy plik / katalog |
 
-# FZF / ZOXIDE
-z             szybkie wyszukiwanie przez fzf
-Z             skok do katalogu przez zoxide
+### Przykłady
 
-# KOPIOWANIE DO SCHOWKA
-cc            kopiuj pełną ścieżkę
-cd            kopiuj ścieżkę katalogu
-cf            kopiuj nazwę pliku
-cn            kopiuj nazwę bez rozszerzenia
+```text
+a -> test.php
+a -> nowy-folder/
+```
 
-# SZYBKIE KATALOGI
-gh            katalog domowy
-gc            ~/.config
-gd            Downloads
-gt            kosz
-g + Space     wpisz ścieżkę ręcznie
+## Ukryte pliki
 
-# SORTOWANIE
-, n           naturalne
-, N           naturalne odwrotnie
-, a           alfabetycznie
-, A           alfabetycznie odwrotnie
-, m           po dacie modyfikacji
-, M           po dacie modyfikacji odwrotnie
-, s           po rozmiarze
-, S           po rozmiarze odwrotnie
-, e           po rozszerzeniu
-, E           po rozszerzeniu odwrotnie
+| Skrót | Akcja                      |
+| ----- | -------------------------- |
+| `.`   | pokaż / ukryj hidden files |
 
-# TABY
-tt            nowy tab
-tr            zmień nazwę taba
-1..9          przejdź do taba
-[             poprzedni tab
-]             następny tab
-{             przesuń tab w lewo
-}             przesuń tab w prawo
-Ctrl+c        zamknij tab
+## Wyszukiwanie
 
-# PREVIEW
-Tab           szczegóły pliku
-J             przewiń preview w dół
-K             przewiń preview w górę
+| Skrót    | Akcja                               |
+| -------- | ----------------------------------- |
+| `f`      | filtruj bieżącą listę               |
+| `/`      | szukaj nazwy na liście              |
+| `n`      | następny wynik                      |
+| `N`      | poprzedni wynik                     |
+| `s`      | szukaj plików przez `fd`            |
+| `S`      | szukaj w zawartości przez `ripgrep` |
+| `Ctrl+s` | przerwij wyszukiwanie               |
 
-# SHELL
-;             uruchom komendę shell
-:             uruchom komendę i czekaj
-!             otwórz shell w bieżącym katalogu
-              (nasz custom keybind)
+## FZF / Zoxide
 
-# POMOC / WYJŚCIE
-F1            pomoc
-~             pomoc
-q             wyjście
+| Skrót | Akcja                            |
+| ----- | -------------------------------- |
+| `z`   | szybkie wyszukiwanie przez `fzf` |
+| `Z`   | skok do katalogu przez `zoxide`  |
+
+## Kopiowanie do schowka
+
+| Skrót | Akcja                         |
+| ----- | ----------------------------- |
+| `cc`  | kopiuj pełną ścieżkę          |
+| `cd`  | kopiuj ścieżkę katalogu       |
+| `cf`  | kopiuj nazwę pliku            |
+| `cn`  | kopiuj nazwę bez rozszerzenia |
+
+## Szybkie katalogi
+
+| Skrót         | Akcja                 |
+| ------------- | --------------------- |
+| `gh`          | katalog domowy        |
+| `gc`          | `~/.config`           |
+| `gd`          | `Downloads`           |
+| `gt`          | kosz                  |
+| `g` + `Space` | wpisz ścieżkę ręcznie |
+
+## Sortowanie
+
+| Skrót | Akcja                          |
+| ----- | ------------------------------ |
+| `, n` | naturalne                      |
+| `, N` | naturalne odwrotnie            |
+| `, a` | alfabetycznie                  |
+| `, A` | alfabetycznie odwrotnie        |
+| `, m` | po dacie modyfikacji           |
+| `, M` | po dacie modyfikacji odwrotnie |
+| `, s` | po rozmiarze                   |
+| `, S` | po rozmiarze odwrotnie         |
+| `, e` | po rozszerzeniu                |
+| `, E` | po rozszerzeniu odwrotnie      |
+
+## Taby
+
+| Skrót    | Akcja               |
+| -------- | ------------------- |
+| `tt`     | nowy tab            |
+| `tr`     | zmień nazwę taba    |
+| `1..9`   | przejdź do taba     |
+| `[`      | poprzedni tab       |
+| `]`      | następny tab        |
+| `{`      | przesuń tab w lewo  |
+| `}`      | przesuń tab w prawo |
+| `Ctrl+c` | zamknij tab         |
+
+## Preview
+
+| Skrót | Akcja                  |
+| ----- | ---------------------- |
+| `Tab` | szczegóły pliku        |
+| `J`   | przewiń preview w dół  |
+| `K`   | przewiń preview w górę |
+
+## Shell
+
+| Skrót | Akcja                            |
+| ----- | -------------------------------- |
+| `;`   | uruchom komendę shell            |
+| `:`   | uruchom komendę i czekaj         |
+| `!`   | otwórz shell w bieżącym katalogu |
+
+> `!` to nasz custom keybind.
+
+## Pomoc / wyjście
+
+| Skrót | Akcja   |
+| ----- | ------- |
+| `F1`  | pomoc   |
+| `~`   | pomoc   |
+| `q`   | wyjście |
