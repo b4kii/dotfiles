@@ -36,6 +36,12 @@ Link-File `
   "$Dotfiles\starship\starship.toml" `
   "$env:USERPROFILE\.config\starship.toml"
 
+# Neovim
+
+Link-File `
+"$Dotfiles\nvim" `
+"$env:LOCALAPPDATA\nvim"
+
 # Helix
 Link-File `
   "$Dotfiles\helix\config.toml" `
