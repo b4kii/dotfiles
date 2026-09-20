@@ -69,6 +69,19 @@ fi
 
 have git && ok 'git' || { fail 'git is required -- vim.pack clones plugins with it'; exit 1; }
 
+# Checked up front because the failure mode is otherwise baffling: the
+# tree-sitter CLI installs fine, then every parser build dies with
+# "Failed to execute the C compiler ... program not found".
+CC_FOUND=''
+for candidate in cc gcc clang zig; do
+  if have "$candidate"; then CC_FOUND="$candidate"; break; fi
+done
+if [ -n "$CC_FOUND" ]; then
+  ok "C compiler: $CC_FOUND"
+else
+  warn 'No C compiler found -- treesitter parsers cannot be built (installed below)'
+fi
+
 # ---------------------------------------------------------------------------
 step 'Config location'
 
@@ -81,11 +94,17 @@ else
   if [ -e "$TARGET" ]; then
     # An init.vim next to an init.lua is not merged -- Neovim loads one or the
     # other, so an old Vim config left behind silently wins or loses.
+    #
+    # Exactly ONE backup is kept. A timestamped name per run just piles up
+    # directories nobody ever looks at, so the previous backup is replaced.
     BACKUP="$TARGET.bak"
+    HAD_BACKUP=0
+    [ -e "$BACKUP" ] && HAD_BACKUP=1
 
     if [ "$FORCE" -eq 0 ]; then
       printf '   A config already exists at %s\n' "$TARGET"
       printf '   It will be moved to %s\n' "$BACKUP"
+      [ "$HAD_BACKUP" -eq 1 ] && printf '   The previous backup at %s will be REPLACED\n' "$BACKUP"
       printf '   Continue? [y/N] '
       read -r answer
       case "$answer" in
@@ -94,13 +113,22 @@ else
       esac
     fi
 
-    # Remove previous backup
-    rm -rf "$BACKUP"
+    if [ "$HAD_BACKUP" -eq 1 ]; then
+      rm -rf "$BACKUP"
+      # Report rather than letting mv fail with a confusing message.
+      if [ -e "$BACKUP" ]; then
+        fail "could not remove the old backup at $BACKUP -- move it away and re-run"
+        exit 1
+      fi
+    fi
 
     mv "$TARGET" "$BACKUP"
-    ok "existing config backed up to $BACKUP"
+    if [ "$HAD_BACKUP" -eq 1 ]; then
+      ok "existing config backed up to $BACKUP (previous backup replaced)"
+    else
+      ok "existing config backed up to $BACKUP"
+    fi
   fi
-
   mkdir -p "$TARGET"
   cp -R "$SOURCE"/. "$TARGET"/
   ok "config copied to $TARGET"
@@ -234,6 +262,22 @@ fi
 # ---------------------------------------------------------------------------
 if [ "$SKIP_PLUGINS" -eq 0 ]; then
   step 'Plugins and treesitter parsers'
+
+  # bash caches command lookups; a compiler installed a minute ago stays
+  # invisible without this. Neovim inherits this shell's environment, so if it
+  # cannot see a compiler, every parser build fails.
+  hash -r 2>/dev/null || true
+  CC_NOW=''
+  for candidate in cc gcc clang zig; do
+    if have "$candidate"; then CC_NOW="$candidate"; break; fi
+  done
+  if [ -n "$CC_NOW" ]; then
+    ok "parsers will build with: $CC_NOW"
+  else
+    warn 'still no C compiler visible -- treesitter parsers will be skipped'
+    warn '  open a new shell and re-run: ./install.sh --skip-tools'
+  fi
+
   info 'starting Neovim headless -- first run clones 19 plugins and builds parsers'
   if nvim --headless -c 'qa!' 2>&1 | grep -Ei 'installing|error' | while read -r l; do info "$l"; done; then
     ok 'plugins installed'

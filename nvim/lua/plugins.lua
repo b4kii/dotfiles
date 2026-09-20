@@ -9,6 +9,7 @@
 
 vim.pack.add({
   'https://github.com/nvim-lua/plenary.nvim',
+  'https://github.com/kdheepak/lazygit.nvim',
   'https://github.com/nvim-telescope/telescope.nvim',
   'https://github.com/stevearc/oil.nvim',
   'https://github.com/lewis6991/gitsigns.nvim',
@@ -193,6 +194,52 @@ require('lualine').setup({
 -- rest still works (0.12 ships parsers for c/lua/vim/vimdoc/markdown/query).
 require('nvim-treesitter').setup()
 
+-- The tree-sitter CLI only drives the build -- the actual compiling is done by
+-- a C compiler, and without one every parser dies with
+--   "Failed to execute the C compiler ... Error: program not found"
+-- once per Neovim start. So check for one first and say so plainly instead of
+-- letting that wall of red scroll past.
+--
+-- On Windows that check is NOT "is there a compiler in PATH". The CLI's `cc`
+-- backend targets MSVC and finds `cl.exe` through vswhere and the registry:
+--   * `cl` is usually absent from PATH even where every parser builds fine --
+--     putting it there is what vcvarsall.bat is for, and this does not need it;
+--   * a MinGW gcc in PATH is never consulted. Verified by inspecting a built
+--     parser: with gcc first in PATH it still links against VCRUNTIME140.
+--     Forcing it with CC=gcc does switch compilers, and then MinGW's ld refuses
+--     the \\?\-prefixed output path the CLI hands it ("cannot open output
+--     file ... Invalid argument"). gcc is simply not an answer on Windows.
+-- Probing for gcc here is what used to let install() run on a machine that
+-- could not possibly compile anything.
+local function c_compiler()
+  if vim.fn.has('win32') == 1 then
+    if vim.env.CC and vim.env.CC ~= '' then return vim.env.CC end
+
+    local vswhere = vim.fs.joinpath(
+      vim.env['ProgramFiles(x86)'] or 'C:/Program Files (x86)',
+      'Microsoft Visual Studio', 'Installer', 'vswhere.exe')
+    if vim.uv.fs_stat(vswhere) then
+      -- -requires, not a bare -latest: Build Tools installs with no C++
+      -- workload exist, and they contain no cl.exe.
+      local r = vim.system({
+        vswhere, '-products', '*', '-latest',
+        '-requires', 'Microsoft.VisualStudio.Component.VC.Tools.x86.x64',
+        '-property', 'installationPath',
+      }, { text = true }):wait()
+      if r.code == 0 and r.stdout and r.stdout:match('%S') then
+        return 'cl.exe (' .. vim.trim(r.stdout) .. ')'
+      end
+    end
+
+    return vim.fn.executable('cl') == 1 and 'cl' or nil
+  end
+
+  for _, exe in ipairs({ 'cc', 'gcc', 'clang' }) do
+    if vim.fn.executable(exe) == 1 then return exe end
+  end
+  return nil
+end
+
 if vim.fn.executable('tree-sitter') == 1 then
   local want = {
     -- no 'jsonc' here: it has no parser of its own, `json` covers it
@@ -205,8 +252,31 @@ if vim.fn.executable('tree-sitter') == 1 then
   local ts = require('nvim-treesitter')
   local have = (ts.get_installed and ts.get_installed()) or {}
   local missing = vim.tbl_filter(function(p) return not vim.tbl_contains(have, p) end, want)
+
   if #missing > 0 then
-    ts.install(missing)
+    local cc = c_compiler()
+    if cc then
+      ts.install(missing)
+    else
+      -- Once per session, not on every FileType event.
+      local hint = vim.fn.has('win32') == 1
+        and 'Windows needs MSVC -- gcc will not do:\n'
+          .. 'winget install --id Microsoft.VisualStudio.BuildTools -e --override '
+          .. '"--quiet --wait --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended"'
+        or (vim.fn.has('mac') == 1
+          and 'macOS: xcode-select --install'
+          or 'Linux: apt install build-essential  (or the distro equivalent)')
+
+      vim.schedule(function()
+        vim.notify(
+          ('nvim-treesitter: %d parser(s) missing, but no C compiler was found.\n')
+            :format(#missing)
+          .. 'Highlighting still works for the parsers bundled with Neovim.\n'
+          .. hint,
+          vim.log.levels.WARN
+        )
+      end)
+    end
   end
 end
 
@@ -353,6 +423,10 @@ map('n', ']t', function() require('todo-comments').jump_next() end,
   { desc = 'Todo: next comment' })
 map('n', '[t', function() require('todo-comments').jump_prev() end,
   { desc = 'Todo: previous comment' })
+
+map('n', '<leader>lg', '<Cmd>LazyGit<CR>', {
+  desc = 'LazyGit',
+})
 
 -- --- blink.cmp -------------------------------------------------------------
 -- Replaces the built-in `vim.lsp.completion`. What it buys over native:

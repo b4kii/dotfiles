@@ -54,6 +54,10 @@ Link-File `
   "$Dotfiles\yazi\yazi.toml" `
   "$env:APPDATA\yazi\yazi.toml"
 
+Link-File `
+  "$Dotfiles\yazi\keymap.toml" `
+  "$env:APPDATA\yazi\keymap.toml"
+
 # Lazygit (jeśli chcesz)
 Link-File `
   "$Dotfiles\lazygit\config.yml" `
