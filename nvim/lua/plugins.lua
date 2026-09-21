@@ -38,10 +38,21 @@ vim.pack.add({
 
 local map = vim.keymap.set
 
+-- Praca, ktora nie musi byc skonczona, zanim pojawi sie pierwsza klatka.
+-- `vim.schedule` na koncu tego pliku odpala ja natychmiast po tym, jak Neovim
+-- zakonczy start -- czyli zanim zdazysz cokolwiek nacisnac, ale juz PO
+-- narysowaniu okna.
+--
+-- Wazne, zeby nie miec zludzen: to NIE usuwa pracy. Procesor robi dokladnie
+-- tyle samo, tylko przestaje blokowac rysowanie. Okno pojawia sie wczesniej,
+-- laczny czas do pelnej gotowosci jest ten sam.
+--
+-- Trafiaja tu wylacznie SETUPY. Keymapy zostaja synchroniczne, bo one musza
+-- istniec od razu -- inaczej klawisz nacisniety w pierwszej chwili poszedlby
+-- w domyslne zachowanie Vima.
+local defer = {}
+
 -- --- which-key -------------------------------------------------------------
--- Press a prefix (<leader>, g, z, ], [, ", <C-w>) and the cheatsheet pops up
--- after `delay` ms. Labels come from the `desc` field of every keymap, so any
--- new mapping you add should carry one.
 local wk = require('which-key')
 wk.setup({
   preset = 'helix',   -- centered panel; alternatives: 'classic', 'modern'
@@ -49,9 +60,6 @@ wk.setup({
   icons = { mappings = vim.g.have_nerd_font },
 
   -- ONLY <leader> opens the cheatsheet. Out of the box which-key hooks every
-  -- prefix it can find -- g, z, ], [, ", ', `, <C-w> -- so with delay = 0 the
-  -- panel flashes constantly while you are just moving around. Restricting the
-  -- triggers keeps normal-mode motions silent.
   triggers = {
     { '<leader>', mode = { 'n', 'v' } },
   },
@@ -116,15 +124,18 @@ MiniIcons.mock_nvim_web_devicons() -- so telescope/lualine pick them up
 -- --- telescope -------------------------------------------------------------
 -- live_grep needs ripgrep (`rg`) in PATH. find_files works without it, but is
 -- much faster with `fd`/`rg`. See README.md for install commands.
-require('telescope').setup({
-  defaults = {
-    path_display = { 'truncate' },
-    mappings = { i = { ['<Esc>'] = 'close', ['<C-u>'] = false } },
-  },
-  pickers = {
-    find_files = { hidden = true },
-  },
-})
+-- 5 ms, odlozone. Zaden picker nie jest potrzebny przed pierwszym <leader>f.
+defer[#defer + 1] = function()
+  require('telescope').setup({
+    defaults = {
+      path_display = { 'truncate' },
+      mappings = { i = { ['<Esc>'] = 'close', ['<C-u>'] = false } },
+    },
+    pickers = {
+      find_files = { hidden = true },
+    },
+  })
+end
 
 local function tb(fn, opts)
   return function() require('telescope.builtin')[fn](opts) end
@@ -166,23 +177,26 @@ require('gitsigns').setup({
 })
 
 -- --- lualine ---------------------------------------------------------------
-require('lualine').setup({
-  options = {
-    theme = 'auto',
-    icons_enabled = vim.g.have_nerd_font,
-    component_separators = '|',
-    section_separators = '',
-    globalstatus = true, -- one statusline at the bottom, not per window
-  },
-  sections = {
-    -- Set explicitly rather than relying on the default. `diff` reads its
-    -- counts from gitsigns, so it costs nothing extra; without gitsigns it
-    -- would shell out to `git diff` on every refresh.
-    lualine_b = { 'branch', 'diff' },
-    lualine_c = { { 'filename', path = 1 } },
-    lualine_x = { 'diagnostics', 'filetype' },
-  },
-})
+-- 12 ms, odlozone. Statusline pojawia sie o jedna klatke pozniej.
+defer[#defer + 1] = function()
+  require('lualine').setup({
+    options = {
+      theme = 'auto',
+      icons_enabled = vim.g.have_nerd_font,
+      component_separators = '|',
+      section_separators = '',
+      globalstatus = true, -- one statusline at the bottom, not per window
+    },
+    sections = {
+      -- Set explicitly rather than relying on the default. `diff` reads its
+      -- counts from gitsigns, so it costs nothing extra; without gitsigns it
+      -- would shell out to `git diff` on every refresh.
+      lualine_b = { 'branch', 'diff' },
+      lualine_c = { { 'filename', path = 1 } },
+      lualine_x = { 'diagnostics', 'filetype' },
+    },
+  })
+end
 
 -- Comment.nvim was removed: it hijacked gc/gcc and then failed on PHP
 -- ("[Comment.nvim] nil", line left untouched). Neovim's built-in gc/gcc has
@@ -400,7 +414,8 @@ end, { desc = 'Code: format buffer/selection' })
 -- --- trouble.nvim ----------------------------------------------------------
 -- Every error / reference / symbol in one panel instead of hopping with ]d.
 -- The panel is a normal window: <CR> jumps to the location, q closes it.
-require('trouble').setup()
+-- Panel jest czysto na zadanie, wiec setup moze poczekac.
+defer[#defer + 1] = function() require('trouble').setup() end
 
 map('n', '<leader>xx', '<Cmd>Trouble diagnostics toggle<CR>',
   { desc = 'Trouble: workspace diagnostics' })
@@ -439,36 +454,43 @@ map('n', '<leader>lg', '<Cmd>LazyGit<CR>', {
 -- The keymap is written out rather than using a preset so the keys keep doing
 -- exactly what they did before blink arrived: <Tab> walks the list, then jumps
 -- snippet placeholders, then falls through to a literal Tab.
-require('blink.cmp').setup({
-  snippets = { preset = 'default' }, -- vim.snippet, same engine as before
-  sources = {
-    default = { 'lsp', 'snippets', 'path', 'buffer' },
-  },
-  fuzzy = {
-    -- Refuse to silently fall back to the Lua matcher: without the Rust
-    -- binary the ranking that justifies this plugin is the thing you lose.
-    implementation = 'prefer_rust_with_warning',
-  },
-  completion = {
-    list = { selection = { preselect = false, auto_insert = false } },
-    menu = { draw = { treesitter = { 'lsp' } } },
-    documentation = { auto_show = true, auto_show_delay_ms = 200 },
-    ghost_text = { enabled = false }, -- set true for the inline preview
-  },
-  signature = { enabled = true },
-  keymap = {
-    preset = 'none',
-    ['<Tab>']     = { 'select_next', 'snippet_forward', 'fallback' },
-    ['<S-Tab>']   = { 'select_prev', 'snippet_backward', 'fallback' },
-    ['<CR>']      = { 'accept', 'fallback' },
-    ['<C-e>']     = { 'hide', 'fallback' },
-    ['<C-n>']     = { 'select_next', 'fallback' },
-    ['<C-p>']     = { 'select_prev', 'fallback' },
-    ['<Down>']    = { 'select_next', 'fallback' },
-    ['<Up>']      = { 'select_prev', 'fallback' },
-    ['<C-space>'] = { 'show', 'hide' },
-  },
-})
+--
+-- 23 ms -- najdrozsza pojedyncza rzecz w calym starcie, wiec odlozona.
+-- Bezpiecznie, bo uzupelnianie jest potrzebne dopiero po wejsciu w tryb
+-- wstawiania, a schedule odpala sie duzo wczesniej. `get_lsp_capabilities()`
+-- wolane w lua/lsp.lua NIE wymaga setupu -- czyta wartosci domyslne.
+defer[#defer + 1] = function()
+  require('blink.cmp').setup({
+    snippets = { preset = 'default' }, -- vim.snippet, same engine as before
+    sources = {
+      default = { 'lsp', 'snippets', 'path', 'buffer' },
+    },
+    fuzzy = {
+      -- Refuse to silently fall back to the Lua matcher: without the Rust
+      -- binary the ranking that justifies this plugin is the thing you lose.
+      implementation = 'prefer_rust_with_warning',
+    },
+    completion = {
+      list = { selection = { preselect = false, auto_insert = false } },
+      menu = { draw = { treesitter = { 'lsp' } } },
+      documentation = { auto_show = true, auto_show_delay_ms = 200 },
+      ghost_text = { enabled = false }, -- set true for the inline preview
+    },
+    signature = { enabled = true },
+    keymap = {
+      preset = 'none',
+      ['<Tab>']     = { 'select_next', 'snippet_forward', 'fallback' },
+      ['<S-Tab>']   = { 'select_prev', 'snippet_backward', 'fallback' },
+      ['<CR>']      = { 'accept', 'fallback' },
+      ['<C-e>']     = { 'hide', 'fallback' },
+      ['<C-n>']     = { 'select_next', 'fallback' },
+      ['<C-p>']     = { 'select_prev', 'fallback' },
+      ['<Down>']    = { 'select_next', 'fallback' },
+      ['<Up>']      = { 'select_prev', 'fallback' },
+      ['<C-space>'] = { 'show', 'hide' },
+    },
+  })
+end
 
 -- --- indent-blankline (the module is called `ibl`) -------------------------
 -- Vertical indent guides. `scope` (highlighting the current block) is off --
@@ -478,3 +500,16 @@ require('ibl').setup({
   scope = { enabled = false },
   exclude = { filetypes = { 'help', 'lazy', 'oil', 'trouble', 'checkhealth' } },
 })
+
+-- --- odlozone setupy -------------------------------------------------------
+-- Wszystko, co powyzej trafilo do `defer`. Jeden schedule, nie kilka: kolejnosc
+-- zostaje taka jak w pliku, a Neovim budzi sie z tym raz zamiast pieciokrotnie.
+--
+-- Celowo NIE ma tu: oil (musi byc gotowy zanim `nvim .` otworzy katalog),
+-- gitsigns i indent-blankline (podpinaja sie do bufora otwartego juz przy
+-- starcie), which-key i mini.* (grosze, nie warto komplikowac pliku).
+vim.schedule(function()
+  for _, setup in ipairs(defer) do
+    setup()
+  end
+end)
