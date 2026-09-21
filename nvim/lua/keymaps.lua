@@ -41,3 +41,20 @@ map({ 'n', 'v' }, '<leader>ge', 'G', { desc = 'Goto: end of file' })
 
 -- re-source the current config file
 map('n', '<leader>rr', '<Cmd>source %<CR>', { desc = 'Reload: source this file' })
+
+-- comments, VS Code style. <C-_> is the same key: that is the byte (0x1F)
+-- terminals without the kitty keyboard protocol send for Ctrl+/.
+for _, k in ipairs({ '<C-/>', '<C-_>' }) do
+  map('n', k, 'gcc', { remap = true, desc = 'Comment: toggle line' })
+  map('x', k, 'gc', { remap = true, desc = 'Comment: toggle selection' })
+end
+
+-- Ctrl+Shift+/ = block comment. Nothing built-in to call: Neovim's comment
+-- support is line-only. Needs a terminal that forwards Shift (0x1F cannot).
+map('x', '<C-S-/>', function()
+  vim.api.nvim_feedkeys(vim.keycode('<Esc>'), 'nx', false)
+  local o, c = '/*', '*/'
+  if vim.bo.filetype == 'html' then o, c = '<!--', '-->' end
+  vim.fn.append(vim.fn.line("'>"), c)
+  vim.fn.append(vim.fn.line("'<") - 1, o)
+end, { desc = 'Comment: block' })
