@@ -187,6 +187,7 @@ require('lualine').setup({
 -- Comment.nvim was removed: it hijacked gc/gcc and then failed on PHP
 -- ("[Comment.nvim] nil", line left untouched). Neovim's built-in gc/gcc has
 -- worked since 0.10 and handles PHP fine, so there is nothing to replace.
+vim.keymap.set("n", "<C-/>", "gcc", { remap = true })   
 
 -- --- nvim-treesitter (branch `main`) ---------------------------------------
 -- Building parsers needs the `tree-sitter` CLI (>= 0.26), a C compiler and
