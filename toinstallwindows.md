@@ -2,5 +2,6 @@
 
 - btm
 - fastfetch
-- visdata   
+- visdata
+- Harlequin
 - lnav  
