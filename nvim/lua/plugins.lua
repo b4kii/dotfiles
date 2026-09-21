@@ -13,6 +13,7 @@ vim.pack.add({
   'https://github.com/nvim-telescope/telescope.nvim',
   'https://github.com/stevearc/oil.nvim',
   'https://github.com/lewis6991/gitsigns.nvim',
+  'https://github.com/debugloop/telescope-undo.nvim',
   'https://github.com/nvim-lualine/lualine.nvim',
   'https://github.com/nvim-mini/mini.icons',
   'https://github.com/folke/which-key.nvim',
@@ -135,6 +136,9 @@ defer[#defer + 1] = function()
       find_files = { hidden = true },
     },
   })
+  -- Musi byc PO setupie telescope i dlatego siedzi w tej samej odlozonej
+  -- funkcji -- load_extension na nieskonfigurowanym telescope wywala blad.
+  require('telescope').load_extension('undo')
 end
 
 local function tb(fn, opts)
@@ -175,6 +179,23 @@ require('gitsigns').setup({
       { buffer = bufnr, desc = 'Git: previous hunk' })
   end,
 })
+
+-- --- telescope-undo --------------------------------------------------------
+-- Lokalna historia pliku, bez gita. Vim trzyma zmiany jako DRZEWO, nie liste:
+-- jesli cofniesz sie i napiszesz cos innego, stara wersja nadal tam jest --
+-- tyle ze `u` juz do niej nie trafi, bo chodzi tylko po jednej galezi.
+--
+-- Ten picker splaszcza drzewo do listy, ale pozwala szukac PO TRESCI zmian
+-- ("gdzie jest ta funkcja, ktora skasowalem godzine temu") i przez <C-y>
+-- wyjankowac sam fragment BEZ cofania bufora.
+--
+-- Siega tak daleko, jak 'undofile' (wlaczone w options.lua) -- bez niego
+-- historia konczy sie z zamknieciem pliku.
+--
+-- Diffy liczy wbudowanym vim.diff, wiec nie potrzebuje `diff` w PATH.
+-- Samo rozszerzenie wczytuje sie przy setupie telescope, wyzej.
+map('n', '<leader>uu', function() require('telescope').extensions.undo.undo() end,
+  { desc = 'UI: undo history' })
 
 -- --- lualine ---------------------------------------------------------------
 -- 12 ms, odlozone. Statusline pojawia sie o jedna klatke pozniej.
