@@ -9,18 +9,11 @@ wezterm.on("gui-startup", function()
   window:gui_window():maximize()
 end)
 
--- wezterm.on('format-tab-title', function(tab)
---   local title = tab.active_pane.title
---
---   return wezterm.truncate_right(title, 25)
--- end)
 
 wezterm.on('format-tab-title', function(tab)
   local process = tab.active_pane.foreground_process_name or ""
-
   local title = process:match("([^/\\]+)$") or process
-
-  return wezterm.truncate_right(title, 25)
+  return ' ' .. (tab.tab_index + 1) .. ': ' .. wezterm.truncate_right(title, 20) .. ' '
 end)
 
 return {
@@ -30,9 +23,8 @@ return {
   default_prog = { "pwsh.exe", "-NoLogo" },
 
   tab_bar_at_bottom = true,
-  hide_tab_bar_if_only_one_tab = true,
  
-  front_end = "Software",
+  front_end = "WebGpu",
 
   -- brak paddingu
   window_padding = {
@@ -48,8 +40,8 @@ return {
   keys = {
 
     -- split jak w tmux
-    { key = "v", mods = "LEADER", action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
-    { key = "s", mods = "LEADER", action = act.SplitVertical { domain = "CurrentPaneDomain" } },
+    { key = "s", mods = "LEADER", action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
+    { key = "v", mods = "LEADER", action = act.SplitVertical { domain = "CurrentPaneDomain" } },
 
     -- nawigacja hjkl
     { key = "h", mods = "LEADER", action = act.ActivatePaneDirection "Left" },

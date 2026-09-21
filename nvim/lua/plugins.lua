@@ -282,7 +282,7 @@ if vim.fn.executable('tree-sitter') == 1 then
     'lua', 'vim', 'vimdoc', 'query', 'bash', 'json', 'yaml', 'toml',
     'markdown', 'markdown_inline', 'diff', 'gitcommit', 'regex',
     -- web stack
-    'php', 'phpdoc', 'html', 'css', 'scss',
+    'php', 'phpdoc', 'html', 'css', 'scss', 'powershell',
     'javascript', 'typescript', 'tsx', 'jsdoc',
   }
   local ts = require('nvim-treesitter')
@@ -320,37 +320,27 @@ vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('treesitter_start', { clear = true }),
   desc = 'Start treesitter and use its indentation when a parser exists',
   callback = function(args)
-    if not pcall(vim.treesitter.start, args.buf) then return end
-
-    -- Automatic indentation while typing.
-    --
-    -- The bundled Vim indent scripts only reindent on demand: `gg=G` formats a
-    -- PHP file correctly, but pressing Enter after `function foo() {` leaves
-    -- the new line at column 0. That is stock Neovim behaviour, identical
-    -- under `nvim --clean` -- not something this config broke.
-    --
-    -- Treesitter indentation fixes it for most languages, but NOT for PHP:
-    -- while you are still typing, `{` has no matching `}` yet, so the parser
-    -- produces an ERROR node instead of the `compound_statement` that
-    -- php/indents.scm keys off, and nothing matches. Measured while typing:
-    --   lua, css, html  -> correct
-    --   typescript      -> correct, loses a level on deep nesting
-    --   php             -> no indentation at all
-    -- `cindent` handles PHP perfectly (the syntax is C-like), so PHP gets that
-    -- instead. Either way `=` / `gg=G` reindents a whole file properly.
+    -- Nie `return` przy porazce: ps1 nie ma parsera, a i tak potrzebuje wciec.
+    local ts_ok = pcall(vim.treesitter.start, args.buf)
     local ft = vim.bo[args.buf].filetype
 
-    if ft == 'php' then
-      -- `indentexpr` MUST be cleared: when it is set it wins over `cindent`
-      -- entirely, so leaving GetPhpIndent() in place makes `cindent` dead code.
-      vim.bo[args.buf].indentexpr = ''
-      vim.bo[args.buf].cindent = true
-      return
-    end
+    -- PHP: php/indents.scm keyuje na `compound_statement`, a dopoki piszesz,
+    -- `{` nie ma pary i parser daje ERROR -- nic nie wciska. Poza tym wszedzie,
+    -- gdzie runtime wybral `smartindent` (u nas tylko ps1), bierzemy `cindent`:
+    -- ta sama klasa jezykow, ale bez doliczania poziomu dwa razy, co przy
+    -- MiniPairs.cr() dawalo kursor o poziom glebiej niz klamra.
+    local lang = ts_ok and vim.treesitter.language.get_lang(ft) or nil
+    local ts_indent = ft ~= 'php'
+      and lang ~= nil
+      and vim.treesitter.query.get(lang, 'indents') ~= nil
 
-    local lang = vim.treesitter.language.get_lang(ft)
-    if lang and vim.treesitter.query.get(lang, 'indents') then
+    if ts_indent then
       vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    elseif ft == 'php' or vim.bo[args.buf].smartindent then
+      -- `indentexpr` MUSI zniknac: ustawione wygrywa z `cindent` calkowicie.
+      vim.bo[args.buf].indentexpr = ''
+      vim.bo[args.buf].smartindent = false
+      vim.bo[args.buf].cindent = true
     end
   end,
 })
@@ -394,12 +384,27 @@ require('mini.surround').setup({
 -- or digit, so it stays out of the way when appending to an existing word.
 require('mini.pairs').setup()
 
--- mini.pairs also maps <CR> and <BS> on its own. The <CR> one turns `foo(|)`
--- into three lines, pushing the `)` down onto its own line. Removed -- Enter
--- now just breaks the line like it normally would. <BS> is kept: deleting the
--- opening bracket of an empty pair takes the closing one with it, which is
--- the behaviour that stops `()` leftovers.
-pcall(vim.keymap.del, 'i', '<CR>')
+-- mini.pairs mapuje tez <CR> i <BS>. OBA zostaja.
+--
+-- Bylo tu `pcall(vim.keymap.del, 'i', '<CR>')` z uzasadnieniem, ze Enter ma
+-- "po prostu lamac linie". Tyle ze przy `{|}` to nie jest zadne "po prostu":
+-- klamra zamykajaca jedzie razem z kursorem na nowa linie i dostajesz
+--
+--     function ff {
+--         |}          <- kursor przyklejony do klamry
+--
+-- zamiast tego, co robi kazdy inny edytor:
+--
+--     function ff {
+--         |
+--     }
+--
+-- Za druga wersje odpowiada wlasnie MiniPairs.cr(), ktory po zlamaniu linii
+-- otwiera nad klamra pusta linie. Sprawdzone na ps1 i php.
+--
+-- blink.cmp mapuje <CR> jako 'accept' z 'fallback' -- gdy menu uzupelniania
+-- jest zamkniete, fallback trafia wlasnie tutaj, wiec jedno nie gryzie sie
+-- z drugim.
 
 -- --- conform.nvim ----------------------------------------------------------
 -- Formatting via external tools. Only the ones present in PATH are used --

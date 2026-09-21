@@ -26,6 +26,10 @@ function ex {
 	explorer .
 }
 
+function ff {
+	fastfetch
+}
+
 Set-Alias vi nvim
 Set-Alias ll ls
 Set-Alias g git
