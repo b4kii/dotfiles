@@ -1,4 +1,4 @@
-# install and configure btm
+# install and configure on windows new tui apps
 
 - btm
 - fastfetch
