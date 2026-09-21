@@ -147,12 +147,47 @@ vim.lsp.config('*', {
   capabilities = require('blink.cmp').get_lsp_capabilities(nil, true),
 })
 
-local missing = {}
+-- `vim.fn.executable()` przechodzi wszystkie katalogi z PATH razy PATHEXT.
+-- Dziesiec nazw to 25 ms startu -- najdrozsza pojedyncza rzecz w tym pliku.
+-- Wiec cache'ujemy ZNALEZIONA SCIEZKE i sprawdzamy ja jednym fs_stat.
+--
+-- Cache'owane sa wylacznie trafienia, nigdy brak. Dzieki temu nie ma przypadku
+-- wymagajacego recznego czyszczenia: sciezka, ktora zniknela, nie przejdzie
+-- fs_stat i zostanie wyszukana od nowa, a serwer doinstalowany pozniej nigdy
+-- nie byl w cache, wiec i tak zostanie znaleziony przy nastepnym starcie.
+local cache_file = vim.fs.joinpath(vim.fn.stdpath('cache'), 'lsp-exepath.json')
+local cache = {}
+do
+  local fd = io.open(cache_file, 'r')
+  if fd then
+    local ok, data = pcall(vim.json.decode, fd:read('*a'))
+    fd:close()
+    if ok and type(data) == 'table' then cache = data end
+  end
+end
+
+local missing, dirty = {}, false
 for name, bin in pairs(servers) do
-  if vim.fn.executable(bin) == 1 then
+  local path = cache[bin]
+  if not (path and vim.uv.fs_stat(path)) then
+    local resolved = vim.fn.exepath(bin)
+    path = resolved ~= '' and resolved or nil
+    if cache[bin] ~= path then
+      cache[bin], dirty = path, true
+    end
+  end
+  if path then
     vim.lsp.enable(name)
   else
     missing[#missing + 1] = bin
+  end
+end
+
+if dirty then
+  local fd = io.open(cache_file, 'w')
+  if fd then
+    fd:write(vim.json.encode(cache))
+    fd:close()
   end
 end
 
