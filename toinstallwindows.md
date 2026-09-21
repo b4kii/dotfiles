@@ -3,3 +3,4 @@
 - btm
 - fastfetch
 - visdata   
+- lnav  
