@@ -21,6 +21,12 @@ if vim.fn.has('nvim-0.12') == 0 then
   return
 end
 
+-- Cache skompilowanego bajtkodu Lua. 76% startu to `require()`, a bez tego
+-- kazdy modul jest parsowany od nowa przy kazdym uruchomieniu. Zmierzone na
+-- tej maszynie: 220 ms -> 185 ms. Musi byc PRZED pierwszym require.
+-- Cache sam wykrywa zmiany plikow; recznie czysci go vim.loader.reset().
+vim.loader.enable()
+
 -- leader MUST be set before plugins load
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
