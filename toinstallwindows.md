@@ -5,3 +5,5 @@
 - visdata
 - Harlequin
 - lnav  
+- omnyssh
+- lazyssh  
