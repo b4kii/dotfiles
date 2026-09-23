@@ -8,6 +8,8 @@ try { Set-PSReadLineOption -PredictionSource History -ErrorAction Stop } catch {
 Set-PSReadLineOption -EditMode Emacs
 Set-PSReadLineOption -BellStyle None
 
+Set-PSReadLineKeyHandler -Chord Ctrl+d -Function DeleteChar
+
 # Fzf - ladowany leniwie. Import-Module PSFzf kosztuje 372 ms przy KAZDYM
 # starcie, a chordy sa potrzebne dopiero gdy ich uzyjesz. Stub ponizej dociaga
 # modul przy pierwszym Alt+r / Alt+t / Alt+c i podmienia sie na prawdziwy
