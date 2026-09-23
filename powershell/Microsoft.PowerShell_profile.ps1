@@ -20,6 +20,7 @@ $initPsFzf = {
     Set-PsFzfOption -PSReadLineChordProvider 'Alt+t'
     Set-PsFzfOption -PSReadLineChordSetLocation 'Alt+c'
 }
+
 foreach ($chord in 'Alt+r', 'Alt+t', 'Alt+c') {
     Set-PSReadLineKeyHandler -Chord $chord -ScriptBlock $initPsFzf
 }

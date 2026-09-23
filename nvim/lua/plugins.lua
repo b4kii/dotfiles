@@ -23,7 +23,6 @@ vim.pack.add({
   -- motion / editing
   'https://github.com/folke/flash.nvim',
   'https://github.com/nvim-mini/mini.surround',
-  'https://github.com/nvim-mini/mini.pairs',
   'https://github.com/stevearc/conform.nvim',
 
   -- diagnostics / annotations
@@ -327,8 +326,8 @@ vim.api.nvim_create_autocmd('FileType', {
     -- PHP: php/indents.scm keyuje na `compound_statement`, a dopoki piszesz,
     -- `{` nie ma pary i parser daje ERROR -- nic nie wciska. Poza tym wszedzie,
     -- gdzie runtime wybral `smartindent` (u nas tylko ps1), bierzemy `cindent`:
-    -- ta sama klasa jezykow, ale bez doliczania poziomu dwa razy, co przy
-    -- MiniPairs.cr() dawalo kursor o poziom glebiej niz klamra.
+    -- ta sama klasa jezykow, ale bez doliczania poziomu dwa razy, co dawalo
+    -- kursor o poziom glebiej niz klamra.
     local lang = ts_ok and vim.treesitter.language.get_lang(ft) or nil
     local ts_indent = ft ~= 'php'
       and lang ~= nil
@@ -378,33 +377,6 @@ require('mini.surround').setup({
     suffix_next = 'n',
   },
 })
-
--- --- mini.pairs ------------------------------------------------------------
--- Auto-closes ( [ { " ' `. Skips closing when the cursor sits before a letter
--- or digit, so it stays out of the way when appending to an existing word.
-require('mini.pairs').setup()
-
--- mini.pairs mapuje tez <CR> i <BS>. OBA zostaja.
---
--- Bylo tu `pcall(vim.keymap.del, 'i', '<CR>')` z uzasadnieniem, ze Enter ma
--- "po prostu lamac linie". Tyle ze przy `{|}` to nie jest zadne "po prostu":
--- klamra zamykajaca jedzie razem z kursorem na nowa linie i dostajesz
---
---     function ff {
---         |}          <- kursor przyklejony do klamry
---
--- zamiast tego, co robi kazdy inny edytor:
---
---     function ff {
---         |
---     }
---
--- Za druga wersje odpowiada wlasnie MiniPairs.cr(), ktory po zlamaniu linii
--- otwiera nad klamra pusta linie. Sprawdzone na ps1 i php.
---
--- blink.cmp mapuje <CR> jako 'accept' z 'fallback' -- gdy menu uzupelniania
--- jest zamkniete, fallback trafia wlasnie tutaj, wiec jedno nie gryzie sie
--- z drugim.
 
 -- --- conform.nvim ----------------------------------------------------------
 -- Formatting via external tools. Only the ones present in PATH are used --
@@ -497,6 +469,8 @@ defer[#defer + 1] = function()
       implementation = 'prefer_rust_with_warning',
     },
     completion = {
+      -- Bez domykania: akceptacja funkcji wstawia sama nazwe, bez `()`.
+      accept = { auto_brackets = { enabled = false } },
       list = { selection = { preselect = false, auto_insert = false } },
       menu = { draw = { treesitter = { 'lsp' } } },
       documentation = { auto_show = true, auto_show_delay_ms = 200 },

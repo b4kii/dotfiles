@@ -17,6 +17,8 @@ wezterm.on('format-tab-title', function(tab)
 end)
 
 return {
+  font_size = 14.0,
+
   color_scheme = 'Obsidian',
 
   harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
