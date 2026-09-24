@@ -11,10 +11,9 @@ end)
 
 
 wezterm.on('format-tab-title', function(tab)
-  local process = tab.active_pane.foreground_process_name or ""
-  local title = process:match("([^/\\]+)$") or process
-  return ' ' .. (tab.tab_index + 1) .. ': ' .. wezterm.truncate_right(title, 20) .. ' '
+ return ' ⟦' .. (tab.tab_index + 1) .. '⟧ '
 end)
+
 
 return {
   font_size = 14.0,
