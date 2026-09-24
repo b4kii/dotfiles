@@ -82,8 +82,9 @@ return {
     { key = "DownArrow",  mods = "LEADER", action = act.AdjustPaneSize { "Down", 1 } },
 
     -- move tabs
-    { key = "PageUp", mods = "LEADER", action = act.MoveTabRelative(-1) },
-    { key = "PageDown", mods = "LEADER", action = act.MoveTabRelative(1) },
+    { key = "P", mods = "LEADER", action = act.MoveTabRelative(-1) },
+    { key = "N", mods = "LEADER", action = act.MoveTabRelative(1) },
+
 
     -- move panes
     { key = "w", mods = "LEADER", action = act.PaneSelect { mode = "SwapWithActiveKeepFocus" } },
