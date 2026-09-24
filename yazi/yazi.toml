@@ -177,7 +177,7 @@ image_quality = 85
 # =============================================================================
 
 [opener]
-
 edit = [
-    { run = 'wezterm cli spawn --cwd %d1 -- nvim %s', orphan = true, desc = "Edit with Neovim in new WezTerm tab" },
+    { run = 'nvim %s', block = true, desc = "Edit with Neovim" },
 ]
+
