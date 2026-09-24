@@ -11,8 +11,9 @@ end)
 
 
 wezterm.on('format-tab-title', function(tab)
-  return ' ' .. (tab.tab_index + 1) .. ' '
+ return ' ⟦' .. (tab.tab_index + 1) .. '⟧ '
 end)
+
 
 return {
   font_size = 14.0,
@@ -40,8 +41,8 @@ return {
   keys = {
 
     -- split jak w tmux
-    { key = "s", mods = "LEADER", action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
-    { key = "v", mods = "LEADER", action = act.SplitVertical { domain = "CurrentPaneDomain" } },
+    { key = "v", mods = "LEADER", action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
+    { key = "s", mods = "LEADER", action = act.SplitVertical { domain = "CurrentPaneDomain" } },
 
     -- nawigacja hjkl
     { key = "h", mods = "LEADER", action = act.ActivatePaneDirection "Left" },
@@ -81,13 +82,18 @@ return {
     { key = "DownArrow",  mods = "LEADER", action = act.AdjustPaneSize { "Down", 1 } },
 
     -- move tabs
-    { key = "PageUp", mods = "LEADER", action = act.MoveTabRelative(-1) },
-    { key = "PageDown", mods = "LEADER", action = act.MoveTabRelative(1) },
+    { key = "P", mods = "LEADER", action = act.MoveTabRelative(-1) },
+    { key = "N", mods = "LEADER", action = act.MoveTabRelative(1) },
+
 
     -- move panes
     { key = "w", mods = "LEADER", action = act.PaneSelect { mode = "SwapWithActiveKeepFocus" } },
     { key = "W", mods = "LEADER", action = act.PaneSelect { mode = "SwapWithActive" } },
     { key = "m", mods = "LEADER", action = act.PaneSelect { mode = "MoveToNewTab" } },
+
+    { key = "[", mods = "LEADER", action = act.ActivateCopyMode },
+    { key = "q", mods = "LEADER", action = act.PaneSelect },
+
 
     -- { key = 'c', mods = 'CTRL', action = wezterm.action.Nop,  },
   },
