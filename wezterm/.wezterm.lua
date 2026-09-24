@@ -41,8 +41,8 @@ return {
   keys = {
 
     -- split jak w tmux
-    { key = "s", mods = "LEADER", action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
-    { key = "v", mods = "LEADER", action = act.SplitVertical { domain = "CurrentPaneDomain" } },
+    { key = "v", mods = "LEADER", action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
+    { key = "s", mods = "LEADER", action = act.SplitVertical { domain = "CurrentPaneDomain" } },
 
     -- nawigacja hjkl
     { key = "h", mods = "LEADER", action = act.ActivatePaneDirection "Left" },
