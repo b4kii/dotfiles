@@ -45,8 +45,8 @@ map('n', '<leader>rr', '<Cmd>source %<CR>', { desc = 'Reload: source this file' 
 -- comments, VS Code style. <C-_> is the same key: that is the byte (0x1F)
 -- terminals without the kitty keyboard protocol send for Ctrl+/.
 for _, k in ipairs({ '<C-/>', '<C-_>' }) do
-  map('n', k, 'gcc', { remap = true, desc = 'Comment: toggle line' })
-  map('x', k, 'gc', { remap = true, desc = 'Comment: toggle selection' })
+  map('n', k, 'gccj', { remap = true, desc = 'Comment: toggle line' })
+  map('x', k, 'gcj', { remap = true, desc = 'Comment: toggle selection' })
 end
 
 -- Ctrl+Shift+/ = block comment. Nothing built-in to call: Neovim's comment
