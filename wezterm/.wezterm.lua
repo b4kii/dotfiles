@@ -91,6 +91,8 @@ return {
     { key = "W", mods = "LEADER", action = act.PaneSelect { mode = "SwapWithActive" } },
     { key = "m", mods = "LEADER", action = act.PaneSelect { mode = "MoveToNewTab" } },
 
+    { key = "[", mods = "LEADER", action = act.ActivateCopyMode },
+
     -- { key = 'c', mods = 'CTRL', action = wezterm.action.Nop,  },
   },
 
