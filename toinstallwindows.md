@@ -2,8 +2,7 @@
 
 - btm
 - fastfetch
-- visdata
 - Harlequin
 - lnav  
 - omnyssh
-- lazyssh  
+
