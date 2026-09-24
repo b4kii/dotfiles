@@ -14,3 +14,8 @@ on = "!"
 for = "windows"
 run = 'shell "pwsh.exe" --block'
 desc = "Open PowerShell here"
+
+[[mgr.prepend_keymap]]
+on   = [ "<C-k>", "<C-o>" ]
+run  = 'shell "wezterm cli spawn --cwd \"%CD%\" -- nvim ." --orphan'
+desc = "Neovim w nowym oknie WezTerm"
