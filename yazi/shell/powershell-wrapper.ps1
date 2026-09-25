@@ -6,7 +6,9 @@
 function y {
     $tmp = (New-TemporaryFile).FullName
 
-    yazi.exe @args --cwd-file="$tmp"
+    [Console]::Write("$([char]27)]7;$([char]27)\")
+
+    & "$HOME\scoop\apps\yazi\current\yazi.exe" @args --cwd-file="$tmp"
 
     $cwd = Get-Content -Path $tmp -Encoding UTF8
     if ($cwd -and $cwd -ne $PWD.Path -and (Test-Path -LiteralPath $cwd -PathType Container)) {
