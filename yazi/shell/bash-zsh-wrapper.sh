@@ -6,6 +6,9 @@
 y() {
     local tmp cwd
     tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+    # Czysci katalog zgloszony WezTermowi (pusty OSC 7), zeby czytal go
+    # na biezaco z procesu yazi. Prompt po wyjsciu zglosi katalog od nowa.
+    printf '\e]7;\e\\'
     command yazi "$@" --cwd-file="$tmp"
     IFS= read -r -d '' cwd < "$tmp"
     [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd" || builtin true
