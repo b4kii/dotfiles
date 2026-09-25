@@ -17,11 +17,13 @@ desc = "Open PowerShell here"
 
 [[mgr.prepend_keymap]]
 on   = [ "<C-k>", "<C-o>" ]
-run  = 'shell "wezterm cli spawn --cwd \"%CD%\" -- nvim ." --orphan'
+# run  = 'shell "wezterm cli spawn --cwd \"%CD%\" -- nvim ." --orphan'
+run  = 'shell "wezterm cli spawn -- nvim --cmd \"cd %CD%\" \"%CD%\"" --orphan'
 desc = "Neovim w nowym oknie WezTerm"
 
 [[mgr.prepend_keymap]]
 on   = [ "<C-k>", "o" ]
-run  = 'shell "wezterm cli spawn --cwd \"%CD%\" -- nvim %s" --orphan'
+# run  = 'shell "wezterm cli spawn --cwd \"%CD%\" -- nvim %s" --orphan'
+run  = 'shell "wezterm cli spawn -- nvim --cmd \"cd %CD%\" %s" --orphan'
 desc = "Neovim w nowym tabie WezTerm"
 
