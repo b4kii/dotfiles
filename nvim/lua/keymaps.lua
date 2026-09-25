@@ -31,7 +31,7 @@ map('n', '<M-h>', '<Cmd>bp<CR>', { desc = 'Buffer: previous' })
 map('n', '<M-l>', '<Cmd>bn<CR>', { desc = 'Buffer: next' })
 
 map('n', '<leader>w', '<Cmd>w<CR>', { desc = 'Write file' })
-map('n', '<leader>c', '<Cmd>bd<CR>', { desc = 'Close buffer' })
+map('n', '<leader>q', '<Cmd>bd<CR>', { desc = 'Close buffer' })
 map('n', '<leader>h', '<Cmd>nohlsearch<CR>', { desc = 'Clear search highlight' })
 
 -- jumps within a line / file
