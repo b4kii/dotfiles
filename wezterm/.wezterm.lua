@@ -9,11 +9,10 @@ wezterm.on("gui-startup", function()
   window:gui_window():maximize()
 end)
 
-
 wezterm.on('format-tab-title', function(tab)
- return ' ⟦' .. (tab.tab_index + 1) .. '⟧ '
+  local zoom = tab.active_pane.is_zoomed and 'zoom ' or ''
+  return ' ⟦' .. (tab.tab_index + 1) .. '⟧ ' .. zoom
 end)
-
 
 return {
   font_size = 14.0,
