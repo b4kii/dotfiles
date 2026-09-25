@@ -31,7 +31,7 @@ map('n', '<M-h>', '<Cmd>bp<CR>', { desc = 'Buffer: previous' })
 map('n', '<M-l>', '<Cmd>bn<CR>', { desc = 'Buffer: next' })
 
 map('n', '<leader>w', '<Cmd>w<CR>', { desc = 'Write file' })
-map('n', '<leader>q', '<Cmd>bd<CR>', { desc = 'Close buffer' })
+map('n', '<leader>c', '<Cmd>bd<CR>', { desc = 'Close buffer' })
 map('n', '<leader>h', '<Cmd>nohlsearch<CR>', { desc = 'Clear search highlight' })
 
 -- jumps within a line / file
@@ -40,7 +40,7 @@ map({ 'n', 'v' }, '<leader>gl', '$', { desc = 'Goto: line end' })
 map({ 'n', 'v' }, '<leader>ge', 'G', { desc = 'Goto: end of file' })
 
 -- re-source the current config file
-map('n', '<leader>rr', '<Cmd>source %<CR>', { desc = 'Reload: source this file' })
+map('n', '<leader>rr', '<Cmd>restart<CR>', { desc = 'Reload: restart nvim z configiem' })
 
 -- comments, VS Code style. <C-_> is the same key: that is the byte (0x1F)
 -- terminals without the kitty keyboard protocol send for Ctrl+/.
