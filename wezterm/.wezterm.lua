@@ -14,6 +14,85 @@ wezterm.on('format-tab-title', function(tab)
   return ' ⟦' .. (tab.tab_index + 1) .. '⟧ ' .. zoom
 end)
 
+
+-- --- projekty --------------------------------------------------------------
+-- Ctrl-t f: lista projektow. Wybrany otwiera sie w osobnym workspace: nvim
+-- (sam wczyta sesje tego folderu). Jesli projekt jest juz otwarty,
+-- tylko sie do niego przelaczasz. Ctrl-t o: wszystkie otwarte workspace'y,
+-- razem z `default`, od ktorego startuje WezTerm.
+--
+-- Projekty = foldery, w ktorych nvim ma zapisana sesje (autocmds.lua w configu
+-- nvim), jak "ostatnie foldery" w VS Code. Nowy folder pojawi sie na liscie
+-- sam, po pierwszym wyjsciu z `nvim` / `nvim .` w tym folderze.
+local nvim_sessions = (os.getenv('LOCALAPPDATA') or '') .. '\\nvim-data\\sessions'
+
+local function list_projects()
+  local dirs = {}
+  local ok, files = pcall(wezterm.read_dir, nvim_sessions)
+  if not ok then return dirs end
+  for _, file in ipairs(files) do
+    local f = io.open(file, 'r')
+    if f then
+      -- sesja zaczyna sie od `cd <folder>`: z escape'ami przed spacjami,
+      -- z `/` zamiast `\` i z `~` zamiast katalogu domowego
+      for line in f:lines() do
+        local dir = line:match('^cd (.+)$')
+        if dir then
+          dir = dir:gsub('\\(.)', '%1'):gsub('^~', wezterm.home_dir):gsub('/', '\\')
+          dirs[#dirs + 1] = dir
+          break
+        end
+      end
+      f:close()
+    end
+  end
+  table.sort(dirs)
+  return dirs
+end
+
+local function spawn_project(dir)
+  -- nvim odpalony z pwsh, nie sam: po :q zostajesz w shellu w tym folderze
+  mux.spawn_window {
+    workspace = dir,
+    cwd = dir,
+    args = { 'pwsh.exe', '-NoLogo', '-NoExit', '-Command', 'nvim' },
+  }
+end
+
+local function open_project(window, pane, dir)
+  local open = false
+  for _, name in ipairs(mux.get_workspace_names()) do
+    if name == dir then open = true end
+  end
+  if not open then spawn_project(dir) end
+  window:perform_action(act.SwitchToWorkspace { name = dir }, pane)
+end
+
+-- Lista budowana przy kazdym otwarciu, nie przy starcie WezTerma -- inaczej
+-- nowe foldery bylyby widoczne dopiero po przeladowaniu configu.
+local pick_project = wezterm.action_callback(function(window, pane)
+  local choices = {}
+  for _, dir in ipairs(list_projects()) do
+    choices[#choices + 1] = { id = dir, label = dir }
+  end
+  window:perform_action(act.InputSelector {
+    title = 'Projekt',
+    choices = choices,
+    fuzzy = true,
+    action = wezterm.action_callback(function(win, p, id)
+      if id then open_project(win, p, id) end
+    end),
+  }, pane)
+end)
+
+-- nazwa biezacego workspace'u po prawej stronie paska tabow
+wezterm.on('update-status', function(window)
+  window:set_right_status(' ' .. window:active_workspace() .. ' ')
+end)
+-- --- projekty --------------------------------------------------------------
+
+
+
 return {
   font_size = 14.0,
 
@@ -93,8 +172,8 @@ return {
     { key = "[", mods = "LEADER", action = act.ActivateCopyMode },
     { key = "q", mods = "LEADER", action = act.PaneSelect },
 
-
-    -- { key = 'c', mods = 'CTRL', action = wezterm.action.Nop,  },
+    { key = "f", mods = "LEADER", action = pick_project },
+    { key = "o", mods = "LEADER", action = act.ShowLauncherArgs { flags = "FUZZY|WORKSPACES" } },
   },
 
   -- vi-like copy mode
