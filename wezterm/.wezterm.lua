@@ -18,8 +18,9 @@ end)
 -- --- projekty --------------------------------------------------------------
 -- Ctrl-t f: lista projektow. Wybrany otwiera sie w osobnym workspace: nvim
 -- (sam wczyta sesje tego folderu). Jesli projekt jest juz otwarty,
--- tylko sie do niego przelaczasz. Ctrl-t o: wszystkie otwarte workspace'y,
--- razem z `default`, od ktorego startuje WezTerm.
+-- tylko sie do niego przelaczasz. Ctrl-t F: usuwa projekt z listy.
+-- Ctrl-t o: wszystkie otwarte workspace'y, razem z `default`, od ktorego
+-- startuje WezTerm.
 --
 -- Projekty = foldery, w ktorych nvim ma zapisana sesje (autocmds.lua w configu
 -- nvim), jak "ostatnie foldery" w VS Code. Nowy folder pojawi sie na liscie
@@ -27,9 +28,9 @@ end)
 local nvim_sessions = (os.getenv('LOCALAPPDATA') or '') .. '\\nvim-data\\sessions'
 
 local function list_projects()
-  local dirs = {}
+  local projects = {}
   local ok, files = pcall(wezterm.read_dir, nvim_sessions)
-  if not ok then return dirs end
+  if not ok then return projects end
   for _, file in ipairs(files) do
     local f = io.open(file, 'r')
     if f then
@@ -39,15 +40,15 @@ local function list_projects()
         local dir = line:match('^cd (.+)$')
         if dir then
           dir = dir:gsub('\\(.)', '%1'):gsub('^~', wezterm.home_dir):gsub('/', '\\')
-          dirs[#dirs + 1] = dir
+          projects[#projects + 1] = { dir = dir, file = file }
           break
         end
       end
       f:close()
     end
   end
-  table.sort(dirs)
-  return dirs
+  table.sort(projects, function(a, b) return a.dir < b.dir end)
+  return projects
 end
 
 local function spawn_project(dir)
@@ -72,8 +73,8 @@ end
 -- nowe foldery bylyby widoczne dopiero po przeladowaniu configu.
 local pick_project = wezterm.action_callback(function(window, pane)
   local choices = {}
-  for _, dir in ipairs(list_projects()) do
-    choices[#choices + 1] = { id = dir, label = dir }
+  for _, p in ipairs(list_projects()) do
+    choices[#choices + 1] = { id = p.dir, label = p.dir }
   end
   window:perform_action(act.InputSelector {
     title = 'Projekt',
@@ -81,6 +82,24 @@ local pick_project = wezterm.action_callback(function(window, pane)
     fuzzy = true,
     action = wezterm.action_callback(function(win, p, id)
       if id then open_project(win, p, id) end
+    end),
+  }, pane)
+end)
+
+-- Ctrl-t F: ta sama lista, ale wybrany folder z niej znika (kasuje sesje nvim
+-- tego folderu). Otwarty workspace zostaje -- zamykasz go sam. Jesli nvim jest
+-- akurat otwarty w tym folderze, przy wyjsciu zapisze sesje i folder wroci.
+local forget_project = wezterm.action_callback(function(window, pane)
+  local choices = {}
+  for _, p in ipairs(list_projects()) do
+    choices[#choices + 1] = { id = p.file, label = p.dir }
+  end
+  window:perform_action(act.InputSelector {
+    title = 'Usun projekt z listy',
+    choices = choices,
+    fuzzy = true,
+    action = wezterm.action_callback(function(_, _, file)
+      if file then os.remove(file) end
     end),
   }, pane)
 end)
@@ -173,6 +192,7 @@ return {
     { key = "q", mods = "LEADER", action = act.PaneSelect },
 
     { key = "f", mods = "LEADER", action = pick_project },
+    { key = "F", mods = "LEADER", action = forget_project },
     { key = "o", mods = "LEADER", action = act.ShowLauncherArgs { flags = "FUZZY|WORKSPACES" } },
   },
 
