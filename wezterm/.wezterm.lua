@@ -14,13 +14,11 @@ wezterm.on('format-tab-title', function(tab)
   return ' ⟦' .. (tab.tab_index + 1) .. '⟧ ' .. zoom
 end)
 
-
 -- --- projekty --------------------------------------------------------------
 -- Ctrl-t f: lista projektow. Wybrany otwiera sie w osobnym workspace: nvim
--- (sam wczyta sesje tego folderu). Jesli projekt jest juz otwarty,
--- tylko sie do niego przelaczasz. Ctrl-t F: usuwa projekt z listy.
--- Ctrl-t o: wszystkie otwarte workspace'y, razem z `default`, od ktorego
--- startuje WezTerm.
+-- (sam wczyta sesje tego folderu) i pwsh obok. Jesli projekt jest juz otwarty,
+-- tylko sie do niego przelaczasz. Ctrl-t o: wszystkie otwarte workspace'y,
+-- razem z `default`, od ktorego startuje WezTerm.
 --
 -- Projekty = foldery, w ktorych nvim ma zapisana sesje (autocmds.lua w configu
 -- nvim), jak "ostatnie foldery" w VS Code. Nowy folder pojawi sie na liscie
@@ -28,9 +26,9 @@ end)
 local nvim_sessions = (os.getenv('LOCALAPPDATA') or '') .. '\\nvim-data\\sessions'
 
 local function list_projects()
-  local projects = {}
+  local dirs = {}
   local ok, files = pcall(wezterm.read_dir, nvim_sessions)
-  if not ok then return projects end
+  if not ok then return dirs end
   for _, file in ipairs(files) do
     local f = io.open(file, 'r')
     if f then
@@ -40,24 +38,26 @@ local function list_projects()
         local dir = line:match('^cd (.+)$')
         if dir then
           dir = dir:gsub('\\(.)', '%1'):gsub('^~', wezterm.home_dir):gsub('/', '\\')
-          projects[#projects + 1] = { dir = dir, file = file }
+          dirs[#dirs + 1] = dir
           break
         end
       end
       f:close()
     end
   end
-  table.sort(projects, function(a, b) return a.dir < b.dir end)
-  return projects
+  table.sort(dirs)
+  return dirs
 end
 
 local function spawn_project(dir)
   -- nvim odpalony z pwsh, nie sam: po :q zostajesz w shellu w tym folderze
-  mux.spawn_window {
+  local _, editor = mux.spawn_window {
     workspace = dir,
     cwd = dir,
     args = { 'pwsh.exe', '-NoLogo', '-NoExit', '-Command', 'nvim' },
   }
+  editor:split { direction = 'Right', size = 0.5, cwd = dir }
+  editor:activate()
 end
 
 local function open_project(window, pane, dir)
@@ -73,8 +73,8 @@ end
 -- nowe foldery bylyby widoczne dopiero po przeladowaniu configu.
 local pick_project = wezterm.action_callback(function(window, pane)
   local choices = {}
-  for _, p in ipairs(list_projects()) do
-    choices[#choices + 1] = { id = p.dir, label = p.dir }
+  for _, dir in ipairs(list_projects()) do
+    choices[#choices + 1] = { id = dir, label = dir }
   end
   window:perform_action(act.InputSelector {
     title = 'Projekt',
@@ -86,29 +86,26 @@ local pick_project = wezterm.action_callback(function(window, pane)
   }, pane)
 end)
 
--- Ctrl-t F: ta sama lista, ale wybrany folder z niej znika (kasuje sesje nvim
--- tego folderu). Otwarty workspace zostaje -- zamykasz go sam. Jesli nvim jest
--- akurat otwarty w tym folderze, przy wyjsciu zapisze sesje i folder wroci.
-local forget_project = wezterm.action_callback(function(window, pane)
-  local choices = {}
-  for _, p in ipairs(list_projects()) do
-    choices[#choices + 1] = { id = p.file, label = p.dir }
-  end
-  window:perform_action(act.InputSelector {
-    title = 'Usun projekt z listy',
-    choices = choices,
-    fuzzy = true,
-    action = wezterm.action_callback(function(_, _, file)
-      if file then os.remove(file) end
-    end),
-  }, pane)
-end)
-
 -- nazwa biezacego workspace'u po prawej stronie paska tabow
 wezterm.on('update-status', function(window)
   window:set_right_status(' ' .. window:active_workspace() .. ' ')
 end)
--- --- projekty --------------------------------------------------------------
+
+-- --- copy mode (Ctrl-t [) ---------------------------------------------------
+-- Domyslne vi-like skroty WezTerma (hjkl, w/b/e, 0/$, g/G, Ctrl-u/d, v/V/Ctrl-v,
+-- y = kopiuj i wyjdz, q/Esc = wyjdz) + wyszukiwanie jak w vimie:
+-- / szukaj, Enter wraca do copy mode na trafieniu, n / N nastepne / poprzednie.
+-- Wlasna tabela zamiast domyslnej wylaczylaby wszystkie pozostale skroty.
+local copy_mode = wezterm.gui.default_key_tables().copy_mode
+table.insert(copy_mode, { key = '/', mods = 'NONE', action = act.Search 'CurrentSelectionOrEmptyString' })
+table.insert(copy_mode, { key = 'n', mods = 'NONE', action = act.CopyMode 'NextMatch' })
+table.insert(copy_mode, { key = 'N', mods = 'SHIFT', action = act.CopyMode 'PriorMatch' })
+
+local search_mode = wezterm.gui.default_key_tables().search_mode
+table.insert(search_mode, {
+  key = 'Enter', mods = 'NONE',
+  action = act.Multiple { act.CopyMode 'AcceptPattern', act.CopyMode 'ClearSelectionMode' },
+})
 
 
 
@@ -121,7 +118,10 @@ return {
   default_prog = { "pwsh.exe", "-NoLogo" },
 
   tab_bar_at_bottom = true,
- 
+
+  -- dluzsza historia (domyslnie 3500 linii -- za malo na dluga sesje claude)
+  scrollback_lines = 20000,
+
   front_end = "WebGpu",
 
   -- brak paddingu
@@ -137,7 +137,6 @@ return {
 
   keys = {
 
-    -- split jak w tmux
     { key = "v", mods = "LEADER", action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
     { key = "s", mods = "LEADER", action = act.SplitVertical { domain = "CurrentPaneDomain" } },
 
@@ -182,30 +181,21 @@ return {
     { key = "P", mods = "LEADER", action = act.MoveTabRelative(-1) },
     { key = "N", mods = "LEADER", action = act.MoveTabRelative(1) },
 
-
     -- move panes
     { key = "w", mods = "LEADER", action = act.PaneSelect { mode = "SwapWithActiveKeepFocus" } },
     { key = "W", mods = "LEADER", action = act.PaneSelect { mode = "SwapWithActive" } },
     { key = "m", mods = "LEADER", action = act.PaneSelect { mode = "MoveToNewTab" } },
 
+    { key = "f", mods = "LEADER", action = pick_project },
+    { key = "o", mods = "LEADER", action = act.ShowLauncherArgs { flags = "FUZZY|WORKSPACES" } },
+  
     { key = "[", mods = "LEADER", action = act.ActivateCopyMode },
     { key = "q", mods = "LEADER", action = act.PaneSelect },
-
-    { key = "f", mods = "LEADER", action = pick_project },
-    { key = "F", mods = "LEADER", action = forget_project },
-    { key = "o", mods = "LEADER", action = act.ShowLauncherArgs { flags = "FUZZY|WORKSPACES" } },
   },
 
-  -- vi-like copy mode
+
   key_tables = {
-    copy_mode = {
-      { key = "h", action = act.CopyMode "MoveLeft" },
-      { key = "j", action = act.CopyMode "MoveDown" },
-      { key = "k", action = act.CopyMode "MoveUp" },
-      { key = "l", action = act.CopyMode "MoveRight" },
-      { key = "v", action = act.CopyMode { SetSelectionMode = "Cell" } },
-      { key = "y", action = act.CopyTo "ClipboardAndPrimarySelection" },
-      { key = "Escape", action = act.CopyMode "Close" },
-    },
+    copy_mode = copy_mode,
+    search_mode = search_mode,
   },
 }
