@@ -133,6 +133,8 @@ return {
   font_size = 14.0,
 
   color_scheme = 'Obsidian',
+  use_fancy_tab_bar = false,
+
 
   harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
   default_prog = { "pwsh.exe", "-NoLogo" },
