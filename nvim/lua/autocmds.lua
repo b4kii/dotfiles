@@ -166,3 +166,70 @@ vim.api.nvim_create_user_command('SessionForget', function()
   folder = nil
   vim.notify('Sesja tego folderu usunieta, zapis wylaczony do wyjscia.')
 end, { desc = 'Delete the session of the current folder and stop saving it' })
+
+
+
+
+-- UNC
+-- Sciezki sieciowe (\\serwer\udzial\...) zamiast zmapowanej litery psuja oil
+-- ("attempt to index local 'drive'") i LSP ("UriError ... two slash
+-- characters") -- oba chca litery dysku. Niewazne, skad sciezka przyszla
+-- (yazi, LSP, Eksplorator): jesli udzial jest zmapowany, dostaje litere.
+if vim.fn.has('win32') == 1 then
+  local drives -- '\\serwer\udzial' (male litery) -> 'W:'; liczone przy pierwszej potrzebie
+
+  local function mapped_drives()
+    if drives then return drives end
+    drives = {}
+    -- zmapowane dyski z rejestru: bez dotykania sieci, wiec nie zawiesi sie
+    -- na niedostepnym serwerze
+    local letter
+    for _, line in ipairs(vim.fn.systemlist({ 'reg', 'query', 'HKCU\\Network', '/s', '/v', 'RemotePath' })) do
+      local l = line:match('\\Network\\(%a)%s*$')
+      if l then letter = l:upper() .. ':' end
+      local unc = line:match('RemotePath%s+REG_SZ%s+(\\\\.-)%s*$')
+      if unc and letter then drives[unc:gsub('\\$', ''):lower()] = letter end
+    end
+    return drives
+  end
+
+  local function to_drive(path)
+    if not path:match('^[\\/][\\/][^\\/]') then return nil end
+    local p = path:gsub('/', '\\')
+    for unc, letter in pairs(mapped_drives()) do
+      local head = p:sub(1, #unc):lower()
+      if head == unc and (#p == #unc or p:sub(#unc + 1, #unc + 1) == '\\') then
+        return letter .. (p:sub(#unc + 1) ~= '' and p:sub(#unc + 1) or '\\')
+      end
+    end
+  end
+
+  local function fix_buf(buf)
+    local name = vim.api.nvim_buf_get_name(buf)
+    -- oil robi z \\serwer\udzial adres oil:///serwer/udzial; normalnie pierwszy
+    -- czlon to litera dysku (oil:///W/...), wiec dluzszy = sciezka sieciowa
+    local oil_path = name:match('^oil:///+(.+)$')
+    if oil_path then
+      if oil_path:match('^%a/') or oil_path:match('^%a$') then return end
+      local fixed = to_drive('\\\\' .. oil_path)
+      if fixed then
+        pcall(vim.api.nvim_buf_set_name, buf, 'oil:///' .. fixed:gsub(':', '', 1):gsub('\\', '/'))
+      end
+      return
+    end
+    local fixed = to_drive(name)
+    if fixed then pcall(vim.api.nvim_buf_set_name, buf, fixed) end
+  end
+
+  local unc_group = vim.api.nvim_create_augroup('unc_to_drive', { clear = true })
+  vim.api.nvim_create_autocmd('BufNew', {
+    group = unc_group,
+    desc = 'Open \\\\server\\share paths through the mapped drive letter',
+    callback = function(args) fix_buf(args.buf) end,
+  })
+
+  -- pliki z linii polecen powstaja, zanim ten plik sie wczyta -- poprawiamy je tu
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do fix_buf(buf) end
+  local cwd = to_drive(vim.fn.getcwd())
+  if cwd then vim.cmd.cd(vim.fn.fnameescape(cwd)) end
+end
