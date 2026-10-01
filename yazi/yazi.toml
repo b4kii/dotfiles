@@ -180,4 +180,3 @@ image_quality = 85
 edit = [
     { run = 'nvim %s', block = true, desc = "Edit with Neovim" },
 ]
-
