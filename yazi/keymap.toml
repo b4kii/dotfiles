@@ -27,3 +27,35 @@ on   = [ "<C-k>", "o" ]
 run  = 'shell "wezterm cli spawn -- nvim --cmd \"cd %CD%\" %s" --orphan'
 desc = "Neovim w nowym tabie WezTerm"
 
+# smart-enter.yazi: Enter wchodzi do katalogu albo otwiera plik
+[[mgr.prepend_keymap]]
+on   = "<Enter>"
+run  = "plugin smart-enter"
+desc = "Wejdź do katalogu albo otwórz plik"
+
+# compress.yazi
+[[mgr.prepend_keymap]]
+on   = [ "c", "a", "a" ]
+run  = "plugin compress"
+desc = "Spakuj zaznaczone"
+
+[[mgr.prepend_keymap]]
+on   = [ "c", "a", "p" ]
+run  = "plugin compress -p"
+desc = "Spakuj zaznaczone (hasło)"
+
+[[mgr.prepend_keymap]]
+on   = [ "c", "a", "h" ]
+run  = "plugin compress -ph"
+desc = "Spakuj zaznaczone (hasło + ukryte nazwy)"
+
+[[mgr.prepend_keymap]]
+on   = [ "c", "a", "l" ]
+run  = "plugin compress -l"
+desc = "Spakuj zaznaczone (poziom kompresji)"
+
+[[mgr.prepend_keymap]]
+on   = [ "c", "a", "u" ]
+run  = "plugin compress -phl"
+desc = "Spakuj zaznaczone (hasło + nazwy + poziom)"
+
