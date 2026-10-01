@@ -1,0 +1,24 @@
+[[plugin.deps]]
+use = "KKV9/compress"
+rev = "80e5268"
+hash = "868db729374b97871bc30b96d0e9061f"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "33dde28"
+hash = "187cc58ba7ac3befd49c342129e6f1b6"
+
+[[flavor.deps]]
+use = "956MB/vscode-dark-plus"
+rev = "e9f118a"
+hash = "e317dae3ab774e6e2cb69a6e181a810f"
+
+[[flavor.deps]]
+use = "956MB/vscode-dark-modern"
+rev = "ab7190e"
+hash = "de76edb6b6bb457003f47102b31ee760"
+
+[[flavor.deps]]
+use = "dangooddd/kanagawa"
+rev = "04985d1"
+hash = "c69a63981e254a3a06a11c2bf0e6af1d"
