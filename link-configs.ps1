@@ -18,9 +18,6 @@ if (-not (Test-Path $Dotfiles)) {
 
 # ---------------------------------------------------------------------------
 # Sprawdzenie uprawnien ZANIM cokolwiek ruszymy.
-#
-# Bez tego pierwszy Link-File kasuje cel, potem wywala sie na tworzeniu
-# dowiazania i zostajesz bez pliku i bez linku.
 function Test-CanSymlink {
     $probe = Join-Path $env:TEMP ("symlink-probe-" + [guid]::NewGuid())
     $target = Join-Path $env:TEMP ("symlink-target-" + [guid]::NewGuid())
@@ -53,8 +50,6 @@ function Link-File {
         [string]$Destination
     )
 
-    # Bez tego literowka w sciezce zrodlowej dawala poprawnie wygladajacy link,
-    # ktory wskazuje w prozne -- a oryginal juz skasowany.
     if (-not (Test-Path $Source)) {
         Write-Host "  POMIJAM  brak zrodla: $Source" -ForegroundColor Yellow
         return
@@ -70,9 +65,6 @@ function Link-File {
         Remove-Item -LiteralPath $Destination -Force   # stary link, nie dane
     }
     elseif ($item) {
-        # TU byl `Remove-Item -Recurse -Force`, czyli kasowanie prawdziwego
-        # pliku bez pytania. Jesli wersja w repo byla starsza niz ta na dysku,
-        # traciles nowsza bezpowrotnie. Teraz laduje obok jako .bak.
         $backup = "$Destination.bak"
         if (Test-Path $backup) {
             Remove-Item -LiteralPath $backup -Recurse -Force
@@ -107,45 +99,27 @@ Link-File `
   "$Dotfiles\starship\starship.toml" `
   "$env:USERPROFILE\.config\starship.toml"
 
-# Yazi
-Link-File `
-  "$Dotfiles\yazi\yazi.toml" `
-  "$env:APPDATA\yazi\yazi.toml"
-
-Link-File `
-  "$Dotfiles\yazi\keymap.toml" `
-  "$env:APPDATA\yazi\keymap.toml"
-
-Link-File `
-  "$Dotfiles\yazi\theme.toml" `
-  "$env:APPDATA\yazi\theme.toml"
+# Yazi -- na Windowsie config jest w %APPDATA%\yazi\config\, nie w %APPDATA%\yazi\.
+# package.toml tez, bo z niego `ya pkg install` bierze wtyczki i flavory.
+foreach ($name in 'yazi.toml', 'keymap.toml', 'theme.toml', 'package.toml') {
+    Link-File "$Dotfiles\yazi\$name" "$env:APPDATA\yazi\config\$name"
+}
 
 # Lazygit
 Link-File `
   "$Dotfiles\lazygit\config.yml" `
   "$env:APPDATA\lazygit\config.yml"
 
-# Neovim -- caly katalog jednym dowiazaniem, nie plik po pliku
-#
-# UWAGA, kolejnosc ma znaczenie: nvim\install.ps1 ZAWSZE umieszcza konfiguracje
-# w AppData\Local\nvim (porownuje $PSScriptRoot z celem, a uruchamiany z repo
-# nigdy nie jest z nim rowny). Odpalony po tym skrypcie zobaczy tu symlink,
-# odsunie go jako .bak i wgra zwykla kopie -- dowiazanie przepadnie.
-#
-# Wiec: nvim\install.ps1 URUCHAMIAJ PRZED linkowaniem, nie po. Potem do
-# aktualizacji wtyczek i serwerow wystarczy `-SkipPlugins` / recznie.
+# Neovim -- caly katalog jednym dowiazaniem.
+# nvim\install.ps1 URUCHAMIAJ PRZED linkowaniem, nie po -- inaczej odsunie
+# symlink jako .bak i wgra zwykla kopie.
 Link-File `
   "$Dotfiles\nvim" `
   "$env:LOCALAPPDATA\nvim"
 
-# Helix -- wyrzucony razem z instalacja helixa z install.ps1.
-# Odkomentuj, jesli wracasz do niego:
-#
-# Link-File "$Dotfiles\helix\config.toml"               "$env:APPDATA\helix\config.toml"
-# Link-File "$Dotfiles\helix\languages.toml"            "$env:APPDATA\helix\languages.toml"
-# Link-File "$Dotfiles\helix\themes\custom_theme.toml"  "$env:APPDATA\helix\themes\custom_theme.toml"
-
-# ahk\ nie jest linkowane: skrypty AutoHotkey nie maja kanonicznej lokalizacji,
-# odpalasz je ze sciezki, ktora sam wybierzesz (np. skrot w Autostarcie).
+# Helix -- %APPDATA%\helix\. themes\ jednym dowiazaniem, nowe motywy dzialaja od razu.
+Link-File "$Dotfiles\helix\config.toml"    "$env:APPDATA\helix\config.toml"
+Link-File "$Dotfiles\helix\languages.toml" "$env:APPDATA\helix\languages.toml"
+Link-File "$Dotfiles\helix\themes"         "$env:APPDATA\helix\themes"
 
 Write-Host "== DONE =="
