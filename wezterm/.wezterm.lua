@@ -14,7 +14,6 @@ wezterm.on('format-tab-title', function(tab)
   return ' ⟦' .. (tab.tab_index + 1) .. '⟧ ' .. zoom
 end)
 
-
 -- --- projekty --------------------------------------------------------------
 -- Ctrl-t f: lista projektow. Wybrany otwiera sie w osobnym workspace: nvim
 -- (sam wczyta sesje tego folderu). Jesli projekt jest juz otwarty,
@@ -133,8 +132,8 @@ return {
   font_size = 14.0,
 
   color_scheme = 'Obsidian',
-  use_fancy_tab_bar = false,
 
+  use_fancy_tab_bar = false,
 
   harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
   default_prog = { "pwsh.exe", "-NoLogo" },
@@ -174,7 +173,8 @@ return {
     { key = "X", mods = "LEADER", action = act.CloseCurrentTab { confirm = false } },
 
     -- nowe taby (jak nowe window)
-    { key = "c", mods = "LEADER", action = act.SpawnTab "CurrentPaneDomain" },
+    { key = "c", mods = "LEADER", action = act.SpawnCommandInNewTab { domain = "CurrentPaneDomain", cwd = wezterm.home_dir } },
+    { key = "C", mods = "LEADER", action = act.SpawnTab "CurrentPaneDomain" },
 
     -- poprzednia / następna karta
     { key = "p", mods = "LEADER", action = act.ActivateTabRelative(-1) },
