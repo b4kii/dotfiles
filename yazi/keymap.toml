@@ -27,6 +27,11 @@ on   = [ "<C-k>", "o" ]
 run  = 'shell "wezterm cli spawn -- nvim --cmd \"cd %CD%\" %s" --orphan'
 desc = "Neovim w nowym tabie WezTerm"
 
+[[mgr.prepend_keymap]]
+on   = [ "<C-k>", "e" ]
+run  = 'shell "nvim ." --block'
+desc = "Neovim na tym folderze, w aktualnym tabie"
+
 # smart-enter.yazi: Enter wchodzi do katalogu albo otwiera plik
 [[mgr.prepend_keymap]]
 on   = "<Enter>"
@@ -58,4 +63,3 @@ desc = "Spakuj zaznaczone (poziom kompresji)"
 on   = [ "c", "a", "u" ]
 run  = "plugin compress -phl"
 desc = "Spakuj zaznaczone (hasło + nazwy + poziom)"
-
