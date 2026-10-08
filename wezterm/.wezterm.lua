@@ -4,6 +4,10 @@ local wezterm = require 'wezterm'
 local act = wezterm.action
 local mux = wezterm.mux
 
+-- pwsh.exe and the nvim session directory below only exist on Windows; the same
+-- file is linked on Linux by install.sh.
+local is_windows = wezterm.target_triple:find('windows') ~= nil
+
 wezterm.on("gui-startup", function()
   local tab, pane, window = mux.spawn_window{}
   window:gui_window():maximize()
@@ -136,7 +140,7 @@ return {
   use_fancy_tab_bar = false,
 
   harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
-  default_prog = { "pwsh.exe", "-NoLogo" },
+  default_prog = is_windows and { "pwsh.exe", "-NoLogo" } or nil,
 
   tab_bar_at_bottom = true,
 
